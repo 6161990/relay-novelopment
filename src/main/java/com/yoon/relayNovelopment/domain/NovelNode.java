@@ -9,12 +9,13 @@ import java.util.List;
 public class NovelNode {
     private List<Novel> novels;
 
-    public NovelNode() {
-        this.init();
+    public NovelNode(Novel novel) {
+        this.init(novel);
     }
 
-    private void init() {
+    private void init(Novel novel) {
         this.novels = new ArrayList<>();
+        this.add(novel);
     }
 
     public void add(Novel novel) {
