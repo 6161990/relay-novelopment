@@ -14,8 +14,6 @@ build/
 !**/src/test/**/build/
 
 .DS_Store
-### test data ouput ###
-user.json
 
 ### STS ###
 .apt_generated
