@@ -1,6 +1,8 @@
 package com.yoon.relayNovelopment.domain;
 
+import java.util.List;
+
 public class Props {
-    String key;
-    String value;
+    List<Prop> props;
+
 }
