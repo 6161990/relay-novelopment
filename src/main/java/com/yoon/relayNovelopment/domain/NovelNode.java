@@ -1,7 +1,6 @@
 package com.yoon.relayNovelopment.domain;
 
 import lombok.Getter;
-import org.valid4j.Validation;
 
 import java.util.ArrayList;
 import java.util.List;
