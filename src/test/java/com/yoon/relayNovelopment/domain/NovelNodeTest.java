@@ -23,7 +23,7 @@ class NovelNodeTest {
         assertThat(node.getNovels().size()).isEqualTo(1);
 
         Novel novel2 = Novel.of(NovelId.of("id2"), WriterId.of("writer2"), Title.of("bang2"), new Contents(), new Props());
-        node.register(novel2);
+        node.publish(novel2);
 
         assertThat(node.getNovels().size()).isEqualTo(2);
     }
@@ -36,7 +36,7 @@ class NovelNodeTest {
 
         Novel novel2 = Novel.of(NovelId.of("id2"), WriterId.of("writer"), Title.of("bang2"), new Contents(), new Props());
 
-        assertThatThrownBy(()-> node.register(novel2))
+        assertThatThrownBy(()-> node.publish(novel2))
                 .isInstanceOf(NovelNodeException.class)
                 .hasMessage(String.format("Already exist the writer. WriterId %s, NovelNodeId %s", WriterId.of("writer"), NovelNodeId.of("nodeId1")));
     }
@@ -49,21 +49,21 @@ class NovelNodeTest {
 
         Novel novel2 = Novel.of(NovelId.of("id2"), WriterId.of("writer2"), Title.of("bang"), new Contents(), new Props());
 
-        assertThatThrownBy(()-> node.register(novel2))
+        assertThatThrownBy(()-> node.publish(novel2))
                 .isInstanceOf(NovelNodeException.class)
                 .hasMessage(String.format("Already exist the title. WriterId %s, NovelNodeId %s", WriterId.of("writer2"), NovelNodeId.of("nodeId1")));
     }
 
     @Test
     void 하나의_novelNode는_중복된_Novel이_등록될_수_없다() {
-        // 질문 novelId 가 같다면 도메인까지 못오게 해야하는 것 아님? -> 어플리케이션에서 할 일.. ?
+        // FIXME 질문 novelId 가 같다면 도메인까지 못오게 해야하는 것 아님? -> 어플리케이션에서 할 일.. ?
         Novel novel = Novel.of(NovelId.of("id"), WriterId.of("writer"), Title.of("bang"), new Contents(), new Props());
         NovelNode node = new NovelNode(NovelNodeId.of("nodeId1"), novel);
         assertThat(node.getNovels().size()).isEqualTo(1);
 
         Novel novel2 = Novel.of(NovelId.of("id"), WriterId.of("writer2"), Title.of("bang2"), new Contents(), new Props());
 
-        assertThatThrownBy(()-> node.register(novel2))
+        assertThatThrownBy(()-> node.publish(novel2))
                 .isInstanceOf(NovelNodeException.class)
                 .hasMessage(String.format("Already exist the novel. NovelId %s, NovelNodeId %s", NovelId.of("id"), NovelNodeId.of("nodeId1")));
     }

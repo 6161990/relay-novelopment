@@ -19,10 +19,10 @@ public class NovelNode {
 
     private void init(Novel novel) {
         this.novels = new ArrayList<>();
-        this.register(novel);
+        this.publish(novel);
     }
 
-    public void register(Novel novel) {
+    public void publish(Novel novel) {
         validate(novels.stream().noneMatch(n->n.getWriter().getId().equals(novel.getWriter().getId())),
                 new NovelNodeException(String.format("Already exist the writer. WriterId %s, NovelNodeId %s", novel.getWriter(), id)));
         validate(novels.stream().noneMatch(n->n.getTitle().equals(novel.getTitle())),
