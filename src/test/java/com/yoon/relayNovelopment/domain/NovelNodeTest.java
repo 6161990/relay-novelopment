@@ -13,7 +13,7 @@ class NovelNodeTest {
 
         NovelNode node = new NovelNode(NovelNodeId.of("nodeId1"), novel);
 
-        assertThat(node.getNovels().size()).isEqualTo(1);
+        assertThat(node.getNovelSize()).isEqualTo(1);
     }
 
     @Test
@@ -25,7 +25,7 @@ class NovelNodeTest {
         Novel novel2 = Novel.of(NovelId.of("id2"), WriterId.of("writer2"), Title.of("bang2"), new Contents(), new Props());
         node.publish(novel2);
 
-        assertThat(node.getNovels().size()).isEqualTo(2);
+        assertThat(node.getNovelSize()).isEqualTo(2);
     }
 
     @Test
@@ -59,7 +59,7 @@ class NovelNodeTest {
         // FIXME 질문 novelId 가 같다면 도메인까지 못오게 해야하는 것 아님? -> 어플리케이션에서 할 일.. ?
         Novel novel = Novel.of(NovelId.of("id"), WriterId.of("writer"), Title.of("bang"), new Contents(), new Props());
         NovelNode node = new NovelNode(NovelNodeId.of("nodeId1"), novel);
-        assertThat(node.getNovels().size()).isEqualTo(1);
+        assertThat(node.getNovelSize()).isEqualTo(1);
 
         Novel novel2 = Novel.of(NovelId.of("id"), WriterId.of("writer2"), Title.of("bang2"), new Contents(), new Props());
 
