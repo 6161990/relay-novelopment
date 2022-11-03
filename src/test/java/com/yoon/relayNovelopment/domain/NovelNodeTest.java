@@ -11,7 +11,10 @@ class NovelNodeTest {
     void create_novelNode() {
         Novel novel = Novel.of(NovelId.of("id"), WriterId.of("writer"), Title.of("bang"), new Contents(), new Props());
 
-        NovelNode node = new NovelNode(NovelNodeId.of("nodeId1"), novel);
+        NovelNode node = new NovelNode(NovelNodeId.of("nodeId1"),
+                                        OpeningNovel.of(OpeningNovelId.of("openingNovelId"),
+                                                        Content.of(ContentId.of("contentId"), "content")),
+                                        novel);
 
         assertThat(node.getNovelSize()).isEqualTo(1);
     }
@@ -19,7 +22,10 @@ class NovelNodeTest {
     @Test
     void add_novel_at_novelNode() {
         Novel novel = Novel.of(NovelId.of("id"), WriterId.of("writer"), Title.of("bang"), new Contents(), new Props());
-        NovelNode node = new NovelNode(NovelNodeId.of("nodeId1"), novel);
+        NovelNode node = new NovelNode(NovelNodeId.of("nodeId1"),
+                                       OpeningNovel.of(OpeningNovelId.of("openingNovelId"),
+                                        Content.of(ContentId.of("contentId"), "content")),
+                                       novel);
         assertThat(node.getNovels().size()).isEqualTo(1);
 
         Novel novel2 = Novel.of(NovelId.of("id2"), WriterId.of("writer2"), Title.of("bang2"), new Contents(), new Props());
@@ -31,7 +37,10 @@ class NovelNodeTest {
     @Test
     void writer는_하나의_novelNode에_중복하여_등록할_수_없다() {
         Novel novel = Novel.of(NovelId.of("id"), WriterId.of("writer"), Title.of("bang"), new Contents(), new Props());
-        NovelNode node = new NovelNode(NovelNodeId.of("nodeId1"), novel);
+        NovelNode node = new NovelNode(NovelNodeId.of("nodeId1"),
+                OpeningNovel.of(OpeningNovelId.of("openingNovelId"),
+                        Content.of(ContentId.of("contentId"), "content")),
+                novel);
         assertThat(node.getNovels().size()).isEqualTo(1);
 
         Novel novel2 = Novel.of(NovelId.of("id2"), WriterId.of("writer"), Title.of("bang2"), new Contents(), new Props());
@@ -44,7 +53,10 @@ class NovelNodeTest {
     @Test
     void 하나의_novelNode에_제목이_겹칠_수_없다() {
         Novel novel = Novel.of(NovelId.of("id"), WriterId.of("writer"), Title.of("bang"), new Contents(), new Props());
-        NovelNode node = new NovelNode(NovelNodeId.of("nodeId1"), novel);
+        NovelNode node = new NovelNode(NovelNodeId.of("nodeId1"),
+                OpeningNovel.of(OpeningNovelId.of("openingNovelId"),
+                        Content.of(ContentId.of("contentId"), "content")),
+                novel);
         assertThat(node.getNovels().size()).isEqualTo(1);
 
         Novel novel2 = Novel.of(NovelId.of("id2"), WriterId.of("writer2"), Title.of("bang"), new Contents(), new Props());
@@ -58,7 +70,10 @@ class NovelNodeTest {
     void 하나의_novelNode는_중복된_Novel이_등록될_수_없다() {
         // FIXME 질문 novelId 가 같다면 도메인까지 못오게 해야하는 것 아님? -> 어플리케이션에서 할 일.. ?
         Novel novel = Novel.of(NovelId.of("id"), WriterId.of("writer"), Title.of("bang"), new Contents(), new Props());
-        NovelNode node = new NovelNode(NovelNodeId.of("nodeId1"), novel);
+        NovelNode node = new NovelNode(NovelNodeId.of("nodeId1"),
+                OpeningNovel.of(OpeningNovelId.of("openingNovelId"),
+                        Content.of(ContentId.of("contentId"), "content")),
+                novel);
         assertThat(node.getNovelSize()).isEqualTo(1);
 
         Novel novel2 = Novel.of(NovelId.of("id"), WriterId.of("writer2"), Title.of("bang2"), new Contents(), new Props());

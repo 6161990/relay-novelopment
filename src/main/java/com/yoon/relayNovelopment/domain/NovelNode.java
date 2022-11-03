@@ -8,11 +8,13 @@ import java.util.List;
 
 @Getter
 public class NovelNode {
-    private NovelNodeId id;
+    private final NovelNodeId id;
+    private final OpeningNovel openingNovel;
     private List<Novel> novels;
 
-    public NovelNode(NovelNodeId id, Novel novel) {
+    public NovelNode(NovelNodeId id, OpeningNovel openingNovel, Novel novel) {
         this.id = id;
+        this.openingNovel = openingNovel;
         this.init(novel);
     }
 

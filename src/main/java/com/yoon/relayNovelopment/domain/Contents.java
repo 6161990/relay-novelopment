@@ -1,5 +1,8 @@
 package com.yoon.relayNovelopment.domain;
 
+import java.util.List;
+
+
 public class Contents {
-    String content;
+    List<Content> content;
 }
