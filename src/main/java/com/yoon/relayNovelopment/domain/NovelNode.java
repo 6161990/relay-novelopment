@@ -10,11 +10,13 @@ import java.util.List;
 public class NovelNode {
     private final NovelNodeId id;
     private final OpeningNovel openingNovel;
+    private final int depth;
     private List<Novel> novels;
 
-    public NovelNode(NovelNodeId id, OpeningNovel openingNovel, Novel novel) {
+    public NovelNode(NovelNodeId id, OpeningNovel openingNovel, int depth, Novel novel) {
         this.id = id;
         this.openingNovel = openingNovel;
+        this.depth = depth;
         this.init(novel);
     }
 

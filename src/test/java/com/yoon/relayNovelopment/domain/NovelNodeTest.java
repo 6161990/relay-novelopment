@@ -7,6 +7,8 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class NovelNodeTest {
 
+    private final int NODE_DEPTH = 5;
+
     @Test
     void create_novelNode() {
         NextNovel novel = NextNovel.of(NextNovelId.of("id"), WriterId.of("writer"), Title.of("bang"), new Contents(), new Props());
@@ -15,6 +17,7 @@ class NovelNodeTest {
                 OpeningNovel.of(OpeningNovelId.of("openingNovelId"),
                         WriterId.of("writer"), Title.of("bang"),
                         Content.of(ContentId.of("contentId"), "content"), new Props()),
+                NODE_DEPTH,
                 novel);
 
         assertThat(node.getNovelSize()).isEqualTo(1);
@@ -24,10 +27,11 @@ class NovelNodeTest {
     void add_novel_at_novelNode() {
         NextNovel novel = NextNovel.of(NextNovelId.of("id"), WriterId.of("writer"), Title.of("bang"), new Contents(), new Props());
         NovelNode node = new NovelNode(NovelNodeId.of("nodeId1"),
-                                       OpeningNovel.of(OpeningNovelId.of("openingNovelId"),
-                                                        WriterId.of("writer"), Title.of("bang"),
-                                                        Content.of(ContentId.of("contentId"), "content"), new Props()),
-                                       novel);
+                OpeningNovel.of(OpeningNovelId.of("openingNovelId"),
+                        WriterId.of("writer"), Title.of("bang"),
+                        Content.of(ContentId.of("contentId"), "content"), new Props()),
+                NODE_DEPTH,
+                novel);
         assertThat(node.getNovels().size()).isEqualTo(1);
 
         NextNovel novel2 = NextNovel.of(NextNovelId.of("id2"), WriterId.of("writer2"), Title.of("bang2"), new Contents(), new Props());
@@ -43,6 +47,7 @@ class NovelNodeTest {
                 OpeningNovel.of(OpeningNovelId.of("openingNovelId"),
                         WriterId.of("writer"), Title.of("bang"),
                         Content.of(ContentId.of("contentId"), "content"), new Props()),
+                NODE_DEPTH,
                 novel);
         assertThat(node.getNovels().size()).isEqualTo(1);
 
@@ -60,6 +65,7 @@ class NovelNodeTest {
                 OpeningNovel.of(OpeningNovelId.of("openingNovelId"),
                         WriterId.of("writer"), Title.of("bang"),
                         Content.of(ContentId.of("contentId"), "content"), new Props()),
+                NODE_DEPTH,
                 novel);
         assertThat(node.getNovels().size()).isEqualTo(1);
 
@@ -78,6 +84,7 @@ class NovelNodeTest {
                 OpeningNovel.of(OpeningNovelId.of("openingNovelId"),
                         WriterId.of("writer"), Title.of("bang"),
                         Content.of(ContentId.of("contentId"), "content"), new Props()),
+                NODE_DEPTH,
                 novel);
         assertThat(node.getNovelSize()).isEqualTo(1);
 
