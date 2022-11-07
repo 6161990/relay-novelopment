@@ -1,28 +1,30 @@
 package com.yoon.relayNovelopment.domain;
 
 import lombok.Getter;
+import lombok.ToString;
+import lombok.Value;
 import org.valid4j.Validation;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Getter
+@ToString
 public class NovelNode {
     private final NovelNodeId id;
     private final OpeningNovel openingNovel;
     private final int depth;
     private List<Novel> novels;
 
-    public NovelNode(NovelNodeId id, OpeningNovel openingNovel, int depth, Novel novel) {
+    public NovelNode(NovelNodeId id, OpeningNovel openingNovel, int depth) {
         this.id = id;
         this.openingNovel = openingNovel;
         this.depth = depth;
-        this.init(novel);
+        init();
     }
 
-    private void init(Novel novel) {
+    private void init() {
         this.novels = new ArrayList<>();
-        this.publish(novel);
     }
 
     public void publish(Novel novel) {
