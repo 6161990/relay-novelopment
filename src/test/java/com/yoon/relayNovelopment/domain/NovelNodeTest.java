@@ -2,7 +2,7 @@ package com.yoon.relayNovelopment.domain;
 
 import org.junit.jupiter.api.Test;
 
-import static com.yoon.relayNovelopment.domain.NovelNodeBuilder.content;
+import static com.yoon.relayNovelopment.domain.NovelNodeBuilder.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -14,7 +14,7 @@ class NovelNodeTest {
     void create_novelNode() {
         NovelNode node = NovelNodeBuilder.builder()
                 .id("id")
-                .openingNovel("id", "writer", "bang", content("contentId", "content"), "props")
+                .openingNovel(openingNovelId("id"), writerId("writer"), title("bang"), content("contentId", "content"))
                 .depth(NODE_DEPTH)
                 .build();
 

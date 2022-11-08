@@ -20,8 +20,8 @@ public class NovelNodeBuilder {
         return this;
     }
 
-    public NovelNodeBuilder openingNovel(String id, String writer, String title, Content content, String props) {
-        this.openingNovel =  OpeningNovel.of(OpeningNovelId.of(id), WriterId.of(writer), Title.of(title), content, new Props());
+    public NovelNodeBuilder openingNovel(OpeningNovelId openingNovelId, WriterId writerId, Title title, Content content) {
+        this.openingNovel =  OpeningNovel.of(openingNovelId, writerId, title, content, new Props());
         return this;
     }
 
@@ -33,4 +33,17 @@ public class NovelNodeBuilder {
     protected static Content content(String contentId, String content) {
         return Content.of(ContentId.of(contentId), content);
     }
+
+    protected static OpeningNovelId openingNovelId(String id) {
+        return OpeningNovelId.of(id);
+    }
+
+    protected static WriterId writerId(String id) {
+        return WriterId.of(id);
+    }
+
+    protected static Title title(String name) {
+        return Title.of(name);
+    }
 }
+
