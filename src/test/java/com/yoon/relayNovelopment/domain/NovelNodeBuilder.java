@@ -2,7 +2,6 @@ package com.yoon.relayNovelopment.domain;
 
 public class NovelNodeBuilder {
 
-    private NovelNode node;
     private NovelNodeId novelNodeId;
     private OpeningNovel openingNovel;
     private int depth;
@@ -20,8 +19,8 @@ public class NovelNodeBuilder {
         return this;
     }
 
-    public NovelNodeBuilder openingNovel(OpeningNovelId openingNovelId, WriterId writerId, Title title, Content content) {
-        this.openingNovel =  OpeningNovel.of(openingNovelId, writerId, title, content, new Props());
+    public NovelNodeBuilder openingNovel(NovelId openingNovelId, WriterId writerId, Title title, Content content) {
+        this.openingNovel =  OpeningNovel.of((OpeningNovelId) openingNovelId, writerId, title, content, new Props());
         return this;
     }
 

@@ -43,7 +43,7 @@ public class NovelNode {
                 new NovelNodeException(String.format("Already exist the writer. WriterId %s, NovelNodeId %s", novel.getWriterId(), id)));
         Validation.validate(novels.stream().noneMatch(n->n.getTitle().equals(novel.getTitle())),
                 new NovelNodeException(String.format("Already exist the title. WriterId %s, NovelNodeId %s", novel.getWriterId(), id)));
-        Validation.validate(novels.stream().noneMatch(n->n.getId().equals(novel.getId())),
+        Validation.validate(novels.stream().noneMatch(n->n.getId().getId().equals(novel.getId().getId())),
                 new NovelNodeException(String.format("Already exist the novel. NovelId %s, NovelNodeId %s", novel.getId(), id)));
     }
 }
