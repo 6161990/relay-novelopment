@@ -14,14 +14,15 @@ class NovelNodeTest {
     void create_novelNode() {
         NovelNode node = NovelNodeBuilder.builder()
                 .id("id")
-                .openingNovel(openingNovelId("id"), writerId("writer"), title("bang"), content("contentId", "content"))
+                .openingNovel(openingNovelId("id"), writerId("writer"),
+                              title("bang"), content("contentId", "content"))
                 .depth(NODE_DEPTH)
                 .build();
 
-        NextNovel novel = NextNovel.of(NextNovelId.of("id"), WriterId.of("writer"), Title.of("bang"), new Contents(), new Props());
+        NextNovel novel = NextNovel.of(NextNovelId.of("id"), WriterId.of("writer2"), Title.of("bang2"), new Contents(), new Props());
         node.publish(novel);
 
-        assertThat(node.getNovelSize()).isEqualTo(1); // openingNovel 을 list 에 추가시켜야할까?
+        assertThat(node.getNovelSize()).isEqualTo(2); // openingNovel 을 list 에 추가시켜야할까?
     }
 
 

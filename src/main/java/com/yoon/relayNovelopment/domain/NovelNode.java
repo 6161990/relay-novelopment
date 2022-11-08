@@ -20,11 +20,12 @@ public class NovelNode {
         this.id = id;
         this.openingNovel = openingNovel;
         this.depth = depth;
-        init();
+        init(openingNovel);
     }
 
-    private void init() {
+    private void init(Novel novel) {
         this.novels = new ArrayList<>();
+        publish(novel);
     }
 
     public void publish(Novel novel) {
