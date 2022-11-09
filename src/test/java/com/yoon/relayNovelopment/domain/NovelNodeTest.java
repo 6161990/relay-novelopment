@@ -14,12 +14,15 @@ class NovelNodeTest {
     void create_novelNode() {
         NovelNode node = NovelNodeBuilder.builder()
                 .id("id")
-                .openingNovel(openingNovelId("id"), writerId("writer"),
+                .opening(openingId("id"), writerId("writer"),
                               title("bang"), content("contentId", "content"))
                 .depth(NODE_DEPTH)
                 .build();
 
-        NextNovel nextNovel = NextNovel.of(NextNovelId.of("nextId"), WriterId.of("writer2"), Title.of("bang2"), new Contents(), new Props());
+        NextNovel nextNovel = NextNovel.of(NextNovelId.of("nextId"),
+                                            WriterId.of("writer2"),
+                                            Title.of("bang2"),
+                                            new Contents(), new Props());
         node.publish(nextNovel);
 
         assertThat(node.getNovelSize()).isEqualTo(2); // openingNovel 을 list 에 추가시켜야할까?
@@ -30,7 +33,7 @@ class NovelNodeTest {
     void add_novel_at_novelNode() {
         NovelNode node = NovelNodeBuilder.builder()
                 .id("id")
-                .openingNovel(openingNovelId("id"), writerId("writer"),
+                .opening(openingId("id"), writerId("writer"),
                         title("bang"), content("contentId", "content"))
                 .depth(NODE_DEPTH)
                 .build();
@@ -48,7 +51,7 @@ class NovelNodeTest {
     void writer는_하나의_novelNode에_중복하여_등록할_수_없다() {
         NovelNode node = NovelNodeBuilder.builder()
                 .id("id")
-                .openingNovel(openingNovelId("id"), writerId("writer"),
+                .opening(openingId("id"), writerId("writer"),
                         title("bang"), content("contentId", "content"))
                 .depth(NODE_DEPTH)
                 .build();
@@ -64,7 +67,7 @@ class NovelNodeTest {
     void 하나의_novelNode에_제목이_겹칠_수_없다() {
         NovelNode node = NovelNodeBuilder.builder()
                 .id("id")
-                .openingNovel(openingNovelId("id"), writerId("writer"),
+                .opening(openingId("id"), writerId("writer"),
                         title("bang"), content("contentId", "content"))
                 .depth(NODE_DEPTH)
                 .build();
@@ -81,7 +84,7 @@ class NovelNodeTest {
         // FIXME 질문 novelId 가 같다면 도메인까지 못오게 해야하는 것 아님? -> 어플리케이션에서 할 일.. ?
         NovelNode node = NovelNodeBuilder.builder()
                 .id("id")
-                .openingNovel(openingNovelId("id"), writerId("writer"),
+                .opening(openingId("id"), writerId("writer"),
                         title("bang"), content("contentId", "content"))
                 .depth(NODE_DEPTH)
                 .build();

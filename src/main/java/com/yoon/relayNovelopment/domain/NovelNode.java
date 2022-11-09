@@ -11,15 +11,15 @@ import java.util.List;
 @ToString
 public class NovelNode {
     private final NovelNodeId id;
-    private final OpeningNovel openingNovel;
+    private final Opening opening;
     private final int depth;
     private List<Novel> novels;
 
-    public NovelNode(NovelNodeId id, OpeningNovel openingNovel, int depth) {
+    public NovelNode(NovelNodeId id, Opening opening, int depth) {
         this.id = id;
-        this.openingNovel = openingNovel;
+        this.opening = opening;
         this.depth = depth;
-        init(openingNovel);
+        init(opening);
     }
 
     private void init(Novel novel) {

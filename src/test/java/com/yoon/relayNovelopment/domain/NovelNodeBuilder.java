@@ -3,7 +3,7 @@ package com.yoon.relayNovelopment.domain;
 public class NovelNodeBuilder {
 
     private NovelNodeId novelNodeId;
-    private OpeningNovel openingNovel;
+    private Opening opening;
     private int depth;
 
     public static NovelNodeBuilder builder() {
@@ -11,7 +11,7 @@ public class NovelNodeBuilder {
     }
 
     public NovelNode build() {
-       return new NovelNode(novelNodeId, openingNovel, depth);
+       return new NovelNode(novelNodeId, opening, depth);
     }
 
     public NovelNodeBuilder id(String id) {
@@ -19,8 +19,8 @@ public class NovelNodeBuilder {
         return this;
     }
 
-    public NovelNodeBuilder openingNovel(NovelId openingNovelId, WriterId writerId, Title title, Content content) {
-        this.openingNovel =  OpeningNovel.of((OpeningNovelId) openingNovelId, writerId, title, content, new Props());
+    public NovelNodeBuilder opening(NovelId openingId, WriterId writerId, Title title, Content content) {
+        this.opening =  Opening.of((OpeningId) openingId, writerId, title, content, new Props());
         return this;
     }
 
@@ -33,8 +33,8 @@ public class NovelNodeBuilder {
         return Content.of(ContentId.of(contentId), content);
     }
 
-    protected static OpeningNovelId openingNovelId(String id) {
-        return OpeningNovelId.of(id);
+    protected static OpeningId openingId(String id) {
+        return OpeningId.of(id);
     }
 
     protected static WriterId writerId(String id) {
