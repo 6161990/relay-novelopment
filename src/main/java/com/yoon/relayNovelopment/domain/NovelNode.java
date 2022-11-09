@@ -2,7 +2,6 @@ package com.yoon.relayNovelopment.domain;
 
 import lombok.Getter;
 import lombok.ToString;
-import lombok.Value;
 import org.valid4j.Validation;
 
 import java.util.ArrayList;
@@ -25,7 +24,7 @@ public class NovelNode {
 
     private void init(Novel novel) {
         this.novels = new ArrayList<>();
-        publish(novel);
+        novels.add(novel);
     }
 
     public void publish(Novel novel) {

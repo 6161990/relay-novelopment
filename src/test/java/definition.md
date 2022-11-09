@@ -9,3 +9,4 @@
 - NovelNode 의 depth 는 생성시 결정된다. 
 - OpeningNovel 은 NovelNode 생성시 함께 생성된다. 
 - NextNovel 은 width 가 2 이상 달릴 수 없다. 
+- NextNovel 생성시, 몇 번째 node 인지 결정된다.
