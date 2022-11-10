@@ -2,7 +2,7 @@ package com.yoon.relayNovelopment.domain;
 
 import org.junit.jupiter.api.Test;
 
-public class NextNovelTest {
+public class ForkTest {
 
     // 좋아요가 카운팅될 수 있다.
     // 댓글을 달 수 있다.

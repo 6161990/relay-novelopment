@@ -3,19 +3,19 @@ package com.yoon.relayNovelopment.domain;
 import lombok.Value;
 
 @Value(staticConstructor = "of")
-public class NextNovel implements Novel{
-    NovelId id;
+public class Fork {
+    ForkId id;
     WriterId writerId;
     Title title;
     Contents contents;
     Props props;
     boolean isRelay;
 
-    public static NextNovel of(NovelId id, WriterId writerId, Title title, Contents contents, Props props) {
-        return new NextNovel(id, writerId, title, contents, props, false);
+    public static Fork of(ForkId id, WriterId writerId, Title title, Contents contents, Props props) {
+        return new Fork(id, writerId, title, contents, props, false);
     }
 
-    private NextNovel(NovelId id, WriterId writerId, Title title, Contents contents, Props props, boolean isRelay) {
+    private Fork(ForkId id, WriterId writerId, Title title, Contents contents, Props props, boolean isRelay) {
         this.id = id;
         this.writerId = writerId;
         this.title = title;

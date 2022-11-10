@@ -3,6 +3,6 @@ package com.yoon.relayNovelopment.domain;
 import lombok.Value;
 
 @Value(staticConstructor = "of")
-public class NextNovelId implements NovelId {
+public class ForkId implements NovelId {
     String id;
 }
