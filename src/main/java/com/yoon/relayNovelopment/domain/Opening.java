@@ -3,7 +3,7 @@ package com.yoon.relayNovelopment.domain;
 import lombok.Value;
 
 @Value(staticConstructor = "of")
-public class Opening implements Novel {
+public class Opening  {
     OpeningId id; // FIXME 필요한가?
     WriterId writerId; // FIXME 필요한가?
     Title title; // FIXME 필요한가?
