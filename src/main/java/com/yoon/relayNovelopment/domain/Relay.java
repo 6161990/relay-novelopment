@@ -1,13 +1,14 @@
 package com.yoon.relayNovelopment.domain;
 
-import org.valid4j.Validation;
+import lombok.Getter;
 
 import java.util.List;
 
-public class Stage {
+public class Relay {
+    @Getter
     private List<Fork> forks;
 
-    public Stage(List<Fork> forks) {
+    public Relay(List<Fork> forks) {
         this.forks = forks;
     }
 
