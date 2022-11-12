@@ -1,30 +1,30 @@
 package com.yoon.relayNovelopment.domain;
 
-public class NovelBuilder {
+public class NovelStageBuilder {
 
-    private NovelNodeId novelNodeId;
+    private NovelStageId novelStageId;
     private Opening opening;
     private int depth;
 
-    public static NovelBuilder builder() {
-        return new NovelBuilder();
+    public static NovelStageBuilder builder() {
+        return new NovelStageBuilder();
     }
 
-    public Novel build() {
-       return new Novel(novelNodeId, opening, depth);
+    public NovelStage build() {
+       return new NovelStage(novelStageId, opening, depth);
     }
 
-    public NovelBuilder id(String id) {
-        this.novelNodeId = NovelNodeId.of(id);
+    public NovelStageBuilder id(String id) {
+        this.novelStageId = NovelStageId.of(id);
         return this;
     }
 
-    public NovelBuilder opening(NovelId openingId, WriterId writerId, Title title, Content content) {
-        this.opening =  Opening.of((OpeningId) openingId, writerId, title, content, new Props());
+    public NovelStageBuilder opening(NovelId openingId, WriterId writerId, Title title, Content content) {
+        this.opening =  Opening.of((OpeningId) openingId, writerId, title, content);
         return this;
     }
 
-    public NovelBuilder stage(int depth) {
+    public NovelStageBuilder stage(int depth) {
         this.depth = depth;
         return this;
     }
