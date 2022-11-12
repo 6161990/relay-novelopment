@@ -37,7 +37,7 @@ public class NovelStage {
     }
 
     public int getNovelSize(){
-        return this.getRelays().size();
+        return this.getRelays() == null ? 0 : this.getRelays().size();
     }
 
     private void validate(Fork fork) {
