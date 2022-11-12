@@ -8,5 +8,4 @@ public class Opening  {
     WriterId writerId; // FIXME 필요한가?
     Title title; // FIXME 필요한가?
     Content content; // FIXME contentId 와 content 중에 무엇을 넣을까.
-    Props props;
 }
