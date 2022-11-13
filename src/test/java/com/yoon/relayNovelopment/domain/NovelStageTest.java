@@ -35,10 +35,10 @@ class NovelStageTest {
                 .build();
 
         Fork fork2 = Fork.of(ForkId.of("id2"), WriterId.of("writer2"), Title.of("bang2"), new Contents(), new Props());
-        novelStage.createRelay(new Relay(List.of(fork2)));
+        novelStage.createRelay(fork2);
 
         Fork fork3 = Fork.of(ForkId.of("id3"), WriterId.of("writer3"), Title.of("bang3"), new Contents(), new Props());
-        novelStage.createRelay(new Relay(List.of(fork3)));
+        novelStage.createRelay(fork3);
 
         assertThat(novelStage.getNovelSize()).isEqualTo(2);
     }
@@ -53,7 +53,7 @@ class NovelStageTest {
                 .build();
 
         Fork fork = Fork.of(ForkId.of("id2"), WriterId.of("writer"), Title.of("bang2"), new Contents(), new Props());
-        assertThatThrownBy(()-> stage.createRelay(new Relay(List.of(fork)))) // FIXME : relayList 가 아니라 fork 를 전달해야한다.
+        assertThatThrownBy(()-> stage.createRelay(fork)) // FIXME : relayList 가 아니라 fork 를 전달해야한다.
                 .isInstanceOf(NovelNodeException.class)
                 .hasMessage(String.format("Already exist the writer. WriterId %s, NovelNodeId %s", WriterId.of("writer"), NovelStageId.of("id")));
 
@@ -70,7 +70,7 @@ class NovelStageTest {
 
         Fork fork = Fork.of(ForkId.of("id2"), WriterId.of("writer2"), Title.of("bang"), new Contents(), new Props());
 
-        assertThatThrownBy(()-> stage.createRelay(new Relay(List.of(fork)))) // FIXME : relayList 가 아니라 fork 를 전달해야한다.
+        assertThatThrownBy(()-> stage.createRelay(fork)) // FIXME : relayList 가 아니라 fork 를 전달해야한다.
                 .isInstanceOf(NovelNodeException.class)
                 .hasMessage(String.format("Already exist the title. WriterId %s, NovelNodeId %s", WriterId.of("writer2"), NovelStageId.of("id")));
     }
@@ -88,7 +88,7 @@ class NovelStageTest {
 
         Fork fork = Fork.of(ForkId.of("id"), WriterId.of("writer2"), Title.of("bang2"), new Contents(), new Props());
 
-        assertThatThrownBy(()-> node.createRelay(new Relay(List.of(fork))))
+        assertThatThrownBy(()-> node.createRelay(fork))
                 .isInstanceOf(NovelNodeException.class)
                 .hasMessage(String.format("Already exist the novel. NovelId %s, NovelNodeId %s", ForkId.of("id"), NovelStageId.of("id")));
     }

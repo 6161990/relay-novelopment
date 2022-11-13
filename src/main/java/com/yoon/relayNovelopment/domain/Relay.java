@@ -2,6 +2,7 @@ package com.yoon.relayNovelopment.domain;
 
 import lombok.Getter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Relay {
@@ -15,6 +16,5 @@ public class Relay {
     public void add(Fork fork){
         forks.add(fork);
     }
-
 
 }
