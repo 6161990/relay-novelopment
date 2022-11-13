@@ -5,6 +5,7 @@ import lombok.ToString;
 import org.valid4j.Validation;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Getter
@@ -23,17 +24,22 @@ public class NovelStage {
         this.maxStageSize = maxStageSize;
     }
 
-    public void createRelay(Relay relay) {
+    public void createRelay(Fork fork) {
         if (relays == null){
-            init();
+            init(fork);
         }
 
+        if(relays.stream().anyMatch(e->e.getForks().isEmpty())){
+        }
 
-        this.relays.add(relay);
+        this.relays.get(0).add(fork);
     }
 
-    private void init() {
+    private void init(Fork fork) {
         this.relays = new ArrayList<>();
+        List<Fork> forks = new ArrayList<>();
+        forks.add(fork);
+        relays.add(new Relay(forks));
     }
 
     public int getNovelSize(){
