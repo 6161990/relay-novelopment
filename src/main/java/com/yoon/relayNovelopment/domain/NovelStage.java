@@ -5,7 +5,6 @@ import lombok.ToString;
 import org.valid4j.Validation;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @Getter
@@ -16,7 +15,7 @@ public class NovelStage {
     private final int maxStageSize;
 
     @Getter
-    private List<Relay> relays;
+    private List<Step> steps;
 
     public NovelStage(NovelStageId id, Opening opening, int maxStageSize) {
         this.id = id;
@@ -24,32 +23,28 @@ public class NovelStage {
         this.maxStageSize = maxStageSize;
     }
 
-    public void createRelay(Fork fork) {
-        if (relays == null){
-            init(fork);
+    public void relay(Fork fork) {
+        if (steps == null || steps.isEmpty()){
+            init();
         }
 
-        if(relays.stream().anyMatch(e->e.getForks().isEmpty())){
-        }
-
-        this.relays.get(0).add(fork);
+        this.steps.get(steps.size() - 1).add(fork); // TODO 시점마다 FORK 가 적용될 수 있는 Realy 가 있다.
     }
 
-    private void init(Fork fork) {
-        this.relays = new ArrayList<>();
+    private void init() {
+        this.steps = new ArrayList<>();
         List<Fork> forks = new ArrayList<>();
-        forks.add(fork);
-        relays.add(new Relay(forks));
+        steps.add(new Step(forks));
     }
 
-    public int getNovelSize(){
-        return this.getRelays() == null ? 0 : this.getRelays().size();
+    public long getNovelSize(){
+        return this.getSteps() == null ? 0 : this.steps.stream().mapToInt(e->e.getForks().size()).sum();
     }
 
     private void validate(Fork fork) {
-        Validation.validate(relays.stream().noneMatch(n-> n.getForks().stream().anyMatch(f->f.getWriterId().getId().equals(fork.getWriterId().getId()))),
+        Validation.validate(steps.stream().noneMatch(n-> n.getForks().stream().anyMatch(f->f.getWriterId().getId().equals(fork.getWriterId().getId()))),
                 new NovelNodeException(String.format("Already exist the writer. WriterId %s, NovelNodeId %s", fork.getWriterId(), id)));
-        Validation.validate(relays.stream().noneMatch(n-> n.getForks().stream().anyMatch(f->f.getTitle().equals(fork.getTitle()))),
+        Validation.validate(steps.stream().noneMatch(n-> n.getForks().stream().anyMatch(f->f.getTitle().equals(fork.getTitle()))),
                 new NovelNodeException(String.format("Already exist the title. WriterId %s, NovelNodeId %s", fork.getWriterId(), id)));
     }
 

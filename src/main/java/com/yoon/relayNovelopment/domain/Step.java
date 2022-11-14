@@ -2,19 +2,26 @@ package com.yoon.relayNovelopment.domain;
 
 import lombok.Getter;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class Relay {
-    @Getter
-    private List<Fork> forks;
+@Getter
+public class Step {
 
-    public Relay(List<Fork> forks) {
+    private RelayId id;
+    private List<Fork> forks;
+    private boolean isClosed;
+
+    public Step(List<Fork> forks) {
         this.forks = forks;
     }
 
     public void add(Fork fork){
         forks.add(fork);
     }
+
+    public void setClosed(){
+        this.isClosed = true;
+    }
+
 
 }
