@@ -50,7 +50,11 @@ class NovelStageTest {
                 .build();
 
         Fork fork = Fork.of(ForkId.of("id2"), WriterId.of("writer"), Title.of("bang2"), new Contents(), new Props());
-        assertThatThrownBy(()-> stage.relay(fork)) // FIXME : relayList 가 아니라 fork 를 전달해야한다.
+        stage.relay(fork);
+
+        Fork fork2 = Fork.of(ForkId.of("id3"), WriterId.of("writer"), Title.of("bang3"), new Contents(), new Props());
+
+        assertThatThrownBy(()-> stage.relay(fork2))
                 .isInstanceOf(NovelNodeException.class)
                 .hasMessage(String.format("Already exist the writer. WriterId %s, NovelNodeId %s", WriterId.of("writer"), NovelStageId.of("id")));
 
@@ -61,15 +65,18 @@ class NovelStageTest {
         NovelStage stage = NovelStageBuilder.builder()
                 .id("id")
                 .opening(openingId("id"), writerId("writer"),
-                        title("bang"), content("contentId", "content"))
+                        title("bang1"), content("contentId", "content"))
                 .stage(NODE_DEPTH)
                 .build();
 
-        Fork fork = Fork.of(ForkId.of("id2"), WriterId.of("writer2"), Title.of("bang"), new Contents(), new Props());
+        Fork fork = Fork.of(ForkId.of("id2"), WriterId.of("writer2"), Title.of("bang2"), new Contents(), new Props());
+        stage.relay(fork);
 
-        assertThatThrownBy(()-> stage.relay(fork)) // FIXME : relayList 가 아니라 fork 를 전달해야한다.
+        Fork fork2 = Fork.of(ForkId.of("id3"), WriterId.of("writer3"), Title.of("bang2"), new Contents(), new Props());
+
+        assertThatThrownBy(()-> stage.relay(fork2))
                 .isInstanceOf(NovelNodeException.class)
-                .hasMessage(String.format("Already exist the title. WriterId %s, NovelNodeId %s", WriterId.of("writer2"), NovelStageId.of("id")));
+                .hasMessage(String.format("Already exist the title. WriterId %s, NovelNodeId %s", WriterId.of("writer3"), NovelStageId.of("id")));
     }
 
     @Disabled
