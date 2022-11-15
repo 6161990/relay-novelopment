@@ -5,13 +5,14 @@ import lombok.Getter;
 import java.util.List;
 
 @Getter
-public class Step {
+public class Stage {
 
     private RelayId id;
     private List<Fork> forks;
+    private StageState stageState;
     private boolean isClosed;
 
-    public Step(List<Fork> forks) {
+    public Stage(List<Fork> forks) {
         this.forks = forks;
     }
 
