@@ -4,8 +4,8 @@ import lombok.Value;
 
 @Value(staticConstructor = "of")
 public class Opening  {
-    OpeningId id; // FIXME 필요한가?
-    WriterId writerId; // FIXME 필요한가?
-    Title title; // FIXME 필요한가?
+    OpeningId id;
+    WriterId writerId;
+    Title title;
     Content content; // FIXME contentId 와 content 중에 무엇을 넣을까.
 }
