@@ -7,13 +7,13 @@ import static com.yoon.relayNovelopment.domain.NovelStageBuilder.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-class NovelStageTest {
+class NovelBoardTest {
 
     private final int NODE_DEPTH = 5;
 
     @Test
     void create_novelStage() {
-        NovelStage novelStage = NovelStageBuilder.builder()
+        NovelBoard novelStage = NovelStageBuilder.builder()
                 .id("id")
                 .opening(openingId("id"), writerId("writer"),
                          title("bang"), content("contentId", "content"))
@@ -23,8 +23,8 @@ class NovelStageTest {
     }
 
     @Test
-    void add_fork_at_novelStage() {
-        NovelStage novelStage = NovelStageBuilder.builder()
+    void add_fork() {
+        NovelBoard novelStage = NovelStageBuilder.builder()
                 .id("id")
                 .opening(openingId("id"), writerId("writer"),
                         title("bang"), content("contentId", "content"))
@@ -42,7 +42,7 @@ class NovelStageTest {
 
     @Test
     void writer는_하나의_novelStage_에_중복하여_등록할_수_없다() {
-        NovelStage stage = NovelStageBuilder.builder()
+        NovelBoard stage = NovelStageBuilder.builder()
                 .id("id")
                 .opening(openingId("id"), writerId("writer"),
                         title("bang"), content("contentId", "content"))
@@ -62,7 +62,7 @@ class NovelStageTest {
 
     @Test
     void 하나의_novelStage_에_제목이_중복될_수_없다() {
-        NovelStage stage = NovelStageBuilder.builder()
+        NovelBoard stage = NovelStageBuilder.builder()
                 .id("id")
                 .opening(openingId("id"), writerId("writer"),
                         title("bang1"), content("contentId", "content"))
@@ -83,7 +83,7 @@ class NovelStageTest {
     @Test
     void 하나의_novelNode는_중복된_Novel이_등록될_수_없다() {
         // FIXME 질문 novelId 가 같다면 도메인까지 못오게 해야하는 것 아님? -> 어플리케이션에서 할 일.. ?
-        NovelStage node = NovelStageBuilder.builder()
+        NovelBoard node = NovelStageBuilder.builder()
                 .id("id")
                 .opening(openingId("id"), writerId("writer"),
                         title("bang"), content("contentId", "content"))

@@ -10,8 +10,8 @@ public class NovelStageBuilder {
         return new NovelStageBuilder();
     }
 
-    public NovelStage build() {
-       return new NovelStage(novelStageId, opening, depth);
+    public NovelBoard build() {
+       return new NovelBoard(novelStageId, opening, depth);
     }
 
     public NovelStageBuilder id(String id) {
