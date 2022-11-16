@@ -4,19 +4,21 @@ import lombok.Value;
 
 @Value(staticConstructor = "of")
 public class Novel {
-    NovelId id;
+    RelayNovelId id;
+    NovelId parentNovelId;
     WriterId writerId;
     Title title;
     Contents contents;
     Props props;
     boolean isRelay;
 
-    public static Novel of(NovelId id, WriterId writerId, Title title, Contents contents, Props props) {
-        return new Novel(id, writerId, title, contents, props, false);
+    public static Novel of(RelayNovelId id, NovelId parentNovelId, WriterId writerId, Title title, Contents contents, Props props) {
+        return new Novel(id, parentNovelId, writerId, title, contents, props, false);
     }
 
-    private Novel(NovelId id, WriterId writerId, Title title, Contents contents, Props props, boolean isRelay) {
+    private Novel(RelayNovelId id, NovelId parentNovelId, WriterId writerId, Title title, Contents contents, Props props, boolean isRelay) {
         this.id = id;
+        this.parentNovelId = parentNovelId;
         this.writerId = writerId;
         this.title = title;
         this.contents = contents;

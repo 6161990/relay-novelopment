@@ -30,10 +30,10 @@ class NovelBoardTest {
                 .stage(NODE_DEPTH)
                 .build();
 
-        Novel novel2 = Novel.of(NovelId.of("id2"), WriterId.of("writer2"), Title.of("bang2"), new Contents(), new Props());
+        Novel novel2 = Novel.of(RelayNovelId.of("id2"), NovelId.openingIdOf("id"), WriterId.of("writer2"), Title.of("bang2"), new Contents(), new Props());
         novelStage.relay(novel2);
 
-        Novel novel3 = Novel.of(NovelId.of("id3"), WriterId.of("writer3"), Title.of("bang3"), new Contents(), new Props());
+        Novel novel3 = Novel.of(RelayNovelId.of("id3"), RelayNovelId.of("id2"), WriterId.of("writer3"), Title.of("bang3"), new Contents(), new Props());
         novelStage.relay(novel3);
 
         assertThat(novelStage.getNovelSize()).isEqualTo(2);
@@ -48,10 +48,10 @@ class NovelBoardTest {
                 .stage(NODE_DEPTH)
                 .build();
 
-        Novel novel = Novel.of(NovelId.of("id2"), WriterId.of("writer"), Title.of("bang2"), new Contents(), new Props());
+        Novel novel = Novel.of(RelayNovelId.of("id2"), NovelId.openingIdOf("id"), WriterId.of("writer"), Title.of("bang2"), new Contents(), new Props());
         stage.relay(novel);
 
-        Novel novel2 = Novel.of(NovelId.of("id3"), WriterId.of("writer"), Title.of("bang3"), new Contents(), new Props());
+        Novel novel2 = Novel.of(RelayNovelId.of("id3"), NovelId.relayNovelIdOf("id2"), WriterId.of("writer"), Title.of("bang3"), new Contents(), new Props());
 
         assertThatThrownBy(()-> stage.relay(novel2))
                 .isInstanceOf(NovelNodeException.class)
@@ -68,10 +68,10 @@ class NovelBoardTest {
                 .stage(NODE_DEPTH)
                 .build();
 
-        Novel novel = Novel.of(NovelId.of("id2"), WriterId.of("writer2"), Title.of("bang2"), new Contents(), new Props());
+        Novel novel = Novel.of(RelayNovelId.of("id2"), NovelId.openingIdOf("id"), WriterId.of("writer2"), Title.of("bang2"), new Contents(), new Props());
         stage.relay(novel);
 
-        Novel novel2 = Novel.of(NovelId.of("id3"), WriterId.of("writer3"), Title.of("bang2"), new Contents(), new Props());
+        Novel novel2 = Novel.of(RelayNovelId.of("id3"), NovelId.relayNovelIdOf("id2"), WriterId.of("writer3"), Title.of("bang2"), new Contents(), new Props());
 
         assertThatThrownBy(()-> stage.relay(novel2))
                 .isInstanceOf(NovelNodeException.class)
