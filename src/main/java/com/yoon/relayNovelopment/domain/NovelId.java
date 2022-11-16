@@ -1,5 +1,8 @@
 package com.yoon.relayNovelopment.domain;
 
-public interface NovelId {
-    String getId();
+import lombok.Value;
+
+@Value(staticConstructor = "of")
+public class NovelId {
+    String id;
 }
