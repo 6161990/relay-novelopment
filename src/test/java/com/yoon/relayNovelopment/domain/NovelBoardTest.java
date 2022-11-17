@@ -78,6 +78,4 @@ class NovelBoardTest {
                 .hasMessage(String.format("Already exist the title. WriterId %s, NovelNodeId %s", WriterId.of("writer3"), NovelStageId.of("id")));
     }
 
-    // TODO : 유저에 따라 Stage 를 추가시킬 수 있다. 등급이 높으면 이미 10개의 Stage 가 달려있는 novelBoard 에 추가할 수 있다.
-    // FIXME : 노벨상.................. 띵언 노벨 판타지상 노벨 환희상 등등
 }
