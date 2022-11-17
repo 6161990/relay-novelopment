@@ -13,10 +13,10 @@ import static org.valid4j.Validation.validate;
 public class NovelBoard {
     private final NovelStageId id;
     private final Opening opening;
-    private final int maxStageSize;
+    private int maxStageSize;
 
     @Getter
-    private List<Stage> stages;
+    private List<Novel> novels;
 
     public NovelBoard(NovelStageId id, Opening opening, int maxStageSize) {
         this.id = id;
@@ -25,31 +25,38 @@ public class NovelBoard {
     }
 
     public void relay(Novel novel) {
-        if (stages == null || stages.isEmpty()){
+        if (novels == null || novels.isEmpty()){
             init();
         }
 
-        valid(novel); // TODO maxStageSize 가 일정 값 이상이면 throw
+        valid(novel); // TODO maxStageSize 가 일정값 이상이면 throw = 소설이 완성되는 것은 언제인가.
 
-        this.stages.get(stages.size() - 1).add(novel);
-        // TODO 시점마다 FORK 가 적용될 수 있는 Realy 가 있다.
-        // TODO 맨 마지막 steps 이 아니다.
+        this.novels.add(novel);
+        maxStageSize ++;
+    }
+
+    public void fork(Novel novel){ // TODO 같은 부모 parentNovelId 를 가지고 있는 novel 이 추가될 때 (옆으로 추가될 때)
+        if (novels == null || novels.isEmpty()){
+            throw new NovelNodeException("Novels is Empty");
+        }
+
+        valid(novel);
+
+        this.novels.add(novel);
     }
 
     private void init() {
-        this.stages = new ArrayList<>();
-        List<Novel> novels = new ArrayList<>();
-        stages.add(new Stage(novels));
+        this.novels = new ArrayList<>();
     }
 
     public long getNovelSize(){
-        return this.getStages() == null ? 0 : this.stages.stream().mapToInt(e->e.getNovels().size()).sum();
+        return this.novels == null ? 0 : this.novels.size();
     }
 
     private void valid(Novel novel) {
-        validate(stages.stream().noneMatch(n-> n.getNovels().stream().anyMatch(f->f.getWriterId().getId().equals(novel.getWriterId().getId()))),
+        validate(novels.stream().noneMatch(n-> n.getWriterId().getId().equals(novel.getWriterId().getId())),
                 new NovelNodeException(String.format("Already exist the writer. WriterId %s, NovelNodeId %s", novel.getWriterId(), id)));
-        validate(stages.stream().noneMatch(n-> n.getNovels().stream().anyMatch(f->f.getTitle().equals(novel.getTitle()))),
+        validate(novels.stream().noneMatch(n-> n.getTitle().equals(novel.getTitle())),
                 new NovelNodeException(String.format("Already exist the title. WriterId %s, NovelNodeId %s", novel.getWriterId(), id)));
     }
 
