@@ -8,20 +8,24 @@ public class Novel {
     NovelId parentNovelId;
     WriterId writerId;
     Title title;
-    Contents contents;
+    Content content;
     Props props;
     boolean isRelay;
 
-    public static Novel of(RelayNovelId id, NovelId parentNovelId, WriterId writerId, Title title, Contents contents, Props props) {
-        return new Novel(id, parentNovelId, writerId, title, contents, props, false);
+    public static Novel of(RelayNovelId id, NovelId parentNovelId, WriterId writerId, Title title, Content content, Props props) {
+        return new Novel(id, parentNovelId, writerId, title, content, props, false);
     }
 
-    private Novel(RelayNovelId id, NovelId parentNovelId, WriterId writerId, Title title, Contents contents, Props props, boolean isRelay) {
+    protected static Novel of(RelayNovelId id, NovelId parentNovelId, WriterId writerId, Title title) {
+        return new Novel(id, parentNovelId, writerId, title, Content.of(ContentId.of("id"), "value"), new Props(), false);
+    }
+
+    private Novel(RelayNovelId id, NovelId parentNovelId, WriterId writerId, Title title, Content content, Props props, boolean isRelay) {
         this.id = id;
         this.parentNovelId = parentNovelId;
         this.writerId = writerId;
         this.title = title;
-        this.contents = contents;
+        this.content = content;
         this.props = props;
         this.isRelay = isRelay;
     }
