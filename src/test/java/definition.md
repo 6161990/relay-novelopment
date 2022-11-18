@@ -11,8 +11,9 @@
 - NovelBoard 에 Novel 을 ( fork ) 할 수 있다.
 - relay 된 Novel 은 부모 NovelId를 알고 있다.
 - fork 된 Novel 은 같은 부모 NovelId을 공유하는 형제 Novel 이 있다.
-- 
+- 부모 NovelId는 뭘로 이루어질 것인가. view 에 뿌려질 순서를 id 로 알 수 있을까. 
   
+
 ### IDEA 
 * 유저에 따라 Stage 를 추가시킬 수 있다. 등급이 높으면 이미 10개의 Stage 가 달려있는 novelBoard 에 추가할 수 있다.   
 * 노벨상.................. 띵언 노벨 판타지상 노벨 환희상 등등
