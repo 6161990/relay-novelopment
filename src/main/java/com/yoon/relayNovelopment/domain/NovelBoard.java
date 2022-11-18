@@ -10,18 +10,18 @@ import static org.valid4j.Validation.validate;
 
 @Getter
 @ToString
-public class NovelBoard {
+public class NovelBoard{
     private final NovelStageId id;
     private final Opening opening;
-    private int maxStageSize;
+    private int maxRelaySize;
 
     @Getter
     private List<Novel> novels;
 
-    public NovelBoard(NovelStageId id, Opening opening, int maxStageSize) {
+    public NovelBoard(NovelStageId id, Opening opening, int maxRelaySize) {
         this.id = id;
         this.opening = opening;
-        this.maxStageSize = maxStageSize;
+        this.maxRelaySize = maxRelaySize;
     }
 
     public void relay(Novel novel) {
@@ -32,7 +32,7 @@ public class NovelBoard {
         valid(novel); // TODO maxStageSize 가 일정값 이상이면 throw = 소설이 완성되는 것은 언제인가.
 
         this.novels.add(novel);
-        maxStageSize ++;
+        maxRelaySize++;
     }
 
     public void fork(Novel novel){ // TODO 같은 부모 parentNovelId 를 가지고 있는 novel 이 추가될 때 (옆으로 추가될 때)
@@ -49,7 +49,7 @@ public class NovelBoard {
         this.novels = new ArrayList<>();
     }
 
-    public long getNovelSize(){
+    public int getNovelSize(){
         return this.novels == null ? 0 : this.novels.size();
     }
 
