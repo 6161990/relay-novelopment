@@ -1,30 +1,43 @@
 package com.yoon.relayNovelopment.domain;
 
-public class NovelStageBuilder {
+import java.util.ArrayList;
+import java.util.List;
+
+public class NovelBoardBuilder {
 
     private NovelStageId novelStageId;
     private Opening opening;
     private int depth;
+    private List<Novel> novelList = new ArrayList<>();
 
-    public static NovelStageBuilder builder() {
-        return new NovelStageBuilder();
+    public static NovelBoardBuilder builder() {
+        return new NovelBoardBuilder();
     }
 
     public NovelBoard build() {
        return new NovelBoard(novelStageId, opening, depth);
     }
 
-    public NovelStageBuilder id(String id) {
+    public int getNovelSize(){
+        return this.novelList.size();
+    }
+
+    public NovelBoardBuilder id(String id) {
         this.novelStageId = NovelStageId.of(id);
         return this;
     }
 
-    public NovelStageBuilder opening(NovelId openingId, WriterId writerId, Title title, Content content) {
+    public NovelBoardBuilder opening(NovelId openingId, WriterId writerId, Title title, Content content) {
         this.opening =  Opening.of((OpeningId) openingId, writerId, title, content);
         return this;
     }
 
-    public NovelStageBuilder stage(int depth) {
+    public NovelBoardBuilder relay(RelayNovelId id, NovelId parentId , WriterId writer, Title title) {
+        this.novelList.add(Novel.of(id, parentId, writer, title, Content.of(ContentId.of("conId"), "Value"), new Props()));
+        return this;
+    }
+
+    public NovelBoardBuilder maxRelay(int depth) {
         this.depth = depth;
         return this;
     }
@@ -37,6 +50,10 @@ public class NovelStageBuilder {
         return OpeningId.of(id);
     }
 
+    protected static RelayNovelId relayId(String id) {
+        return RelayNovelId.of(id);
+    }
+
     protected static WriterId writerId(String id) {
         return WriterId.of(id);
     }
@@ -44,5 +61,6 @@ public class NovelStageBuilder {
     protected static Title title(String name) {
         return Title.of(name);
     }
+
 }
 
