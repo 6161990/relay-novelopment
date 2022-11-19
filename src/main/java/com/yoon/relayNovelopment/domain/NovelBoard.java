@@ -5,6 +5,7 @@ import lombok.ToString;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import static org.valid4j.Validation.validate;
 
@@ -35,11 +36,7 @@ public class NovelBoard {
         maxRelaySize++;
     }
 
-    public void fork(Novel novel) { // TODO 같은 부모 parentNovelId 를 가지고 있는 novel 이 추가될 때 (옆으로 추가될 때)
-        if (novels == null || novels.isEmpty()){
-            throw new NovelNodeException("Novels is Empty");
-        }
-
+    public void fork(Novel novel) {
         validForFork(novel);
 
         this.novels.add(novel);
@@ -53,20 +50,21 @@ public class NovelBoard {
         return this.novels == null ? 0 : this.novels.size();
     }
 
+    public int getSameParentSizeBy(NovelId id) {
+        return (int) novels.stream().filter(i -> i.getParentNovelId().equals(id)).count();
+    }
+
+    private void validForFork(Novel novel){
+        valid(novel);
+        validate(!Objects.requireNonNull(novels).isEmpty(), new NovelNodeException("Novels is Empty"));
+        validate(novels.stream().anyMatch(e->e.getParentNovelId().equals(novel.getParentNovelId())),
+                new NovelNodeException("Not Exist Same Parent Novel.")); // FIXME ExceptionMessage 가 이게 맞나 ?
+    }
+
     private void valid(Novel novel) {
         validate(novels.stream().noneMatch(n-> n.getWriterId().getId().equals(novel.getWriterId().getId())),
                 new NovelNodeException(String.format("Already exist the writer. WriterId %s, NovelBoardId %s", novel.getWriterId(), id)));
         validate(novels.stream().noneMatch(n-> n.getTitle().equals(novel.getTitle())),
                 new NovelNodeException(String.format("Already exist the title. WriterId %s, NovelBoardId %s", novel.getWriterId(), id)));
-    }
-
-    private void validForFork(Novel novel){
-        valid(novel);
-        validate(novels.stream().anyMatch(e->e.getParentNovelId().equals(novel.getParentNovelId())),
-                new NovelNodeException("Not Exist Same Parent Novel.")); // FIXME ExceptionMessage 가 이게 맞나 ?
-    }
-
-    public int getSameParentSizeBy(NovelId id) {
-        return (int) novels.stream().filter(i -> i.getParentNovelId().equals(id)).count();
     }
 }

@@ -11,7 +11,9 @@
 - NovelBoard 에 Novel 을 ( fork ) 할 수 있다.
 - relay 된 Novel 은 부모 NovelId를 알고 있다.
 - fork 된 Novel 은 같은 부모 NovelId을 공유하는 형제 Novel 이 있다.
-- 부모 NovelId는 뭘로 이루어질 것인가. view 에 뿌려질 순서를 id 로 알 수 있을까. 
+- 부모 NovelId는 뭘로 이루어질 것인가. view 에 뿌려질 순서를 id 로 알 수 있을까.
+- maxRelaySize 가 찻을 때, 해당 novelBoard 는 어떻게 될까. 
+  -  TODO maxStageSize 가 일정값 이상이면 throw = 소설이 완성되는 것은 언제인가.
   
 
 ### IDEA 
