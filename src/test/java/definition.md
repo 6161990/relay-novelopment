@@ -17,5 +17,7 @@
 ### IDEA 
 * 유저에 따라 Stage 를 추가시킬 수 있다. 등급이 높으면 이미 10개의 Stage 가 달려있는 novelBoard 에 추가할 수 있다.   
 * 노벨상.................. 띵언 노벨 판타지상 노벨 환희상 등등
+* relay 말고 append 기능은 어떨까 글자수가 부담스러우니까. 두 세 줄만 append
+* append ?  기존 소설의 맨 끝자리에 넘어온 문장에 덧붙인다. 
 
 ![](../../../../../../Library/Containers/com.majimakHARU.GrabIt/Data/2022-11-15_22-06-31.png)
