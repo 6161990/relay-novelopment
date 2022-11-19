@@ -1,39 +1,28 @@
 package com.yoon.relayNovelopment.domain;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class NovelBoardBuilder {
 
-    private NovelStageId novelStageId;
+    private NovelBoard novelBoard;
+    private NovelBoardId novelBoardId;
     private Opening opening;
     private int depth;
-    private List<Novel> novelList = new ArrayList<>();
 
     public static NovelBoardBuilder builder() {
         return new NovelBoardBuilder();
     }
 
     public NovelBoard build() {
-       return new NovelBoard(novelStageId, opening, depth);
-    }
-
-    public int getNovelSize(){
-        return this.novelList.size();
+        this.novelBoard = new NovelBoard(novelBoardId, opening, depth);
+        return novelBoard;
     }
 
     public NovelBoardBuilder id(String id) {
-        this.novelStageId = NovelStageId.of(id);
+        this.novelBoardId = NovelBoardId.of(id);
         return this;
     }
 
     public NovelBoardBuilder opening(NovelId openingId, WriterId writerId, Title title, Content content) {
         this.opening =  Opening.of((OpeningId) openingId, writerId, title, content);
-        return this;
-    }
-
-    public NovelBoardBuilder relay(RelayNovelId id, NovelId parentId , WriterId writer, Title title) {
-        this.novelList.add(Novel.of(id, parentId, writer, title, Content.of(ContentId.of("conId"), "Value"), new Props()));
         return this;
     }
 
@@ -51,6 +40,10 @@ public class NovelBoardBuilder {
     }
 
     protected static RelayNovelId relayId(String id) {
+        return RelayNovelId.of(id);
+    }
+
+    protected static RelayNovelId parentId(String id) {
         return RelayNovelId.of(id);
     }
 

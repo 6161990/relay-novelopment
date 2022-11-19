@@ -23,14 +23,15 @@ class NovelBoardTest {
 
     @Test
     void add_novel() {
-        NovelBoardBuilder novelStage = NovelBoardBuilder.builder()
+        NovelBoard novelStage = NovelBoardBuilder.builder()
                 .id("id")
                 .opening(openingId("id"), writerId("writer"),
                         title("bang"), content("contentId", "content"))
-                .relay(relayId("id2"), openingId("id"), writerId("writer2"), title("bang2"))
-                .maxRelay(MAX_RELAY_SIZE_5);
+                .maxRelay(MAX_RELAY_SIZE_5).build();
 
-        novelStage.relay(relayId("id3"), relayId("id2"), writerId("writer2"), title("bang2"));
+        novelStage.relay(Novel.of(relayId("id2"), openingId("id"), writerId("writer2"), title("bang2")));
+
+        novelStage.relay(Novel.of(relayId("id3"), parentId("id2"), writerId("writer3"), title("bang3")));
 
         assertThat(novelStage.getNovelSize()).isEqualTo(2);
     }
@@ -48,42 +49,39 @@ class NovelBoardTest {
     }
 
     @Test
+    void when_exceed_maxRelayCount_add_relay() {
+
+    }
+
+    @Test
     void writer는_하나의_novelStage_에_중복하여_등록할_수_없다() {
-        NovelBoard stage = NovelBoardBuilder.builder()
+        NovelBoard novelStage = NovelBoardBuilder.builder()
                 .id("id")
                 .opening(openingId("id"), writerId("writer"),
                         title("bang"), content("contentId", "content"))
-                .maxRelay(MAX_RELAY_SIZE_5)
-                .build();
+                .maxRelay(MAX_RELAY_SIZE_5).build();
 
-        Novel novel = Novel.of(RelayNovelId.of("id2"), OpeningId.of("id"), WriterId.of("writer"), Title.of("bang2"));
-        stage.relay(novel);
+        novelStage.relay(Novel.of(relayId("id2"), openingId("id"), writerId("writer2"), title("bang2")));
 
-        Novel novel2 = Novel.of(RelayNovelId.of("id3"), RelayNovelId.of("id2"), WriterId.of("writer"), Title.of("bang3"));
-
-        assertThatThrownBy(()-> stage.relay(novel2))
+        assertThatThrownBy(()-> novelStage.relay(Novel.of(relayId("id3"), parentId("id2"), writerId("writer2"), title("bang2"))))
                 .isInstanceOf(NovelNodeException.class)
-                .hasMessage(String.format("Already exist the writer. WriterId %s, NovelNodeId %s", WriterId.of("writer"), NovelStageId.of("id")));
+                .hasMessage(String.format("Already exist the writer. WriterId %s, NovelBoardId %s", WriterId.of("writer2"), NovelBoardId.of("id")));
 
     }
 
     @Test
     void 하나의_novelStage_에_제목이_중복될_수_없다() {
-        NovelBoard stage = NovelBoardBuilder.builder()
+        NovelBoard novelStage = NovelBoardBuilder.builder()
                 .id("id")
                 .opening(openingId("id"), writerId("writer"),
-                        title("bang1"), content("contentId", "content"))
-                .maxRelay(MAX_RELAY_SIZE_5)
-                .build();
+                        title("bang"), content("contentId", "content"))
+                .maxRelay(MAX_RELAY_SIZE_5).build();
 
-        Novel novel = Novel.of(RelayNovelId.of("id2"), OpeningId.of("id"), WriterId.of("writer2"), Title.of("bang2"));
-        stage.relay(novel);
+        novelStage.relay(Novel.of(relayId("id2"), openingId("id"), writerId("writer2"), title("bang2")));
 
-        Novel novel2 = Novel.of(RelayNovelId.of("id3"), RelayNovelId.of("id2"), WriterId.of("writer3"), Title.of("bang2"));
-
-        assertThatThrownBy(()-> stage.relay(novel2))
+        assertThatThrownBy(()-> novelStage.relay(Novel.of(relayId("id3"), parentId("id2"), writerId("writer3"), title("bang2"))))
                 .isInstanceOf(NovelNodeException.class)
-                .hasMessage(String.format("Already exist the title. WriterId %s, NovelNodeId %s", WriterId.of("writer3"), NovelStageId.of("id")));
+                .hasMessage(String.format("Already exist the title. WriterId %s, NovelBoardId %s", WriterId.of("writer3"), NovelBoardId.of("id")));
     }
 
 }

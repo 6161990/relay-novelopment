@@ -10,15 +10,15 @@ import static org.valid4j.Validation.validate;
 
 @Getter
 @ToString
-public class NovelBoard{
-    private final NovelStageId id;
+public class NovelBoard {
+    private final NovelBoardId id;
     private final Opening opening;
     private int maxRelaySize;
 
     @Getter
     private List<Novel> novels;
 
-    public NovelBoard(NovelStageId id, Opening opening, int maxRelaySize) {
+    public NovelBoard(NovelBoardId id, Opening opening, int maxRelaySize) {
         this.id = id;
         this.opening = opening;
         this.maxRelaySize = maxRelaySize;
@@ -35,7 +35,7 @@ public class NovelBoard{
         maxRelaySize++;
     }
 
-    public void fork(Novel novel){ // TODO 같은 부모 parentNovelId 를 가지고 있는 novel 이 추가될 때 (옆으로 추가될 때)
+    public void fork(Novel novel) { // TODO 같은 부모 parentNovelId 를 가지고 있는 novel 이 추가될 때 (옆으로 추가될 때)
         if (novels == null || novels.isEmpty()){
             throw new NovelNodeException("Novels is Empty");
         }
@@ -55,9 +55,9 @@ public class NovelBoard{
 
     private void valid(Novel novel) {
         validate(novels.stream().noneMatch(n-> n.getWriterId().getId().equals(novel.getWriterId().getId())),
-                new NovelNodeException(String.format("Already exist the writer. WriterId %s, NovelNodeId %s", novel.getWriterId(), id)));
+                new NovelNodeException(String.format("Already exist the writer. WriterId %s, NovelBoardId %s", novel.getWriterId(), id)));
         validate(novels.stream().noneMatch(n-> n.getTitle().equals(novel.getTitle())),
-                new NovelNodeException(String.format("Already exist the title. WriterId %s, NovelNodeId %s", novel.getWriterId(), id)));
+                new NovelNodeException(String.format("Already exist the title. WriterId %s, NovelBoardId %s", novel.getWriterId(), id)));
     }
 
 }
