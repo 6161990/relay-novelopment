@@ -40,7 +40,7 @@ public class NovelBoard {
             throw new NovelNodeException("Novels is Empty");
         }
 
-        valid(novel);
+        validForFork(novel);
 
         this.novels.add(novel);
     }
@@ -60,4 +60,13 @@ public class NovelBoard {
                 new NovelNodeException(String.format("Already exist the title. WriterId %s, NovelBoardId %s", novel.getWriterId(), id)));
     }
 
+    private void validForFork(Novel novel){
+        valid(novel);
+        validate(novels.stream().anyMatch(e->e.getParentNovelId().equals(novel.getParentNovelId())),
+                new NovelNodeException("Not Exist Same Parent Novel.")); // FIXME ExceptionMessage 가 이게 맞나 ?
+    }
+
+    public int getSameParentSizeBy(NovelId id) {
+        return (int) novels.stream().filter(i -> i.getParentNovelId().equals(id)).count();
+    }
 }
