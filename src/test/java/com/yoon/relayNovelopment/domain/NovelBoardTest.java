@@ -8,8 +8,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class NovelBoardTest {
 
-    private final int MAX_RELAY_SIZE_5 = 5;
-
     @Test
     void create_novelStage() {
         NovelBoard novelStage = NovelBoardBuilder.builder()
@@ -26,8 +24,7 @@ class NovelBoardTest {
         NovelBoard novelStage = NovelBoardBuilder.builder()
                 .id("id")
                 .opening(openingId("id"), writerId("writer"),
-                        title("bang"), content("contentId", "content"))
-                .maxRelay(MAX_RELAY_SIZE_5).build();
+                        title("bang"), content("contentId", "content")).build();
         novelStage.relay(novel(relayId("id2"), openingId("id"), writerId("writer2"), title("bang2")));
 
         novelStage.relay(novel(relayId("id3"), parentId("id2"), writerId("writer3"), title("bang3")));
@@ -42,7 +39,7 @@ class NovelBoardTest {
     }
 
     @Test
-    void when_exceed_maxRelayCount_add_relay() {
+    void when_already_closed_add_relay() {
 
     }
 
@@ -51,8 +48,7 @@ class NovelBoardTest {
         NovelBoard novelStage = NovelBoardBuilder.builder()
                 .id("id")
                 .opening(openingId("id"), writerId("writer"),
-                        title("bang"), content("contentId", "content"))
-                .maxRelay(MAX_RELAY_SIZE_5).build();
+                        title("bang"), content("contentId", "content")).build();
         novelStage.relay(novel(relayId("id2"), openingId("id"), writerId("writer2"), title("bang2")));
 
         novelStage.fork(novel(relayId("id3"), openingId("id"), writerId("writer3"), title("bang4")));
@@ -66,8 +62,7 @@ class NovelBoardTest {
         NovelBoard novelStage = NovelBoardBuilder.builder()
                 .id("id")
                 .opening(openingId("id"), writerId("writer"),
-                        title("bang"), content("contentId", "content"))
-                .maxRelay(MAX_RELAY_SIZE_5).build();
+                        title("bang"), content("contentId", "content")).build();
         novelStage.relay(novel(relayId("id2"), openingId("id"), writerId("writer2"), title("bang2")));
 
         assertThatThrownBy(()->novelStage.fork(novel(relayId("id3"), openingId("id2"), writerId("writer3"), title("bang4"))))
@@ -80,8 +75,7 @@ class NovelBoardTest {
         NovelBoard novelStage = NovelBoardBuilder.builder()
                 .id("id")
                 .opening(openingId("id"), writerId("writer"),
-                        title("bang"), content("contentId", "content"))
-                .maxRelay(MAX_RELAY_SIZE_5).build();
+                        title("bang"), content("contentId", "content")).build();
         novelStage.relay(novel(relayId("id2"), openingId("id"), writerId("writer2"), title("bang2")));
 
         assertThatThrownBy(()-> novelStage.relay(novel(relayId("id3"), parentId("id2"), writerId("writer2"), title("bang2"))))
@@ -95,8 +89,7 @@ class NovelBoardTest {
         NovelBoard novelStage = NovelBoardBuilder.builder()
                 .id("id")
                 .opening(openingId("id"), writerId("writer"),
-                        title("bang"), content("contentId", "content"))
-                .maxRelay(MAX_RELAY_SIZE_5).build();
+                        title("bang"), content("contentId", "content")).build();
         novelStage.relay(novel(relayId("id2"), openingId("id"), writerId("writer2"), title("bang2")));
 
         assertThatThrownBy(()-> novelStage.relay(novel(relayId("id3"), parentId("id2"), writerId("writer3"), title("bang2"))))
