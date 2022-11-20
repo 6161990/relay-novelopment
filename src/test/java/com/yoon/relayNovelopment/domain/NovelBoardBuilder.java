@@ -5,14 +5,13 @@ public class NovelBoardBuilder {
     private NovelBoard novelBoard;
     private NovelBoardId novelBoardId;
     private Opening opening;
-    private int depth;
 
     public static NovelBoardBuilder builder() {
         return new NovelBoardBuilder();
     }
 
     public NovelBoard build() {
-        this.novelBoard = new NovelBoard(novelBoardId, opening, depth);
+        this.novelBoard = new NovelBoard(novelBoardId, opening);
         return novelBoard;
     }
 
@@ -23,11 +22,6 @@ public class NovelBoardBuilder {
 
     public NovelBoardBuilder opening(NovelId openingId, WriterId writerId, Title title, Content content) {
         this.opening =  Opening.of((OpeningId) openingId, writerId, title, content);
-        return this;
-    }
-
-    public NovelBoardBuilder maxRelay(int depth) {
-        this.depth = depth;
         return this;
     }
 
