@@ -1,28 +1,23 @@
 package com.yoon.relayNovelopment.domain;
 
 import lombok.Getter;
-import lombok.ToString;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 import static org.valid4j.Validation.validate;
 
-@Getter
-@ToString
 public class NovelBoard {
     private final NovelBoardId id;
     private final Opening opening;
-    private int maxRelaySize;
+    private boolean isClosed;
 
     @Getter
     private List<Novel> novels;
 
-    public NovelBoard(NovelBoardId id, Opening opening, int maxRelaySize) {
+    public NovelBoard(NovelBoardId id, Opening opening) {
         this.id = id;
         this.opening = opening;
-        this.maxRelaySize = maxRelaySize;
     }
 
     public void relay(Novel novel) {
@@ -33,7 +28,6 @@ public class NovelBoard {
         valid(novel); // TODO maxStageSize 가 일정값 이상이면 throw = 소설이 완성되는 것은 언제인가.
 
         this.novels.add(novel);
-        maxRelaySize++;
     }
 
     public void fork(Novel novel) {
@@ -66,5 +60,6 @@ public class NovelBoard {
                 new NovelNodeException(String.format("Already exist the writer. WriterId %s, NovelBoardId %s", novel.getWriterId(), id)));
         validate(novels.stream().noneMatch(n-> n.getTitle().equals(novel.getTitle())),
                 new NovelNodeException(String.format("Already exist the title. WriterId %s, NovelBoardId %s", novel.getWriterId(), id)));
+        validate(!isClosed, new NovelNodeException("Already closed."));
     }
 }
