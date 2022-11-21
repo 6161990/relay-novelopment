@@ -8,6 +8,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class ParentFinderTest {
 
+    // FIXME 테스트 검증하려는 것과 동떨어진 data 는 안으로 숨기기
+
     @Test
     void 최초_novelBoard_생성시() {
         ParentFinder sut = new ParentFinder();
@@ -64,7 +66,7 @@ class ParentFinderTest {
                 .build();
         novelBoard.relay(novel(relayId("id2"), openingId("id"), writerId("writer2"), title("bang2")));
 
-        NovelId parentId = sut.getParentByFork(novelBoard);
+        NovelId parentId = sut.getParentForForkBy(novelBoard);
 
         assertThat(parentId).isEqualTo(openingId("id"));
     }

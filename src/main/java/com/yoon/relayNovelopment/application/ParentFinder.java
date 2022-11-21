@@ -13,7 +13,7 @@ public class ParentFinder {
         }
     }
 
-    public NovelId getParentByFork(NovelBoard novelBoard) {
+    public NovelId getParentForForkBy(NovelBoard novelBoard) {
         return novelBoard.getNovels().get(novelBoard.getNovelSize() - 1).getParentNovelId();
     }
 }
