@@ -1,18 +1,20 @@
 package com.yoon.relayNovelopment.application;
 
 import com.yoon.relayNovelopment.domain.Novel;
+import com.yoon.relayNovelopment.domain.NovelBoard;
 import com.yoon.relayNovelopment.domain.NovelId;
 import com.yoon.relayNovelopment.domain.RelayNovelId;
+import lombok.RequiredArgsConstructor;
 
-public class NovelGenerator {
+@RequiredArgsConstructor
+public class NovelCreateFactory {
 
     private final IdGenerator idGenerator;
+    private final ParentFinder parentFinder;
 
-    public NovelGenerator(IdGenerator idGenerator) {
-        this.idGenerator = idGenerator;
-    }
+    public Novel create(NovelBoard novelBoard, NovelEditCommand command) {
+        NovelId parentId = parentFinder.findBy(novelBoard);
 
-    public Novel gen(NovelId parentId, NovelEditCommand command) {
         return Novel.of(RelayNovelId.of("boardId"), parentId,
                         command.getWriterId(), command.getTitle(), command.getContent(), command.getProps());
     }

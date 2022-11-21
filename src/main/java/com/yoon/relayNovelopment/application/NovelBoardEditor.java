@@ -7,15 +7,12 @@ import lombok.RequiredArgsConstructor;
 public class NovelBoardEditor {
 
     private final NovelRepository repository;
-    private final ParentFinder parentFinder;
-    private final NovelGenerator generator;
+    private final NovelCreateFactory createFactory;
 
     public NovelBoard relay(NovelBoardId novelBoardId, NovelEditCommand command) {
         NovelBoard novelBoard = repository.findBy(novelBoardId);
 
-        NovelId parentId = parentFinder.findBy(novelBoard);
-
-        Novel novel = generator.gen(parentId, command);
+        Novel novel = createFactory.create(novelBoard, command);
 
         novelBoard.relay(novel);
 
