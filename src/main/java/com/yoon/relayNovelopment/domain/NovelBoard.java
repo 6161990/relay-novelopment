@@ -9,6 +9,8 @@ import static org.valid4j.Validation.validate;
 
 public class NovelBoard {
     private final NovelBoardId id;
+
+    @Getter
     private final Opening opening;
     private boolean isClosed;
 

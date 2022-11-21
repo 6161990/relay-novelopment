@@ -13,9 +13,9 @@ public class NovelCreateFactory {
     private final ParentFinder parentFinder;
 
     public Novel create(NovelBoard novelBoard, NovelEditCommand command) {
-        NovelId parentId = parentFinder.findBy(novelBoard);
+        NovelId parentId = parentFinder.getParentBy(novelBoard);
 
-        return Novel.of(RelayNovelId.of("boardId"), parentId,
+        return Novel.of(RelayNovelId.of(idGenerator.gen()), parentId,
                         command.getWriterId(), command.getTitle(), command.getContent(), command.getProps());
     }
 }

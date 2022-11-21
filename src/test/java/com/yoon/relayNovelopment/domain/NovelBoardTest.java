@@ -33,12 +33,6 @@ class NovelBoardTest {
     }
 
     @Test
-    void 부모novelId가_무엇인지를_찾아야한다() { // FIXME 바깥 레이어의 test 같다.
-            // 혹은 연결된 이전 노드가 무엇인지 찾아야한다 openingId ? parentId ---------- HERE !!!!!!!!!!!
-        Novel novel2 = novel(RelayNovelId.of("id2"), OpeningId.of("id"), WriterId.of("writer2"), Title.of("bang2"));
-    }
-
-    @Test
     void when_already_closed_add_relay() {
 
     }

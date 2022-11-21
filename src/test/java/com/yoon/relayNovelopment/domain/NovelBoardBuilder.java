@@ -25,27 +25,27 @@ public class NovelBoardBuilder {
         return this;
     }
 
-    protected static Content content(String contentId, String content) {
+    public static Content content(String contentId, String content) {
         return Content.of(ContentId.of(contentId), content);
     }
 
-    protected static OpeningId openingId(String id) {
+    public static OpeningId openingId(String id) {
         return OpeningId.of(id);
     }
 
-    protected static RelayNovelId relayId(String id) {
+    public static RelayNovelId relayId(String id) {
         return RelayNovelId.of(id);
     }
 
-    protected static RelayNovelId parentId(String id) {
+    public static RelayNovelId parentId(String id) {
         return RelayNovelId.of(id);
     }
 
-    protected static WriterId writerId(String id) {
+    public static WriterId writerId(String id) {
         return WriterId.of(id);
     }
 
-    protected static Title title(String name) {
+    public static Title title(String name) {
         return Title.of(name);
     }
 

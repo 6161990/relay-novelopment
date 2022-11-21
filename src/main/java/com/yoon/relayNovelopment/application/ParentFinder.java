@@ -2,11 +2,18 @@ package com.yoon.relayNovelopment.application;
 
 import com.yoon.relayNovelopment.domain.NovelBoard;
 import com.yoon.relayNovelopment.domain.NovelId;
-import com.yoon.relayNovelopment.domain.OpeningId;
 
 public class ParentFinder {
 
-    public NovelId findBy(NovelBoard novelBoard) {
-        return OpeningId.of("openId");
+    public NovelId getParentBy(NovelBoard novelBoard) {
+        if(novelBoard.getNovelSize() == 0) {
+            return novelBoard.getOpening().getId();
+        } else {
+            return novelBoard.getNovels().get(novelBoard.getNovelSize() - 1).getId();
+        }
+    }
+
+    public NovelId getParentByFork(NovelBoard novelBoard) {
+        return novelBoard.getNovels().get(novelBoard.getNovelSize() - 1).getParentNovelId();
     }
 }
