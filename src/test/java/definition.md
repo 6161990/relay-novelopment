@@ -13,7 +13,9 @@
 - fork 된 Novel 은 같은 부모 NovelId을 공유하는 형제 Novel 이 있다.
 - 부모 NovelId는 뭘로 이루어질 것인가. view 에 뿌려질 순서를 id 로 알 수 있을까.
 - maxRelaySize 가 찻을 때, 해당 novelBoard 는 어떻게 될까. 
-  -  TODO maxStageSize 가 일정값 이상이면 throw = 소설이 완성되는 것은 언제인가.
+  - TODO maxStageSize 가 일정값 이상이면 throw = 소설이 완성되는 것은 언제인가.
+- 각 idGenerator 를 뭘로 만들까.
+  - novelId는 novelKey 로 만들까 (novelBoardId, writer 의 조합? title 의 조합?)
   
 
 ### IDEA 
