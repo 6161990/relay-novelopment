@@ -7,17 +7,17 @@ import org.junit.jupiter.api.Test;
 import static com.yoon.relayNovelopment.domain.NovelBoardBuilder.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
-class ParentFinderTest {
+class ParentNovelFinderTest {
 
     // FIXME 뭔가.. 잘 안 읽힌다.
 
-    ParentFinder sut;
+    ParentNovelFinder sut;
 
     NovelBoardBuilder novelBoardBuilder;
 
     @BeforeEach
     void setUp() {
-        sut = new ParentFinder();
+        sut = new ParentNovelFinder();
         novelBoardBuilder = NovelBoardBuilder.builder();
     }
 

@@ -3,7 +3,7 @@ package com.yoon.relayNovelopment.application;
 import com.yoon.relayNovelopment.domain.NovelBoard;
 import com.yoon.relayNovelopment.domain.NovelId;
 
-public class ParentFinder {
+public class ParentNovelFinder {
 
     public NovelId getParentBy(NovelBoard novelBoard) {
         if(novelBoard.getNovelSize() == 0) {

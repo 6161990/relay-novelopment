@@ -14,7 +14,7 @@ public class NovelBoard {
     private boolean isClosed;
     private List<Novel> novels;
 
-    NovelBoard(NovelBoardId id, Opening opening) {
+    public NovelBoard(NovelBoardId id, Opening opening) {
         this.id = id;
         this.opening = opening;
     }

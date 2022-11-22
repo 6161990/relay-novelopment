@@ -10,17 +10,17 @@ import lombok.RequiredArgsConstructor;
 public class NovelCreateFactory {
 
     private final IdGenerator idGenerator;
-    private final ParentFinder parentFinder;
+    private final ParentNovelFinder parentNovelFinder;
 
     public Novel create(NovelBoard novelBoard, NovelEditCommand command) {
-        NovelId parentId = parentFinder.getParentBy(novelBoard);
+        NovelId parentId = parentNovelFinder.getParentBy(novelBoard);
 
         return Novel.of(RelayNovelId.of("boardId"), parentId,
                         command.getWriterId(), command.getTitle(), command.getContent(), command.getProps());
     }
 
     public Novel createForFork(NovelBoard novelBoard, NovelEditCommand command) {
-        NovelId parentId = parentFinder.getParentForForkBy(novelBoard);
+        NovelId parentId = parentNovelFinder.getParentForForkBy(novelBoard);
 
         return Novel.of(RelayNovelId.of("boardId"), parentId, // FIXME idgen 을 통한 RelayNovelId
                 command.getWriterId(), command.getTitle(), command.getContent(), command.getProps());
