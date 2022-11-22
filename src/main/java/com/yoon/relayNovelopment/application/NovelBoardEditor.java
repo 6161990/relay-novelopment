@@ -12,14 +12,22 @@ public class NovelBoardEditor {
     public NovelBoard relay(NovelBoardId novelBoardId, NovelEditCommand command) {
         NovelBoard novelBoard = repository.findBy(novelBoardId);
 
-        Novel novel = createFactory.create(novelBoard, command);
-
+        Novel novel = createFactory.create(novelBoard, command); // create - relay
         novelBoard.relay(novel);
+
+        repository.save(novelBoard);
 
         return novelBoard;
     }
 
-    public void fork(NovelBoardId novelBoardId, NovelEditCommand command){
+    public NovelBoard fork(NovelBoardId novelBoardId, NovelEditCommand command){
+        NovelBoard novelBoard = repository.findBy(novelBoardId);
 
+        Novel novel = createFactory.createForFork(novelBoard, command); // createForFork - fork
+        novelBoard.fork(novel);
+
+        repository.save(novelBoard);
+
+        return novelBoard;
     }
 }

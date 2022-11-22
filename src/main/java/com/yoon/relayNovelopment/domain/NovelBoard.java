@@ -7,17 +7,14 @@ import java.util.Objects;
 
 import static org.valid4j.Validation.validate;
 
+@Getter
 public class NovelBoard {
     private final NovelBoardId id;
-
-    @Getter
     private final Opening opening;
     private boolean isClosed;
-
-    @Getter
     private List<Novel> novels;
 
-    public NovelBoard(NovelBoardId id, Opening opening) {
+    NovelBoard(NovelBoardId id, Opening opening) {
         this.id = id;
         this.opening = opening;
     }
