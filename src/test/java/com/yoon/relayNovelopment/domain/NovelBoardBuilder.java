@@ -20,8 +20,13 @@ public class NovelBoardBuilder {
         return this;
     }
 
-    public NovelBoardBuilder opening(NovelId openingId, WriterId writerId, Title title, Content content) {
-        this.opening =  Opening.of((OpeningId) openingId, writerId, title, content);
+    public NovelBoardBuilder opening(OpeningId openingId, WriterId writerId, Title title, Content content) {
+        this.opening =  Opening.of(openingId, writerId, title, content);
+        return this;
+    }
+
+    public NovelBoardBuilder opening(OpeningId id) {
+        this.opening =  Opening.of(id, WriterId.of("any"), Title.of("any"), Content.of(ContentId.of("any"), "any"));
         return this;
     }
 
@@ -48,6 +53,5 @@ public class NovelBoardBuilder {
     public static Title title(String name) {
         return Title.of(name);
     }
-
 }
 

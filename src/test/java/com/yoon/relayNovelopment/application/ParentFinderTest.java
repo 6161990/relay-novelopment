@@ -1,6 +1,7 @@
 package com.yoon.relayNovelopment.application;
 
 import com.yoon.relayNovelopment.domain.*;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static com.yoon.relayNovelopment.domain.NovelBoardBuilder.*;
@@ -8,76 +9,66 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class ParentFinderTest {
 
-    // FIXME 테스트 검증하려는 것과 동떨어진 data 는 안으로 숨기기
+    // FIXME 뭔가.. 잘 안 읽힌다.
+
+    ParentFinder sut;
+
+    NovelBoardBuilder novelBoardBuilder;
+
+    @BeforeEach
+    void setUp() {
+        sut = new ParentFinder();
+        novelBoardBuilder = NovelBoardBuilder.builder();
+    }
 
     @Test
-    void 최초_novelBoard_생성시() {
-        ParentFinder sut = new ParentFinder();
-        NovelBoard novelBoard = NovelBoardBuilder.builder()
-                .id("id")
-                .opening(openingId("id"), writerId("writer"),
-                        title("bang"), content("contentId", "content"))
-                .build();
+    void 최초_relay_될_때_parentNovelId는_openingId_다() {
+        NovelBoard board = novelBoardBuilder
+                            .opening(openingId("id")).build();
 
-        NovelId parentId = sut.getParentBy(novelBoard);
+        NovelId parentId = sut.getParentBy(board);
+        board.relay(novel(relayId("id2"), parentId));
 
         assertThat(parentId).isEqualTo(openingId("id"));
     }
 
     @Test
-    void 최초_relay_될_때() {
-        ParentFinder sut = new ParentFinder();
-        NovelBoard novelBoard = NovelBoardBuilder.builder()
-                .id("id")
-                .opening(openingId("id"), writerId("writer"),
-                        title("bang"), content("contentId", "content"))
-                .build();
-        novelBoard.relay(novel(relayId("id2"), openingId("id"), writerId("writer2"), title("bang2")));
+    void n번째_relay_될_때_parentNovelId는_직전_relayNovelId_다() {
+        NovelBoard novelBoard = novelBoardBuilder
+                                .opening(openingId("id")).build();
 
-        NovelId parentId = sut.getParentBy(novelBoard);
+        NovelId parentNovelIdAtFirst = sut.getParentBy(novelBoard);
+        novelBoard.relay(novel(relayId("id2"), parentNovelIdAtFirst));
 
-        assertThat(parentId).isEqualTo(relayId("id2"));
+        assertThat(parentNovelIdAtFirst).isEqualTo(openingId("id"));
+
+        NovelId parentNovelIdAtTwice = sut.getParentBy(novelBoard);
+        novelBoard.relay(novel2(relayId("id3"), parentNovelIdAtTwice));
+
+        assertThat(parentNovelIdAtTwice).isEqualTo(relayId("id2"));
     }
+
 
     @Test
-    void 두번째_relay_될_때() {
-        ParentFinder sut = new ParentFinder();
-        NovelBoard novelBoard = NovelBoardBuilder.builder()
-                .id("id")
-                .opening(openingId("id"), writerId("writer"),
-                        title("bang"), content("contentId", "content"))
-                .build();
-        novelBoard.relay(novel(relayId("id2"), openingId("id"), writerId("writer2"), title("bang2")));
+    void fork_될_때_parentNovelId는_직전_relayNovel의_parentNovelId_다() {
+        NovelBoard novelBoard = novelBoardBuilder
+                                    .opening(openingId("id")).build();
 
-        novelBoard.relay(novel(relayId("id3"), parentId("id2"), writerId("writer3"), title("bang3")));
+        NovelId parentNovelId = sut.getParentBy(novelBoard);
+        novelBoard.relay(novel(relayId("id2"), parentNovelId));
 
-        NovelId parentId = sut.getParentBy(novelBoard);
+        NovelId parentNovelIdForFork = sut.getParentForForkBy(novelBoard);
+        novelBoard.fork(novel2(relayId("id3"), parentNovelIdForFork));
 
-        assertThat(parentId).isEqualTo(relayId("id3"));
+        assertThat(parentNovelId).isEqualTo(openingId("id"));
+        assertThat(parentNovelId).isEqualTo(parentNovelIdForFork);
     }
 
-    @Test
-    void fork_될_때() {
-        ParentFinder sut = new ParentFinder();
-        NovelBoard novelBoard = NovelBoardBuilder.builder()
-                .id("id")
-                .opening(openingId("id"), writerId("writer"),
-                        title("bang"), content("contentId", "content"))
-                .build();
-        novelBoard.relay(novel(relayId("id2"), openingId("id"), writerId("writer2"), title("bang2")));
-
-        NovelId parentId = sut.getParentForForkBy(novelBoard);
-
-        assertThat(parentId).isEqualTo(openingId("id"));
+    private Novel novel(RelayNovelId id, NovelId parentId) {
+        return Novel.of(id, parentId, WriterId.of("any"), Title.of("any"), Content.of(ContentId.of("conId"), "value"), new Props());
     }
 
-    @Test
-    void 부모novelId가_무엇인지를_찾아야한다() { // FIXME 바깥 레이어의 test 같다.
-        // 혹은 연결된 이전 노드가 무엇인지 찾아야한다 openingId ? parentId ---------- HERE !!!!!!!!!!!
-
-    }
-
-    private Novel novel(RelayNovelId id, NovelId parentId, WriterId writerId, Title title) {
-        return Novel.of(id, parentId, writerId, title, Content.of(ContentId.of("conId"), "value"), new Props());
+    private Novel novel2(RelayNovelId id, NovelId parentId) {
+        return Novel.of(id, parentId, WriterId.of("any2"), Title.of("any2"), Content.of(ContentId.of("conId2"), "value2"), new Props());
     }
 }
