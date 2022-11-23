@@ -16,13 +16,13 @@ public class NovelCreateFactory {
         NovelId parentId = parentNovelFinder.getParentBy(novelBoard);
 
         return Novel.of(RelayNovelId.of("boardId"), parentId,
-                        command.getWriterId(), command.getTitle(), command.getContent(), command.getProps());
+                        command.getWriterId(), command.getTitle(), command.getContent());
     }
 
     public Novel createForFork(NovelBoard novelBoard, NovelCreateCommand command) {
         NovelId parentId = parentNovelFinder.getParentForForkBy(novelBoard);
 
         return Novel.of(RelayNovelId.of("boardId"), parentId, // FIXME idgen 을 통한 RelayNovelId
-                command.getWriterId(), command.getTitle(), command.getContent(), command.getProps());
+                command.getWriterId(), command.getTitle(), command.getContent());
     }
 }

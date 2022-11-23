@@ -92,7 +92,7 @@ class NovelBoardTest {
     }
 
     private Novel novel(RelayNovelId id, NovelId parentId, WriterId writerId, Title title) {
-        return Novel.of(id, parentId, writerId, title, Content.of(ContentId.of("conId"), "value"), new Props());
+        return Novel.of(id, parentId, writerId, title, Content.of(ContentId.of("conId"), "value"));
     }
 
 }
