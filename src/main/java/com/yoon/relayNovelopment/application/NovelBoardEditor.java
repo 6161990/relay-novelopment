@@ -9,7 +9,7 @@ public class NovelBoardEditor {
     private final NovelRepository repository;
     private final NovelCreateFactory createFactory;
 
-    public NovelBoard relay(NovelBoardId novelBoardId, NovelEditCommand command) {
+    public NovelBoard relay(NovelBoardId novelBoardId, NovelCreateCommand command) {
         NovelBoard novelBoard = repository.findBy(novelBoardId);
 
         Novel novel = createFactory.create(novelBoard, command); // create - relay
@@ -20,7 +20,7 @@ public class NovelBoardEditor {
         return novelBoard;
     }
 
-    public NovelBoard fork(NovelBoardId novelBoardId, NovelEditCommand command){
+    public NovelBoard fork(NovelBoardId novelBoardId, NovelCreateCommand command){
         NovelBoard novelBoard = repository.findBy(novelBoardId);
 
         Novel novel = createFactory.createForFork(novelBoard, command); // createForFork - fork

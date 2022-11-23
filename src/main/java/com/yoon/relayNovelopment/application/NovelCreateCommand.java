@@ -9,10 +9,10 @@ import lombok.Getter;
 @Getter
 public class NovelCreateCommand {
 
-    private WriterId writerId;
-    private Title title;
-    private Content content;
-    private Props props;
+    private final WriterId writerId;
+    private final Title title;
+    private final Content content;
+    private final Props props;
 
     public NovelCreateCommand(WriterId writerId, Title title, Content content, Props props) {
         this.writerId = writerId;
