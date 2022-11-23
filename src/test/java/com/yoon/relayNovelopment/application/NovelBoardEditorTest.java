@@ -18,7 +18,7 @@ class NovelBoardEditorTest {
 
     @Test
     void relay() {
-        NovelEditCommand command = new NovelEditCommand(WriterId.of("writerId"), Title.of("Title"), Content.of(ContentId.of("conId"), "value"), new Props());
+        NovelCreateCommand command = new NovelCreateCommand(WriterId.of("writerId"), Title.of("Title"), Content.of(ContentId.of("conId"), "value"), new Props());
 
         NovelBoard novelBoard = sut.relay(NovelBoardId.of("boardId"), command);
 
@@ -28,10 +28,10 @@ class NovelBoardEditorTest {
 
     @Test
     void fork() {
-        NovelEditCommand command = new NovelEditCommand(WriterId.of("writerId"), Title.of("Title"), Content.of(ContentId.of("conId"), "value"), new Props());
+        NovelCreateCommand command = new NovelCreateCommand(WriterId.of("writerId"), Title.of("Title"), Content.of(ContentId.of("conId"), "value"), new Props());
         sut.relay(NovelBoardId.of("boardId"), command);
 
-        NovelEditCommand command2 = new NovelEditCommand(WriterId.of("writerId2"), Title.of("Title2"), Content.of(ContentId.of("conId"), "value"), new Props());
+        NovelCreateCommand command2 = new NovelCreateCommand(WriterId.of("writerId2"), Title.of("Title2"), Content.of(ContentId.of("conId"), "value"), new Props());
         NovelBoard novelBoard2 = sut.fork(NovelBoardId.of("boardId"), command2);
 
         assertThat(novelBoard2.getNovelSize()).isEqualTo(2);
