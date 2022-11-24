@@ -1,5 +1,6 @@
 package com.yoon.relayNovelopment.domain;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static com.yoon.relayNovelopment.domain.NovelBoardBuilder.*;
@@ -7,6 +8,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class NovelBoardTest {
+
+    // FIXME parent 가 누구냐가 중요한 것 같다. 테스트에서 그게 더 잘 드러났으면 좋겠다. 여기에 집중해보장
 
     @Test
     void create_novelStage() {
@@ -49,6 +52,36 @@ class NovelBoardTest {
 
         assertThat(novelStage.getNovelSize()).isEqualTo(2);
         assertThat(novelStage.getSameParentSizeBy(openingId("id"))).isEqualTo(2);
+    }
+
+    @DisplayName("fork 된 novel 에 relay 될 때")
+    @Test
+    void relay_at_fork() {
+        NovelBoard novelStage = NovelBoardBuilder.builder()
+                .id("id")
+                .opening(openingId("id"), writerId("writer"),
+                        title("bang"), content("contentId", "content")).build();
+        novelStage.relay(novel(relayId("id2"), openingId("id"), writerId("writer2"), title("bang2")));
+        novelStage.fork(novel(relayId("id3"), openingId("id"), writerId("writer3"), title("bang4")));
+
+        novelStage.relay(novel(relayId("id4"), parentId("id3"), writerId("writer4"), title("bang5")));
+
+        assertThat(novelStage.getNovelSize()).isEqualTo(3);
+    }
+
+    @DisplayName("fork 된 novel 에 relay 후, 또 다른 fork 될 때 ")
+    @Test
+    void fork_at_relay_after_fork() {
+        NovelBoard novelStage = NovelBoardBuilder.builder()
+                .id("id")
+                .opening(openingId("id"), writerId("writer"),
+                        title("bang"), content("contentId", "content")).build();
+        novelStage.relay(novel(relayId("id2"), openingId("id"), writerId("writer2"), title("bang2")));
+        novelStage.fork(novel(relayId("id3"), openingId("id"), writerId("writer3"), title("bang4")));
+        novelStage.relay(novel(relayId("id4"), parentId("id3"), writerId("writer4"), title("bang5")));
+        novelStage.fork(novel(relayId("id5"), parentId("id3"), writerId("writer5"), title("bang6")));
+
+        assertThat(novelStage.getNovelSize()).isEqualTo(4);
     }
 
     @Test
