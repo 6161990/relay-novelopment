@@ -24,4 +24,5 @@
 * relay 말고 append 기능은 어떨까 글자수가 부담스러우니까. 두 세 줄만 append
 * append ?  기존 소설의 맨 끝자리에 넘어온 문장에 덧붙인다. 
 
-![](../../../../../../Library/Containers/com.majimakHARU.GrabIt/Data/2022-11-15_22-06-31.png)
+
+![](../../../../../../Desktop/2022-11-24_19-14-31ddddd.jpeg)
