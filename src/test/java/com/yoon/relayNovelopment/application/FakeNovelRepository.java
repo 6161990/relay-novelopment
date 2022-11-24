@@ -7,7 +7,7 @@ import java.util.List;
 
 public class FakeNovelRepository implements NovelRepository {
 
-    List<NovelBoard> novelBoards;
+    List<NovelBoard> novelBoards = new ArrayList<>();
 
     @Override
     public void save(NovelBoard novelBoard) {
@@ -16,8 +16,7 @@ public class FakeNovelRepository implements NovelRepository {
 
     @Override
     public NovelBoard findBy(NovelBoardId novelBoardId) {
-        if(novelBoards == null) {
-            novelBoards = new ArrayList<>();
+        if(novelBoards.isEmpty()) {
             novelBoards.add(new NovelBoard(novelBoardId, Opening.of(OpeningId.of("openId"), WriterId.of("writer"), Title.of("title"), Content.of(ContentId.of("conId"),"value"))));
         }
         return novelBoards.stream().filter(i->i.getId().equals(novelBoardId)).findFirst().get();

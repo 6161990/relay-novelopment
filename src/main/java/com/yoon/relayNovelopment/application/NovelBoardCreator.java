@@ -9,13 +9,16 @@ public class NovelBoardCreator {
     private final NovelRepository repository;
     private final IdGenerator idGenerator;
 
-    public void create(NovelCreateCommand command) {
-        NovelBoard novelBoard = new NovelBoard(NovelBoardId.of(idGenerator.gen()),
-                Opening.of(OpeningId.of(idGenerator.gen()),
+    public NovelBoard create(NovelCreateCommand command) {
+        String id = idGenerator.gen();
+        NovelBoard novelBoard = new NovelBoard(NovelBoardId.of(id),
+                Opening.of(OpeningId.of(idGenerator.keyOpen(id)),
                         command.getWriterId(),
                         command.getTitle(),
                         command.getContent()));
 
         repository.save(novelBoard);
+
+        return novelBoard;
     }
 }
