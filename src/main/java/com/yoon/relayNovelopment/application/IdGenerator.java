@@ -1,6 +1,5 @@
 package com.yoon.relayNovelopment.application;
 
-
 import com.yoon.relayNovelopment.domain.NovelBoard;
 
 public class IdGenerator {

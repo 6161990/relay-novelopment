@@ -9,8 +9,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class NovelBoardTest {
 
-    // FIXME parent 가 누구냐가 중요한 것 같다. 테스트에서 그게 더 잘 드러났으면 좋겠다. 여기에 집중해보장
-
     @Test
     void create_novelStage() {
         NovelBoard novelStage = NovelBoardBuilder.builder()
@@ -54,7 +52,7 @@ class NovelBoardTest {
         assertThat(novelStage.getSameParentSizeBy(openingId("id"))).isEqualTo(2);
     }
 
-    @DisplayName("fork 된 novel 에 relay 될 때")
+    @DisplayName("fork->relay")
     @Test
     void relay_at_fork() {
         NovelBoard novelStage = NovelBoardBuilder.builder()
@@ -69,7 +67,7 @@ class NovelBoardTest {
         assertThat(novelStage.getNovelSize()).isEqualTo(3);
     }
 
-    @DisplayName("fork 된 novel 에 relay 후, 또 다른 fork 될 때 ")
+    @DisplayName("relay->fork->relay->fork")
     @Test
     void fork_at_relay_after_fork() {
         NovelBoard novelStage = NovelBoardBuilder.builder()
