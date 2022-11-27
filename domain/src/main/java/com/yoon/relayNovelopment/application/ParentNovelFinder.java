@@ -5,7 +5,7 @@ import com.yoon.relayNovelopment.domain.NovelId;
 
 public class ParentNovelFinder {
 
-    public NovelId getParentBy(NovelBoard novelBoard) {
+    public static NovelId getParentBy(NovelBoard novelBoard) {
         if(novelBoard.getNovelSize() == 0) {
             return novelBoard.getOpening().getId();
         } else {
@@ -13,7 +13,7 @@ public class ParentNovelFinder {
         }
     }
 
-    public NovelId getParentForForkBy(NovelBoard novelBoard) {
+    public static NovelId getParentForForkBy(NovelBoard novelBoard) {
         return novelBoard.getNovels().get(novelBoard.getNovelSize() - 1).getParentNovelId();
     }
 }

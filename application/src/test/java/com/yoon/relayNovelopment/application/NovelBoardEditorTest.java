@@ -13,7 +13,7 @@ class NovelBoardEditorTest {
     @BeforeEach
     void setUp() {
         sut = new NovelBoardEditor(new FakeNovelRepository(),
-                                    new NovelCreateFactory(new IdGeneratore(), new ParentNovelFinder()));
+                                    new NovelCreateFactory(new IdGeneratore()));
     }
 
     @Test

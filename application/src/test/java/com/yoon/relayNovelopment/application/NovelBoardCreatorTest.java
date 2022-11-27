@@ -14,7 +14,6 @@ import org.springframework.util.IdGenerator;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@ExtendWith(SpringExtension.class)
 @SpringBootTest
 class NovelBoardCreatorTest {
 
@@ -24,7 +23,7 @@ class NovelBoardCreatorTest {
     @Test
     void create() {
         FakeNovelRepository repository = new FakeNovelRepository();
-        NovelBoardCreator novelBoardCreator = new NovelBoardCreator(repository, new IdGeneratore(), idGenerator);
+        NovelBoardCreator novelBoardCreator = new NovelBoardCreator(repository, idGenerator);
         NovelCreateCommand command = new NovelCreateCommand(WriterId.of("writerId"), Title.of("Title"), Content.of(ContentId.of("conId"), "value")); // title 과 writer 가 필요할까?
 
         NovelBoard novelBoard = novelBoardCreator.create(command);
