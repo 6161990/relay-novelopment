@@ -2,7 +2,9 @@ package com.yoon.relayNovelopment.application;
 
 import com.yoon.relayNovelopment.domain.*;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
+@Service
 @RequiredArgsConstructor
 public class NovelBoardEditor {
 

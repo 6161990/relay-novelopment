@@ -1,7 +1,9 @@
 package com.yoon.relayNovelopment.application;
 
 import com.yoon.relayNovelopment.domain.NovelBoard;
+import org.springframework.stereotype.Service;
 
+@Service
 public class IdGeneratore {
 
     public String gen() {
