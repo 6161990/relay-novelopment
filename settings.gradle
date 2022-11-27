@@ -1,2 +1,4 @@
 rootProject.name = 'relay-novelopment'
+include 'application'
+include 'domain'
 
