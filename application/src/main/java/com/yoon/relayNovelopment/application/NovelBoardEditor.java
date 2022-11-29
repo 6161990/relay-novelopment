@@ -19,7 +19,7 @@ public class NovelBoardEditor {
 
         repository.save(novelBoard);
 
-        return novelBoard;
+        return novelBoard; // FIXME test 를 위한 return
     }
 
     public NovelBoard fork(NovelBoardId novelBoardId, NovelCreateCommand command){
@@ -30,6 +30,6 @@ public class NovelBoardEditor {
 
         repository.save(novelBoard);
 
-        return novelBoard;
+        return novelBoard; // FIXME test 를 위한 return
     }
 }

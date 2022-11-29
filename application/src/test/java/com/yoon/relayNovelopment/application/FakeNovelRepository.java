@@ -17,7 +17,7 @@ public class FakeNovelRepository implements NovelRepository {
     @Override
     public NovelBoard findBy(NovelBoardId novelBoardId) {
         if(novelBoards.isEmpty()) {
-            novelBoards.add(new NovelBoard(novelBoardId, Opening.of(OpeningId.of("openId"), WriterId.of("writer"), Title.of("title"), Content.of(ContentId.of("conId"),"value"))));
+            novelBoards.add(new NovelBoard(novelBoardId, Opening.of(OpeningId.of("openId"), WriterId.of("writer"), Title.of("title"), Content.of("value"))));
         }
         return novelBoards.stream().filter(i->i.getId().equals(novelBoardId)).findFirst().get();
     }

@@ -26,12 +26,12 @@ public class NovelBoardBuilder {
     }
 
     public NovelBoardBuilder opening(OpeningId id) {
-        this.opening =  Opening.of(id, WriterId.of("any"), Title.of("any"), Content.of(ContentId.of("any"), "any"));
+        this.opening =  Opening.of(id, WriterId.of("any"), Title.of("any"), Content.of("any"));
         return this;
     }
 
-    public static Content content(String contentId, String content) {
-        return Content.of(ContentId.of(contentId), content);
+    public static Content content(String content) {
+        return Content.of(content);
     }
 
     public static OpeningId openingId(String id) {

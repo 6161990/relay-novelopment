@@ -70,10 +70,10 @@ class ParentNovelFinderTest {
     }
 
     private Novel novel(RelayNovelId id, NovelId parentId) {
-        return Novel.of(id, parentId, WriterId.of("any"), Title.of("any"), Content.of(ContentId.of("conId"), "value"));
+        return Novel.of(id, parentId, WriterId.of("any"), Title.of("any"), Content.of("value"));
     }
 
     private Novel novel2(RelayNovelId id, NovelId parentId) {
-        return Novel.of(id, parentId, WriterId.of("any2"), Title.of("any2"), Content.of(ContentId.of("conId2"), "value2"));
+        return Novel.of(id, parentId, WriterId.of("any2"), Title.of("any2"), Content.of("value2"));
     }
 }

@@ -4,6 +4,5 @@ import lombok.Value;
 
 @Value(staticConstructor = "of")
 public class Content {
-    ContentId id;
     String value;
 }

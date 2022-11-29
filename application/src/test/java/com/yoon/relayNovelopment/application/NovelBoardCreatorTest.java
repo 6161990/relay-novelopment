@@ -13,10 +13,10 @@ class NovelBoardCreatorTest {
     void create() {
         FakeNovelRepository repository = new FakeNovelRepository();
         NovelBoardCreator novelBoardCreator = new NovelBoardCreator(repository, new FakeIdGenerator("BoardId"));
-        NovelCreateCommand command = new NovelCreateCommand(WriterId.of("writerId"), Title.of("Title"), Content.of(ContentId.of("conId"), "value")); // title 과 writer 가 필요할까?
+        NovelCreateCommand command = new NovelCreateCommand(WriterId.of("writerId"), Title.of("Title"), Content.of("value")); // title 과 writer 가 필요할까?
 
         NovelBoard novelBoard = novelBoardCreator.create(command);
 
-        assertThat(novelBoard.getOpening().getContent().getId()).isEqualTo(ContentId.of("conId"));
+        assertThat(novelBoard.getOpening().getContent().getValue()).isEqualTo("value");
     }
 }
