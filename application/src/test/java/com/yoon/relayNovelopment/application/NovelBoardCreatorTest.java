@@ -28,4 +28,10 @@ class NovelBoardCreatorTest {
 
         assertThat(novelRepository.findBy(NOVEL_BOARD_ID).getNovelSize()).isEqualTo(0);
     }
+
+    // TODO
+    @Test
+    void validTest() {
+
+    }
 }

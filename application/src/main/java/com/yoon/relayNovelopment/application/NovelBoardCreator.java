@@ -13,6 +13,8 @@ public class NovelBoardCreator {
     private final IdGenerator idGenerator;
 
     public void create(NovelCreateCommand command) {
+        // TODO command 값에 대한 valid
+
         NovelBoard novelBoard = new NovelBoard(NovelBoardId.of(idGenerator.getId()),
                 Opening.of(OpeningId.of(idGenerator.getId()),
                         command.getWriterId(),
