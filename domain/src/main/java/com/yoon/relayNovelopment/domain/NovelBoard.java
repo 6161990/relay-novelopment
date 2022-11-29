@@ -7,8 +7,8 @@ import java.util.Objects;
 
 import static org.valid4j.Validation.validate;
 
-@Getter
 public class NovelBoard {
+    @Getter
     private final NovelBoardId id;
     private final Opening opening;
     private boolean isClosed;
@@ -47,6 +47,14 @@ public class NovelBoard {
         return (int) novels.stream().filter(i -> i.getParentNovelId().equals(id)).count();
     }
 
+    Opening getOpening() {
+        return opening;
+    }
+
+    List<Novel> getNovels() {
+        return novels;
+    }
+
     private void validForFork(Novel novel){
         valid(novel);
         validate(!Objects.requireNonNull(novels).isEmpty(), new NovelNodeException("Novels is Empty"));
@@ -61,4 +69,5 @@ public class NovelBoard {
                 new NovelNodeException(String.format("Already exist the title. WriterId %s, NovelBoardId %s", novel.getWriterId(), id)));
         validate(!isClosed, new NovelNodeException("Already closed."));
     }
+
 }
