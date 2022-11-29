@@ -1,5 +1,6 @@
 package com.yoon.relayNovelopment.application;
 
+import com.yoon.relayNovelopment.config.IdGenerator;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
