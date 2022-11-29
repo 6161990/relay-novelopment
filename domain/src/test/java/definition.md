@@ -16,6 +16,9 @@
   - TODO maxStageSize 가 일정값 이상이면 throw = 소설이 완성되는 것은 언제인가.
 - 각 idGenerator 를 뭘로 만들까.
   - novelId는 novelKey 로 만들까 (novelBoardId, writer 의 조합? title 의 조합?)
+  - novelKey = novelBoardId : title 
+- repository 구현
+- controller 구현 
   
 
 ### IDEA 
