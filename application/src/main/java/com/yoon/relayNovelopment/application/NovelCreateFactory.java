@@ -12,16 +12,16 @@ public class NovelCreateFactory {
     private final IdGenerator idGenerator;
 
     public Novel create(NovelBoard novelBoard, NovelCommand command) {
-        NovelId parentId = ParentNovelFinder.getParentBy(novelBoard);
+        NovelKey parentId = ParentNovelFinder.getParentBy(novelBoard);
 
-        return Novel.of(RelayNovelId.of(idGenerator.getId()), parentId,
+        return Novel.of(RelayNovelKey.of(idGenerator.getKey(novelBoard, command.getTitle())), parentId,
                         command.getWriterId(), command.getTitle(), command.getContent());
     }
 
     public Novel createForFork(NovelBoard novelBoard, NovelCommand command) {
-        NovelId parentId = ParentNovelFinder.getParentForForkBy(novelBoard);
+        NovelKey parentId = ParentNovelFinder.getParentForForkBy(novelBoard);
 
-        return Novel.of(RelayNovelId.of(idGenerator.getId()), parentId, // FIXME idgen 을 통한 RelayNovelId id 말고 key 로 ! 왜냐면 idGen 으로 만들기에는 과하다..
+        return Novel.of(RelayNovelKey.of(idGenerator.getKey(novelBoard, command.getTitle())), parentId,
                 command.getWriterId(), command.getTitle(), command.getContent());
     }
 }

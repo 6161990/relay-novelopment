@@ -2,15 +2,15 @@ package com.yoon.relayNovelopment.domain;
 
 public class ParentNovelFinder {
 
-    public static NovelId getParentBy(NovelBoard novelBoard) {
+    public static NovelKey getParentBy(NovelBoard novelBoard) {
         if(novelBoard.getNovelSize() == 0) {
-            return novelBoard.getOpening().getId();
+            return novelBoard.getOpening().getKey();
         } else {
             return novelBoard.getNovels().get(novelBoard.getNovelSize() - 1).getId();
         }
     }
 
-    public static NovelId getParentForForkBy(NovelBoard novelBoard) {
-        return novelBoard.getNovels().get(novelBoard.getNovelSize() - 1).getParentNovelId();
+    public static NovelKey getParentForForkBy(NovelBoard novelBoard) {
+        return novelBoard.getNovels().get(novelBoard.getNovelSize() - 1).getParentNovelKey();
     }
 }

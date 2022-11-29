@@ -122,7 +122,7 @@ class NovelBoardTest {
                 .hasMessage(String.format("Already exist the title. WriterId %s, NovelBoardId %s", WriterId.of("writer3"), NovelBoardId.of("id")));
     }
 
-    private Novel novel(RelayNovelId id, NovelId parentId, WriterId writerId, Title title) {
+    private Novel novel(RelayNovelKey id, NovelKey parentId, WriterId writerId, Title title) {
         return Novel.of(id, parentId, writerId, title, Content.of("value"));
     }
 

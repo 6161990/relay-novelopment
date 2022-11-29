@@ -43,8 +43,8 @@ public class NovelBoard {
         return this.novels == null ? 0 : this.novels.size();
     }
 
-    public int getSameParentSizeBy(NovelId id) {
-        return (int) novels.stream().filter(i -> i.getParentNovelId().equals(id)).count();
+    public int getSameParentSizeBy(NovelKey id) {
+        return (int) novels.stream().filter(i -> i.getParentNovelKey().equals(id)).count();
     }
 
     Opening getOpening() {
@@ -58,7 +58,7 @@ public class NovelBoard {
     private void validForFork(Novel novel){
         valid(novel);
         validate(!Objects.requireNonNull(novels).isEmpty(), new NovelNodeException("Novels is Empty"));
-        validate(novels.stream().anyMatch(e->e.getParentNovelId().equals(novel.getParentNovelId())),
+        validate(novels.stream().anyMatch(e->e.getParentNovelKey().equals(novel.getParentNovelKey())),
                 new NovelNodeException("Not Exist Same Parent Novel.")); // FIXME ExceptionMessage 가 이게 맞나 ?
     }
 

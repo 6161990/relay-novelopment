@@ -20,12 +20,12 @@ public class NovelBoardBuilder {
         return this;
     }
 
-    public NovelBoardBuilder opening(OpeningId openingId, WriterId writerId, Title title, Content content) {
+    public NovelBoardBuilder opening(OpeningKey openingId, WriterId writerId, Title title, Content content) {
         this.opening =  Opening.of(openingId, writerId, title, content);
         return this;
     }
 
-    public NovelBoardBuilder opening(OpeningId id) {
+    public NovelBoardBuilder opening(OpeningKey id) {
         this.opening =  Opening.of(id, WriterId.of("any"), Title.of("any"), Content.of("any"));
         return this;
     }
@@ -34,16 +34,16 @@ public class NovelBoardBuilder {
         return Content.of(content);
     }
 
-    public static OpeningId openingId(String id) {
-        return OpeningId.of(id);
+    public static OpeningKey openingId(String id) {
+        return OpeningKey.of(id);
     }
 
-    public static RelayNovelId relayId(String id) {
-        return RelayNovelId.of(id);
+    public static RelayNovelKey relayId(String id) {
+        return RelayNovelKey.of(id);
     }
 
-    public static RelayNovelId parentId(String id) {
-        return RelayNovelId.of(id);
+    public static RelayNovelKey parentId(String id) {
+        return RelayNovelKey.of(id);
     }
 
     public static WriterId writerId(String id) {

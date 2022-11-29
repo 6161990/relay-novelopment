@@ -16,7 +16,7 @@ public class NovelBoardCreator {
         // TODO command 값에 대한 valid
 
         NovelBoard novelBoard = new NovelBoard(NovelBoardId.of(idGenerator.getId()),
-                Opening.of(OpeningId.of(idGenerator.getId()),
+                Opening.of(OpeningKey.of(idGenerator.getId()),
                         command.getWriterId(),
                         command.getTitle(),
                         command.getContent()));
