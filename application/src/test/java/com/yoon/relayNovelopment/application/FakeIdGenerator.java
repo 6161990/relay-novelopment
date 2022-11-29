@@ -1,7 +1,7 @@
 package com.yoon.relayNovelopment.application;
 
 import com.yoon.relayNovelopment.config.IdGenerator;
-import com.yoon.relayNovelopment.domain.NovelBoard;
+import com.yoon.relayNovelopment.domain.NovelBoardId;
 import com.yoon.relayNovelopment.domain.Title;
 import lombok.RequiredArgsConstructor;
 
@@ -16,7 +16,7 @@ public class FakeIdGenerator implements IdGenerator {
     }
 
     @Override
-    public String getKey(NovelBoard novelBoard, Title title) {
+    public String getKey(NovelBoardId novelBoardId, Title title) {
         return id;
     }
 }

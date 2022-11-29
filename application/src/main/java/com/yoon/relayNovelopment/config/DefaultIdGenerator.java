@@ -1,6 +1,7 @@
 package com.yoon.relayNovelopment.config;
 
 import com.yoon.relayNovelopment.domain.NovelBoard;
+import com.yoon.relayNovelopment.domain.NovelBoardId;
 import com.yoon.relayNovelopment.domain.Title;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -18,7 +19,7 @@ public class DefaultIdGenerator implements IdGenerator {
     }
 
     @Override
-    public String getKey(NovelBoard novelBoard, Title title) {
-        return novelBoard.getId().getId().concat(":").concat(title.getName());
+    public String getKey(NovelBoardId novelBoardId, Title title) {
+        return novelBoardId.getId().concat(":").concat(title.getName());
     }
 }
