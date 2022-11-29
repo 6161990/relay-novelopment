@@ -1,5 +1,6 @@
 package com.yoon.relayNovelopment.application;
 
+import com.yoon.relayNovelopment.config.IdGenerator;
 import com.yoon.relayNovelopment.domain.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -11,7 +12,7 @@ public class NovelBoardCreator {
     private final NovelRepository repository;
     private final IdGenerator idGenerator;
 
-    public NovelBoard create(NovelCreateCommand command) {
+    public void create(NovelCreateCommand command) {
         NovelBoard novelBoard = new NovelBoard(NovelBoardId.of(idGenerator.getId()),
                 Opening.of(OpeningId.of(idGenerator.getId()),
                         command.getWriterId(),
@@ -19,7 +20,5 @@ public class NovelBoardCreator {
                         command.getContent()));
 
         repository.save(novelBoard);
-
-        return novelBoard;
     }
 }

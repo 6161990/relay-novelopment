@@ -8,33 +8,36 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class NovelBoardEditorTest {
 
+    private final NovelBoardId NOVEL_BOARD_ID = NovelBoardId.of("boardId");
+
     NovelBoardEditor sut;
+
+    NovelRepository novelRepository;
 
     @BeforeEach
     void setUp() {
-        sut = new NovelBoardEditor(new FakeNovelRepository(),
-                                    new NovelCreateFactory(new FakeIdGenerator("boardId")));
+        novelRepository = new FakeNovelRepository();
+        sut = new NovelBoardEditor(novelRepository,
+                                    new NovelCreateFactory(new FakeIdGenerator("any")));
     }
 
     @Test
     void relay() {
-        NovelCreateCommand command = new NovelCreateCommand(WriterId.of("writerId"), Title.of("Title"), Content.of("value"));
+        NovelEditorCommand command = new NovelEditorCommand(NOVEL_BOARD_ID, WriterId.of("writerId"), Title.of("Title"), Content.of("value"));
 
-        NovelBoard novelBoard = sut.relay(NovelBoardId.of("boardId"), command);
+        sut.relay(command);
 
-        assertThat(novelBoard.getNovelSize()).isEqualTo(1);
-        assertThat(novelBoard.getSameParentSizeBy(OpeningId.of("openId"))).isEqualTo(1);
+        assertThat(novelRepository.findBy(NOVEL_BOARD_ID).getNovelSize()).isEqualTo(1);
     }
 
     @Test
     void fork() {
-        NovelCreateCommand command = new NovelCreateCommand(WriterId.of("writerId"), Title.of("Title"), Content.of("value"));
-        sut.relay(NovelBoardId.of("boardId"), command);
+        NovelEditorCommand command = new NovelEditorCommand(NOVEL_BOARD_ID, WriterId.of("writerId"), Title.of("Title"), Content.of("value"));
+        sut.relay(command);
 
-        NovelCreateCommand command2 = new NovelCreateCommand(WriterId.of("writerId2"), Title.of("Title2"), Content.of("value"));
-        NovelBoard novelBoard2 = sut.fork(NovelBoardId.of("boardId"), command2);
+        NovelEditorCommand command2 = new NovelEditorCommand(NOVEL_BOARD_ID, WriterId.of("writerId2"), Title.of("Title2"), Content.of("value"));
+        sut.fork(command2);
 
-        assertThat(novelBoard2.getNovelSize()).isEqualTo(2);
-        assertThat(novelBoard2.getSameParentSizeBy(OpeningId.of("openId"))).isEqualTo(2);
+        assertThat(novelRepository.findBy(NOVEL_BOARD_ID).getNovelSize()).isEqualTo(2);
     }
 }
