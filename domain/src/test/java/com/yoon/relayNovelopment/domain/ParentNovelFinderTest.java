@@ -1,6 +1,5 @@
-package com.yoon.relayNovelopment.application;
+package com.yoon.relayNovelopment.domain;
 
-import com.yoon.relayNovelopment.domain.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

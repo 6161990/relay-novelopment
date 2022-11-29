@@ -1,7 +1,4 @@
-package com.yoon.relayNovelopment.application;
-
-import com.yoon.relayNovelopment.domain.NovelBoard;
-import com.yoon.relayNovelopment.domain.NovelId;
+package com.yoon.relayNovelopment.domain;
 
 public class ParentNovelFinder {
 
