@@ -2,9 +2,11 @@ package com.yoon.relayNovelopment.service;
 
 import com.yoon.relayNovelopment.domain.*;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class NovelBoardCreatorTest {
 
@@ -30,9 +32,32 @@ class NovelBoardCreatorTest {
         assertThat(novelRepository.findBy(NOVEL_BOARD_ID).getNovelSize()).isEqualTo(0);
     }
 
-    // TODO
-    @Test
-    void validTest() {
+    @Nested
+    class validTest {
 
+        @Test
+        void writerId_는_null_일_수_없다() {
+            NovelCreateCommand command = new NovelCreateCommand(null, Title.of("Title"), Content.of("value"));
+
+            assertThatThrownBy(() -> sut.create(command))
+                    .isInstanceOf(NovelBoardException.class);
+        }
+
+        @Test
+        void title_는_null_일_수_없다() {
+            NovelCreateCommand command = new NovelCreateCommand(WriterId.of("writerId"), null, Content.of("value"));
+
+            assertThatThrownBy(() -> sut.create(command))
+                    .isInstanceOf(NovelBoardException.class);
+        }
+
+        @Test
+        void content_는_null_일_수_없다() {
+            NovelCreateCommand command = new NovelCreateCommand(WriterId.of("writerId"), Title.of("Title"), null);
+
+            assertThatThrownBy(() -> sut.create(command))
+                    .isInstanceOf(NovelBoardException.class);
+        }
     }
+
 }

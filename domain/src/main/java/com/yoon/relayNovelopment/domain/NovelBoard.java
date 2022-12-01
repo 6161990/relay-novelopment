@@ -57,17 +57,17 @@ public class NovelBoard {
 
     private void validForFork(Novel novel){
         valid(novel);
-        validate(!Objects.requireNonNull(novels).isEmpty(), new NovelNodeException("Novels is Empty"));
+        validate(!Objects.requireNonNull(novels).isEmpty(), new NovelBoardException("Novels is Empty"));
         validate(novels.stream().anyMatch(e->e.getParentNovelKey().equals(novel.getParentNovelKey())),
-                new NovelNodeException("Not Exist Same Parent Novel.")); // FIXME ExceptionMessage 가 이게 맞나 ?
+                new NovelBoardException("Not Exist Same Parent Novel.")); // FIXME ExceptionMessage 가 이게 맞나 ?
     }
 
     private void valid(Novel novel) {
         validate(novels.stream().noneMatch(n-> n.getWriterId().getId().equals(novel.getWriterId().getId())),
-                new NovelNodeException(String.format("Already exist the writer. WriterId %s, NovelBoardId %s", novel.getWriterId(), id)));
+                new NovelBoardException(String.format("Already exist the writer. WriterId %s, NovelBoardId %s", novel.getWriterId(), id)));
         validate(novels.stream().noneMatch(n-> n.getTitle().equals(novel.getTitle())),
-                new NovelNodeException(String.format("Already exist the title. WriterId %s, NovelBoardId %s", novel.getWriterId(), id)));
-        validate(!isClosed, new NovelNodeException("Already closed."));
+                new NovelBoardException(String.format("Already exist the title. WriterId %s, NovelBoardId %s", novel.getWriterId(), id)));
+        validate(!isClosed, new NovelBoardException("Already closed."));
     }
 
 }

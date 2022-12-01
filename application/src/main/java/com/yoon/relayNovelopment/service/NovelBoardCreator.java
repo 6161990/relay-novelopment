@@ -4,6 +4,9 @@ import com.yoon.relayNovelopment.config.IdGenerator;
 import com.yoon.relayNovelopment.domain.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.valid4j.Validation;
+
+import static org.valid4j.Validation.validate;
 
 @Service
 @RequiredArgsConstructor
@@ -13,7 +16,9 @@ public class NovelBoardCreator {
     private final IdGenerator idGenerator;
 
     public void create(NovelCreateCommand command) {
-        // TODO command 값에 대한 valid
+        validate(command.writerId != null, new NovelBoardException("WriterId is Null"));
+        validate(command.title != null, new NovelBoardException("Title is Null"));
+        validate(command.content != null, new NovelBoardException("Content is Null"));
 
         NovelBoard novelBoard = new NovelBoard(NovelBoardId.of(idGenerator.getId()),
                 Opening.of(OpeningKey.of(idGenerator.getId()),

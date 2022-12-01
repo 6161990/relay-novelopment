@@ -91,7 +91,7 @@ class NovelBoardTest {
         novelStage.relay(novel(relayId("id2"), openingId("id"), writerId("writer2"), title("bang2")));
 
         assertThatThrownBy(()->novelStage.fork(novel(relayId("id3"), openingId("id2"), writerId("writer3"), title("bang4"))))
-                .isInstanceOf(NovelNodeException.class)
+                .isInstanceOf(NovelBoardException.class)
                 .hasMessage("Not Exist Same Parent Novel.");
     }
 
@@ -104,7 +104,7 @@ class NovelBoardTest {
         novelStage.relay(novel(relayId("id2"), openingId("id"), writerId("writer2"), title("bang2")));
 
         assertThatThrownBy(()-> novelStage.relay(novel(relayId("id3"), parentId("id2"), writerId("writer2"), title("bang2"))))
-                .isInstanceOf(NovelNodeException.class)
+                .isInstanceOf(NovelBoardException.class)
                 .hasMessage(String.format("Already exist the writer. WriterId %s, NovelBoardId %s", WriterId.of("writer2"), NovelBoardId.of("id")));
 
     }
@@ -118,7 +118,7 @@ class NovelBoardTest {
         novelStage.relay(novel(relayId("id2"), openingId("id"), writerId("writer2"), title("bang2")));
 
         assertThatThrownBy(()-> novelStage.relay(novel(relayId("id3"), parentId("id2"), writerId("writer3"), title("bang2"))))
-                .isInstanceOf(NovelNodeException.class)
+                .isInstanceOf(NovelBoardException.class)
                 .hasMessage(String.format("Already exist the title. WriterId %s, NovelBoardId %s", WriterId.of("writer3"), NovelBoardId.of("id")));
     }
 
