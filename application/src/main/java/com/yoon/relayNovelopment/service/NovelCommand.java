@@ -1,4 +1,4 @@
-package com.yoon.relayNovelopment.application;
+package com.yoon.relayNovelopment.service;
 
 import com.yoon.relayNovelopment.domain.Content;
 import com.yoon.relayNovelopment.domain.Title;

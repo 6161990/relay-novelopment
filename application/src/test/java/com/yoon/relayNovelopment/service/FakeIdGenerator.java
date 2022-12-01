@@ -1,4 +1,4 @@
-package com.yoon.relayNovelopment.application;
+package com.yoon.relayNovelopment.service;
 
 import com.yoon.relayNovelopment.config.IdGenerator;
 import com.yoon.relayNovelopment.domain.NovelBoardId;
