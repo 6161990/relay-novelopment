@@ -17,7 +17,8 @@ class NovelBoardCreatorTest {
     @BeforeEach
     void setUp() {
         novelRepository = new FakeNovelRepository();
-        sut = new NovelBoardCreator(novelRepository, new FakeIdGenerator(NOVEL_BOARD_ID.getId()));
+        sut = new NovelBoardCreator(novelRepository,
+                                    new FakeIdGenerator(NOVEL_BOARD_ID.getId()));
     }
 
     @Test

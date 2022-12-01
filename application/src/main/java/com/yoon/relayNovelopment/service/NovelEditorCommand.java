@@ -4,21 +4,25 @@ import com.yoon.relayNovelopment.domain.Content;
 import com.yoon.relayNovelopment.domain.NovelBoardId;
 import com.yoon.relayNovelopment.domain.Title;
 import com.yoon.relayNovelopment.domain.WriterId;
-import lombok.Getter;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 
-@Getter
+import javax.validation.Valid;
+
+@Data
+@AllArgsConstructor
 public class NovelEditorCommand implements NovelCommand {
 
-    private final NovelBoardId novelBoardId;
-    private final WriterId writerId;
-    private final Title title;
-    private final Content content;
+    @Valid
+    NovelBoardId novelBoardId;
 
-    public NovelEditorCommand(NovelBoardId novelBoardId, WriterId writerId, Title title, Content content) {
-        this.novelBoardId = novelBoardId;
-        this.writerId = writerId;
-        this.title = title;
-        this.content = content;
-    }
+    @Valid
+    WriterId writerId;
+
+    @Valid
+    Title title;
+
+    @Valid
+    Content content;
 
 }
