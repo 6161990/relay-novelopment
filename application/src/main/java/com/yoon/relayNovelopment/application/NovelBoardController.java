@@ -17,6 +17,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class NovelBoardController {
 
+    // TODO commandConverter와 command 와 service 를 어떻게 분리하지?
     @Autowired
     private final NovelBoardCreator novelBoardCreator;
     @Autowired

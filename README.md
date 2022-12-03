@@ -1,5 +1,8 @@
 # relay-novelopment
 
+### Diagram
+![](../../../Desktop/2022-12-03_14-33-51.png)
+![](../../../Desktop/2022-12-03_14-34-01.png)
 
 ### MVP
 - User 는 회원가입을 할 수 있다.
@@ -14,10 +17,6 @@
 - Admin 은 작성된 소설을 Remove 할 수 있다.
 - Admin 은 User의 소설을 Block 할 수 있다.
 
-
-
-### Diagram
-
-
 ### memo
 - 어떤 User냐 에 따라 소설 릴레이를 볼 수 있는 stage 가 다르다.
+

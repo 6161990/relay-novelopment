@@ -4,7 +4,6 @@ import com.yoon.relayNovelopment.config.IdGenerator;
 import com.yoon.relayNovelopment.domain.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.valid4j.Validation;
 
 import static org.valid4j.Validation.validate;
 
