@@ -1,27 +1,24 @@
 package com.yoon.relayNovelopment.service;
 
 import com.yoon.relayNovelopment.domain.Content;
-import com.yoon.relayNovelopment.domain.NovelBoardId;
 import com.yoon.relayNovelopment.domain.Title;
 import com.yoon.relayNovelopment.domain.WriterId;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-import javax.validation.Valid;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @NoArgsConstructor
 @AllArgsConstructor
 public class NovelCreateCommand implements NovelCommand {
 
-    @Valid
+    @NotEmpty
     String writerId;
 
-    @Valid
+    @NotNull
     String title;
 
-    @Valid
+    @NotNull
     String content;
 
     public WriterId getWriterId() {

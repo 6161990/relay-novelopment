@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
 
@@ -19,8 +20,9 @@ public class NovelBoardCreatorController {
     private final NovelBoardCreator novelBoardCreator;
 
     @PostMapping("/create/novelBoard")
-    public ResponseEntity<?> create(@RequestBody NovelCreateCommand command) throws URISyntaxException {
+    public ResponseEntity<?> create(@Valid @RequestBody NovelCreateCommand command) throws URISyntaxException {
         novelBoardCreator.create(command);
+
         URI location = new URI("/novelBoards/");
         return ResponseEntity.created(location).body("{}");
     }

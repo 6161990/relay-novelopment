@@ -1,9 +1,7 @@
 package com.yoon.relayNovelopment.application;
 
-import com.yoon.relayNovelopment.domain.*;
 import com.yoon.relayNovelopment.service.NovelBoardCreator;
 import org.junit.jupiter.api.Test;
-import org.mockito.BDDMockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -36,4 +34,11 @@ class NovelBoardCreatorControllerTest {
         verify(novelBoardCreator).create(any());
     }
 
+    @Test
+    void createWithInValidData() throws Exception {
+        mvc.perform(post("/create/novelBoard")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("{\"writerId\":,\"\":\"나주에 대하여\", \"content\":\"content\"}"))
+                .andExpect(status().isBadRequest());
+    }
 }
