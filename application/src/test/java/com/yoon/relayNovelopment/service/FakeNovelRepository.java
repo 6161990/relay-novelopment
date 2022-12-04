@@ -5,6 +5,8 @@ import com.yoon.relayNovelopment.domain.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.valid4j.Validation.validate;
+
 public class FakeNovelRepository implements NovelRepository {
 
     List<NovelBoard> novelBoards = new ArrayList<>();
@@ -25,5 +27,12 @@ public class FakeNovelRepository implements NovelRepository {
     @Override
     public List<NovelBoard> findAll() {
         return novelBoards;
+    }
+
+    @Override
+    public void remove(NovelBoardId novelBoardId) {
+        validate(!novelBoards.isEmpty(), new NovelBoardException("NovelBoard is Null"));
+
+        novelBoards.removeIf(i->i.getId().equals(novelBoardId));
     }
 }
