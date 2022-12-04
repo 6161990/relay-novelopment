@@ -14,21 +14,12 @@ import javax.validation.Valid;
 
 @RestController
 @RequiredArgsConstructor
-public class NovelBoardController {
+public class NovelBoardEditorController {
 
     // TODO commandConverter 와 command 와 service 를 어떻게 분리하지?
 
     @Autowired
-    private final NovelBoardCreator novelBoardCreator;
-
-    @Autowired
     private final NovelBoardEditor novelBoardEditor;
-
-    @PostMapping("/create/novelBoard")
-    public ResponseEntity<?> create(@RequestBody NovelCreateCommand command){
-
-        return null;
-    }
 
     @PatchMapping("/addNovel/{id}")
     public ResponseEntity<NovelBoard> update(@PathVariable("id") String id,
@@ -36,7 +27,7 @@ public class NovelBoardController {
         return null;
     }
 
-    @PatchMapping("/remove/{id}")
+    @DeleteMapping("/remove/{id}")
     public NovelBoard remove(@PathVariable("id") String id){
         return null;
     }
