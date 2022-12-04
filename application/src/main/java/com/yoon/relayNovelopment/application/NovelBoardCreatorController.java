@@ -8,23 +8,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.URI;
+import java.net.URISyntaxException;
+
 @RestController
 @RequiredArgsConstructor
 public class NovelBoardCreatorController {
-
-    // TODO commandConverter 와 command 와 service 를 어떻게 분리하지?
 
     @Autowired
     private final NovelBoardCreator novelBoardCreator;
 
     @PostMapping("/create/novelBoard")
-    public ResponseEntity<?> create(@RequestBody NovelCreateCommand command){
-
-        return null;
+    public ResponseEntity<?> create(@RequestBody NovelCreateCommand command) throws URISyntaxException {
+        novelBoardCreator.create(command);
+        URI location = new URI("/novelBoards/");
+        return ResponseEntity.created(location).body("{}");
     }
 
-    @PatchMapping("/remove/{id}")
-    public NovelBoard remove(@PathVariable("id") String id){
-        return null;
-    }
 }
