@@ -21,4 +21,9 @@ public class FakeNovelRepository implements NovelRepository {
         }
         return novelBoards.stream().filter(i->i.getId().equals(novelBoardId)).findFirst().get();
     }
+
+    @Override
+    public List<NovelBoard> findAll() {
+        return novelBoards;
+    }
 }

@@ -5,6 +5,8 @@ import com.yoon.relayNovelopment.domain.NovelBoardId;
 import com.yoon.relayNovelopment.domain.NovelRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public class SpringJdbcNovelRepository implements NovelRepository {
     @Override
@@ -14,6 +16,11 @@ public class SpringJdbcNovelRepository implements NovelRepository {
 
     @Override
     public NovelBoard findBy(NovelBoardId novelBoardId) {
+        return null;
+    }
+
+    @Override
+    public List<NovelBoard> findAll() {
         return null;
     }
 }
