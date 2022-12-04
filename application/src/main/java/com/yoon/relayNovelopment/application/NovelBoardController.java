@@ -11,28 +11,18 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
 public class NovelBoardController {
 
-    // TODO commandConverter와 command 와 service 를 어떻게 분리하지?
+    // TODO commandConverter 와 command 와 service 를 어떻게 분리하지?
+
     @Autowired
     private final NovelBoardCreator novelBoardCreator;
+
     @Autowired
     private final NovelBoardEditor novelBoardEditor;
-
-    @GetMapping("/novelBoard/{id}")
-    public NovelBoard detail(@PathVariable("id")String id){
-        return null;
-    }
-
-    @GetMapping("/novelBoards")
-    public List<NovelBoard> list() {
-
-        return null;
-    }
 
     @PostMapping("/create/novelBoard")
     public ResponseEntity<?> create(@RequestBody NovelCreateCommand command){
@@ -46,7 +36,7 @@ public class NovelBoardController {
         return null;
     }
 
-    @PatchMapping("/removeNovelBoard/{id}")
+    @PatchMapping("/remove/{id}")
     public NovelBoard remove(@PathVariable("id") String id){
         return null;
     }
