@@ -25,7 +25,7 @@ class NovelBoardCreatorTest {
 
     @Test
     void create() {
-        NovelCreateCommand command = new NovelCreateCommand(WriterId.of("writerId"), Title.of("Title"), Content.of("value")); // title 과 writer 가 필요할까?
+        NovelCreateCommand command = new NovelCreateCommand("writerId", "Title", "value"); // title 과 writer 가 필요할까?
 
         sut.create(command);
 
@@ -37,7 +37,7 @@ class NovelBoardCreatorTest {
 
         @Test
         void writerId_는_null_일_수_없다() {
-            NovelCreateCommand command = new NovelCreateCommand(null, Title.of("Title"), Content.of("value"));
+            NovelCreateCommand command = new NovelCreateCommand(null, "Title", "value");
 
             assertThatThrownBy(() -> sut.create(command))
                     .isInstanceOf(NovelBoardException.class);
@@ -45,7 +45,7 @@ class NovelBoardCreatorTest {
 
         @Test
         void title_는_null_일_수_없다() {
-            NovelCreateCommand command = new NovelCreateCommand(WriterId.of("writerId"), null, Content.of("value"));
+            NovelCreateCommand command = new NovelCreateCommand("writerId", null, "value");
 
             assertThatThrownBy(() -> sut.create(command))
                     .isInstanceOf(NovelBoardException.class);
@@ -53,7 +53,7 @@ class NovelBoardCreatorTest {
 
         @Test
         void content_는_null_일_수_없다() {
-            NovelCreateCommand command = new NovelCreateCommand(WriterId.of("writerId"), Title.of("Title"), null);
+            NovelCreateCommand command = new NovelCreateCommand("writerId", "Title", null);
 
             assertThatThrownBy(() -> sut.create(command))
                     .isInstanceOf(NovelBoardException.class);

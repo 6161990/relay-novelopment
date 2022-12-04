@@ -7,20 +7,32 @@ import com.yoon.relayNovelopment.domain.WriterId;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.validation.Valid;
 
-@Data
+@NoArgsConstructor
 @AllArgsConstructor
 public class NovelCreateCommand implements NovelCommand {
 
     @Valid
-    WriterId writerId;
+    String writerId;
 
     @Valid
-    Title title;
+    String title;
 
     @Valid
-    Content content;
+    String content;
 
+    public WriterId getWriterId() {
+        return WriterId.of(writerId);
+    }
+
+    public Title getTitle() {
+        return Title.of(title);
+    }
+
+    public Content getContent() {
+        return Content.of(content);
+    }
 }
