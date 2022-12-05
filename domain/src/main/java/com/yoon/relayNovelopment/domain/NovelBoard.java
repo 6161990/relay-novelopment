@@ -1,6 +1,7 @@
 package com.yoon.relayNovelopment.domain;
 
 import lombok.Getter;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -9,13 +10,15 @@ import static org.valid4j.Validation.validate;
 
 public class NovelBoard {
     @Getter
-    private final NovelBoardId id;
+    private final NovelBoardId novelBoardId;
+    @Getter
     private final Opening opening;
     private boolean isClosed;
+    @Getter
     private List<Novel> novels;
 
-    public NovelBoard(NovelBoardId id, Opening opening) {
-        this.id = id;
+    public NovelBoard(NovelBoardId novelBoardId, Opening opening) {
+        this.novelBoardId = novelBoardId;
         this.opening = opening;
     }
 
@@ -47,14 +50,6 @@ public class NovelBoard {
         return (int) novels.stream().filter(i -> i.getParentNovelKey().equals(id)).count();
     }
 
-    Opening getOpening() {
-        return opening;
-    }
-
-    List<Novel> getNovels() {
-        return novels;
-    }
-
     private void validForFork(Novel novel){
         valid(novel);
         validate(!Objects.requireNonNull(novels).isEmpty(), new NovelBoardException("Novels is Empty"));
@@ -64,9 +59,9 @@ public class NovelBoard {
 
     private void valid(Novel novel) {
         validate(novels.stream().noneMatch(n-> n.getWriterId().getId().equals(novel.getWriterId().getId())),
-                new NovelBoardException(String.format("Already exist the writer. WriterId %s, NovelBoardId %s", novel.getWriterId(), id)));
+                new NovelBoardException(String.format("Already exist the writer. WriterId %s, NovelBoardId %s", novel.getWriterId(), novelBoardId)));
         validate(novels.stream().noneMatch(n-> n.getTitle().equals(novel.getTitle())),
-                new NovelBoardException(String.format("Already exist the title. WriterId %s, NovelBoardId %s", novel.getWriterId(), id)));
+                new NovelBoardException(String.format("Already exist the title. WriterId %s, NovelBoardId %s", novel.getWriterId(), novelBoardId)));
         validate(!isClosed, new NovelBoardException("Already closed."));
     }
 

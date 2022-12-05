@@ -21,7 +21,7 @@ public class FakeNovelRepository implements NovelRepository {
         if(novelBoards.isEmpty()) {
             novelBoards.add(new NovelBoard(novelBoardId, Opening.of(OpeningKey.of("openId"), WriterId.of("writer"), Title.of("title"), Content.of("value"))));
         }
-        return novelBoards.stream().filter(i->i.getId().equals(novelBoardId)).findFirst().get();
+        return novelBoards.stream().filter(i->i.getNovelBoardId().equals(novelBoardId)).findFirst().get();
     }
 
     @Override
@@ -33,6 +33,6 @@ public class FakeNovelRepository implements NovelRepository {
     public void remove(NovelBoardId novelBoardId) {
         validate(!novelBoards.isEmpty(), new NovelBoardException("NovelBoard is Null"));
 
-        novelBoards.removeIf(i->i.getId().equals(novelBoardId));
+        novelBoards.removeIf(i->i.getNovelBoardId().equals(novelBoardId));
     }
 }

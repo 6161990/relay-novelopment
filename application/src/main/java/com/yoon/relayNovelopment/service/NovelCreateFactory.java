@@ -14,14 +14,14 @@ public class NovelCreateFactory {
     public Novel create(NovelBoard novelBoard, NovelCommand command) {
         NovelKey parentId = ParentNovelFinder.getParentBy(novelBoard);
 
-        return Novel.of(RelayNovelKey.of(idGenerator.getKey(novelBoard.getId(), command.getTitle())), parentId,
+        return Novel.of(RelayNovelKey.of(idGenerator.getKey(novelBoard.getNovelBoardId(), command.getTitle())), parentId,
                         command.getWriterId(), command.getTitle(), command.getContent());
     }
 
     public Novel createForFork(NovelBoard novelBoard, NovelCommand command) {
         NovelKey parentId = ParentNovelFinder.getParentForForkBy(novelBoard);
 
-        return Novel.of(RelayNovelKey.of(idGenerator.getKey(novelBoard.getId(), command.getTitle())), parentId,
+        return Novel.of(RelayNovelKey.of(idGenerator.getKey(novelBoard.getNovelBoardId(), command.getTitle())), parentId,
                 command.getWriterId(), command.getTitle(), command.getContent());
     }
 }
