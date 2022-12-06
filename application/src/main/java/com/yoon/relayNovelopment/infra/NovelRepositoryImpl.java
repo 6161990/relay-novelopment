@@ -6,6 +6,7 @@ import com.yoon.relayNovelopment.domain.NovelRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public class NovelRepositoryImpl implements NovelRepository {
@@ -15,7 +16,7 @@ public class NovelRepositoryImpl implements NovelRepository {
     }
 
     @Override
-    public NovelBoard findBy(NovelBoardId novelBoardId) {
+    public Optional<NovelBoard> findBy(NovelBoardId novelBoardId) {
         return null;
     }
 
