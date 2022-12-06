@@ -15,7 +15,8 @@ public class NovelBoardViewer {
     private final NovelRepository repository;
 
     public NovelBoard findBy(NovelBoardId id){
-        return repository.findBy(id);
+        return repository.findBy(id).orElseThrow(()
+                -> new NovelBoardNotFoundException(String.format("This NovelBoard Not Found. NovelBoardId is %s.", id.getId())));
     }
 
     public List<NovelBoard> findAll(){

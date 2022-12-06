@@ -12,7 +12,8 @@ public class NovelBoardEditor {
     private final NovelCreateFactory createFactory;
 
     public void relay(NovelEditorCommand command) {
-        NovelBoard novelBoard = repository.findBy(command.getNovelBoardId());
+        NovelBoard novelBoard = repository.findBy(command.getNovelBoardId()).orElseThrow(()
+                -> new NovelBoardNotFoundException(String.format("This NovelBoard Not Found. NovelBoardId is %s.", command.getNovelBoardId())));
 
         Novel novel = createFactory.create(novelBoard, command); // create - relay
         novelBoard.relay(novel);
@@ -21,7 +22,8 @@ public class NovelBoardEditor {
     }
 
     public void fork(NovelEditorCommand command){
-        NovelBoard novelBoard = repository.findBy(command.getNovelBoardId());
+        NovelBoard novelBoard = repository.findBy(command.getNovelBoardId()).orElseThrow(()
+                -> new NovelBoardNotFoundException(String.format("This NovelBoard Not Found. NovelBoardId is %s.", command.getNovelBoardId())));
 
         Novel novel = createFactory.createForFork(novelBoard, command); // createForFork - fork
         novelBoard.fork(novel);
