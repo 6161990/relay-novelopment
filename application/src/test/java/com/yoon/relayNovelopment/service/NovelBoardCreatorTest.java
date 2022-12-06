@@ -29,7 +29,7 @@ class NovelBoardCreatorTest {
 
         sut.create(command);
 
-        assertThat(novelRepository.findBy(NOVEL_BOARD_ID).getNovelSize()).isEqualTo(0);
+        assertThat(novelRepository.findBy(NOVEL_BOARD_ID).get().getNovelSize()).isEqualTo(0);
     }
 
     @Nested
