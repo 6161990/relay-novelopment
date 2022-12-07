@@ -22,7 +22,7 @@ public class NovelBoardEditorController {
     private final NovelBoardEditor novelBoardEditor;
 
     @PatchMapping("/addNovel/{id}")
-    public ResponseEntity<NovelBoard> update(@PathVariable("id") String id,
+    public ResponseEntity<NovelBoard> add(@PathVariable("id") String id,
                          @Valid @RequestBody NovelEditorCommand novelEditorCommand){
         return null;
     }
