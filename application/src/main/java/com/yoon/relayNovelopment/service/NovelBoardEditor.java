@@ -30,4 +30,8 @@ public class NovelBoardEditor {
 
         repository.save(novelBoard);
     }
+
+    public void remove(NovelBoardId id) {
+        repository.remove(id);
+    }
 }
