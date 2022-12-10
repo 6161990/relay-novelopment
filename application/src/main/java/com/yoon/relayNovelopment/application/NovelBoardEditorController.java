@@ -17,7 +17,6 @@ import java.net.URISyntaxException;
 @RequiredArgsConstructor
 public class NovelBoardEditorController {
 
-    @Autowired
     private final NovelBoardEditor novelBoardEditor;
 
     @PostMapping("/relay/{id}")

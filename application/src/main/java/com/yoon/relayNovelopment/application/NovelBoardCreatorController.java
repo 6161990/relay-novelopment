@@ -1,10 +1,8 @@
 package com.yoon.relayNovelopment.application;
 
-import com.yoon.relayNovelopment.domain.NovelBoard;
 import com.yoon.relayNovelopment.service.NovelBoardCreator;
 import com.yoon.relayNovelopment.service.NovelCreateCommand;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,10 +14,9 @@ import java.net.URISyntaxException;
 @RequiredArgsConstructor
 public class NovelBoardCreatorController {
 
-    @Autowired
     private final NovelBoardCreator novelBoardCreator;
 
-    @PostMapping("/create/novelBoard")
+    @PostMapping("/create/novelBoard") // TODO : NovelCreateCommand -> NovelCreateRequest => Commandfactory 와 협력해야한다
     public ResponseEntity<?> create(@Valid @RequestBody NovelCreateCommand command) throws URISyntaxException {
         novelBoardCreator.create(command);
 
