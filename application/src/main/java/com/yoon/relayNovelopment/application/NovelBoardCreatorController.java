@@ -2,6 +2,7 @@ package com.yoon.relayNovelopment.application;
 
 import com.yoon.relayNovelopment.service.NovelBoardCreator;
 import com.yoon.relayNovelopment.service.NovelCreateCommand;
+import com.yoon.relayNovelopment.service.NovelCreateRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,10 +15,13 @@ import java.net.URISyntaxException;
 @RequiredArgsConstructor
 public class NovelBoardCreatorController {
 
+    // FIXME : controller 는 facade 객체와 협력해야한다. command 를 넘기고 파사드가 novelBoardCreator 와 협력해야한다.
     private final NovelBoardCreator novelBoardCreator;
+    private final CommandFactory commandFactory;
 
-    @PostMapping("/create/novelBoard") // TODO : NovelCreateCommand -> NovelCreateRequest => Commandfactory 와 협력해야한다
-    public ResponseEntity<?> create(@Valid @RequestBody NovelCreateCommand command) throws URISyntaxException {
+    @PostMapping("/create/novelBoard") // TODO : NovelCreateCommand -> NovelCreateRequest => CommandFactory 와 협력해야한다
+    public ResponseEntity<?> create(@Valid @RequestBody NovelCreateRequest request) throws URISyntaxException {
+        NovelCreateCommand command = commandFactory.create(request);
         novelBoardCreator.create(command);
 
         URI location = new URI("/novelBoards/");

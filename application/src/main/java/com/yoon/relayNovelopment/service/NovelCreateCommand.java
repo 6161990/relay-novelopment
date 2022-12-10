@@ -3,33 +3,22 @@ package com.yoon.relayNovelopment.service;
 import com.yoon.relayNovelopment.domain.Content;
 import com.yoon.relayNovelopment.domain.Title;
 import com.yoon.relayNovelopment.domain.WriterId;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
+import javax.validation.Valid;
 
-@NoArgsConstructor
+@Data
 @AllArgsConstructor
-public class NovelCreateCommand implements NovelCommand {
+public class NovelCreateCommand implements NovelCommand{
 
-    @NotEmpty
-    String writerId;
+    @Valid
+    WriterId writerId;
 
-    @NotNull
-    String title;
+    @Valid
+    Title title;
 
-    @NotNull
-    String content;
+    @Valid
+    Content content;
 
-    public WriterId getWriterId() {
-        return WriterId.of(writerId);
-    }
-
-    public Title getTitle() {
-        return Title.of(title);
-    }
-
-    public Content getContent() {
-        return Content.of(content);
-    }
 }

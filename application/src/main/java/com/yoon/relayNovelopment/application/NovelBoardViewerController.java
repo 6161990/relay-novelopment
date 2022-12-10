@@ -12,8 +12,6 @@ import java.util.List;
 @RequiredArgsConstructor
 public class NovelBoardViewerController {
 
-    // TODO Creator , Editor 와 맞추려고 조회용 service 레이어를 만들긴 했는데 바로 repository 조회하는 게 더 낫지 않으려나?
-
     private final NovelBoardViewer novelBoardViewer;
 
     @GetMapping("/novelBoard/{id}")
