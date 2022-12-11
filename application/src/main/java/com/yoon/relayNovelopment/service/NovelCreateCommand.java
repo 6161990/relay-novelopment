@@ -10,7 +10,7 @@ import javax.validation.Valid;
 
 @Data
 @AllArgsConstructor
-public class NovelCreateCommand implements NovelCommand{
+public class NovelCreateCommand implements NovelCommand {
 
     @Valid
     WriterId writerId;
