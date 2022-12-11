@@ -18,7 +18,7 @@ public class NovelBoardCreatorController {
     private final NovelBoardCreator novelBoardCreator;
     private final CommandFactory commandFactory;
 
-    @PostMapping("/create/novelBoard") // TODO : NovelCreateCommand -> NovelCreateRequest => CommandFactory 와 협력해야한다
+    @PostMapping("/create/novelBoard")
     public ResponseEntity<?> create(@Valid @RequestBody NovelCreateRequest request) throws URISyntaxException {
         NovelCreateCommand command = commandFactory.create(request);
         novelBoardCreator.create(command);
