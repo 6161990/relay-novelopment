@@ -2,7 +2,6 @@ package com.yoon.relayNovelopment.application;
 
 import com.yoon.relayNovelopment.service.NovelBoardCreator;
 import com.yoon.relayNovelopment.service.NovelCreateCommand;
-import com.yoon.relayNovelopment.service.NovelCreateRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

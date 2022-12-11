@@ -17,20 +17,25 @@ public class NovelBoardEditorController {
 
     // FIXME : controller 는 facade 객체와 협력해야한다. command 를 넘기고 파사드가 novelBoardCreator 와 협력해야한다.
     private final NovelBoardEditor novelBoardEditor;
+    private final CommandFactory commandFactory;
 
     @PostMapping("/relay/{id}")
-    public ResponseEntity<?> relay(@PathVariable("id") String id,  // TODO : NovelEditorCommand -> NovelEditorRequest => CommandFactory 와 협력해야한다
-                         @Valid @RequestBody NovelEditorCommand novelEditorCommand) throws URISyntaxException {
+    public ResponseEntity<?> relay(@Valid @RequestBody NovelEditorRequest novelEditorRequest) throws URISyntaxException {
+
+        NovelEditorCommand novelEditorCommand = commandFactory.editor(novelEditorRequest);
         novelBoardEditor.relay(novelEditorCommand);
-        URI location = new URI("/novelBoard/"+id);
+
+        URI location = new URI("/novelBoard/"+novelEditorCommand.getNovelBoardId());
         return ResponseEntity.created(location).body("{}");
     }
 
     @PostMapping("/fork/{id}")
-    public ResponseEntity<?> fork(@PathVariable("id") String id,  // TODO : NovelEditorCommand -> NovelEditorRequest => CommandFactory 와 협력해야한다
-                                          @Valid @RequestBody NovelEditorCommand novelEditorCommand) throws URISyntaxException {
+    public ResponseEntity<?> fork(@Valid @RequestBody NovelEditorRequest novelEditorRequest) throws URISyntaxException {
+
+        NovelEditorCommand novelEditorCommand = commandFactory.editor(novelEditorRequest);
         novelBoardEditor.fork(novelEditorCommand);
-        URI location = new URI("/novelBoard/"+id);
+
+        URI location = new URI("/novelBoard/"+novelEditorCommand.getNovelBoardId());
         return ResponseEntity.created(location).body("{}");
     }
 
