@@ -7,7 +7,6 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
 
-
 @WebMvcTest(NovelBoardEditorController.class)
 class NovelBoardEditorControllerTest {
 
@@ -16,6 +15,9 @@ class NovelBoardEditorControllerTest {
 
     @MockBean
     private NovelBoardEditor novelBoardEditor;
+
+    @MockBean
+    private CommandFactory commandFactory;
 
     @Test
     void add() {
