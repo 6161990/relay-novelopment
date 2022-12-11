@@ -2,6 +2,7 @@ package com.yoon.relayNovelopment.application;
 
 import com.yoon.relayNovelopment.domain.NovelBoardId;
 import com.yoon.relayNovelopment.service.NovelBoardEditor;
+import com.yoon.relayNovelopment.service.NovelCommand;
 import com.yoon.relayNovelopment.service.NovelEditorCommand;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -19,23 +20,25 @@ public class NovelBoardEditorController {
     private final NovelBoardEditor novelBoardEditor;
     private final CommandFactory commandFactory;
 
-    @PostMapping("/relay/{id}")
-    public ResponseEntity<?> relay(@Valid @RequestBody NovelEditorRequest novelEditorRequest) throws URISyntaxException {
+    @PatchMapping("/relay/{id}")
+    public ResponseEntity<?> relay(@PathVariable("id") NovelBoardId id,
+                                   @Valid @RequestBody NovelCreateRequest novelCreateRequest) throws URISyntaxException {
 
-        NovelEditorCommand novelEditorCommand = commandFactory.editor(novelEditorRequest);
-        novelBoardEditor.relay(novelEditorCommand);
+        NovelCommand novelEditorCommand = commandFactory.createBy(id, novelCreateRequest);
+        novelBoardEditor.relay((NovelEditorCommand) novelEditorCommand);
 
-        URI location = new URI("/novelBoard/"+novelEditorCommand.getNovelBoardId());
+        URI location = new URI("/novelBoard/"+ id);
         return ResponseEntity.created(location).body("{}");
     }
 
-    @PostMapping("/fork/{id}")
-    public ResponseEntity<?> fork(@Valid @RequestBody NovelEditorRequest novelEditorRequest) throws URISyntaxException {
+    @PatchMapping("/fork/{id}")
+    public ResponseEntity<?> fork(@PathVariable("id") NovelBoardId id,
+                                  @Valid @RequestBody NovelCreateRequest novelCreateRequest) throws URISyntaxException {
 
-        NovelEditorCommand novelEditorCommand = commandFactory.editor(novelEditorRequest);
-        novelBoardEditor.fork(novelEditorCommand);
+        NovelCommand novelEditorCommand = commandFactory.createBy(id, novelCreateRequest);
+        novelBoardEditor.fork((NovelEditorCommand) novelEditorCommand);
 
-        URI location = new URI("/novelBoard/"+novelEditorCommand.getNovelBoardId());
+        URI location = new URI("/novelBoard/"+ id);
         return ResponseEntity.created(location).body("{}");
     }
 
