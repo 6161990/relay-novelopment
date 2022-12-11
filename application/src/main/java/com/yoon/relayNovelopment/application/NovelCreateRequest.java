@@ -1,4 +1,4 @@
-package com.yoon.relayNovelopment.service;
+package com.yoon.relayNovelopment.application;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
