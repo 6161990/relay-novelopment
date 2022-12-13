@@ -38,10 +38,6 @@ public class NovelBoard {
         this.novels.add(novel);
     }
 
-    private void init() {
-        this.novels = new ArrayList<>();
-    }
-
     public int getNovelSize(){
         return this.novels == null ? 0 : this.novels.size();
     }
@@ -50,11 +46,15 @@ public class NovelBoard {
         return (int) novels.stream().filter(i -> i.getParentNovelKey().equals(id)).count();
     }
 
+    private void init() {
+        this.novels = new ArrayList<>();
+    }
+
     private void validForFork(Novel novel){
         valid(novel);
         validate(!Objects.requireNonNull(novels).isEmpty(), new NovelBoardException("Novels is Empty"));
         validate(novels.stream().anyMatch(e->e.getParentNovelKey().equals(novel.getParentNovelKey())),
-                new NovelBoardException("Not Exist Same Parent Novel.")); // FIXME ExceptionMessage 가 이게 맞나 ?
+                new NovelBoardException("Not Exist Same Parent Novel."));
     }
 
     private void valid(Novel novel) {
