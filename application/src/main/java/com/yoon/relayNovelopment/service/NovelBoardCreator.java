@@ -7,9 +7,6 @@ import org.springframework.stereotype.Service;
 
 import static org.valid4j.Validation.validate;
 
-// TODO : domain module 의 application 으로 옮겨야한다.
-//  해당 객체들은 config 에서 bean 으로 관리 되어야 한다.
-
 @Service
 @RequiredArgsConstructor
 public class NovelBoardCreator {
