@@ -11,7 +11,7 @@ public class NovelCreateFactory {
 
     private final IdGenerator idGenerator;
 
-    public Novel create(NovelBoard novelBoard, NovelCommand command) {
+    public Novel createForRelay(NovelBoard novelBoard, NovelCommand command) {
         NovelKey parentId = ParentNovelFinder.getParentBy(novelBoard);
 
         return Novel.of(RelayNovelKey.of(idGenerator.getKey(novelBoard.getNovelBoardId(), command.getTitle())), parentId,
