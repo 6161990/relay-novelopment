@@ -15,8 +15,6 @@ import java.net.URISyntaxException;
 @RequiredArgsConstructor
 public class NovelBoardCreatorController {
 
-    // FIXME : controller 는 facade 객체와 협력해야한다. command 를 넘기고 파사드가 novelBoardCreator 와 협력해야한다.
-    // FIXME : 파사드의 역할이 많아질 것. CommandFactory -> NovelBoardCreator ->  NovelRepository -> IdGenerator
     private final CommandFactory commandFactory;
     private final NovelBoardCreator novelBoardCreator;
 
