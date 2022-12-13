@@ -15,8 +15,8 @@ import java.net.URISyntaxException;
 @RequiredArgsConstructor
 public class NovelBoardCreatorController {
 
-    private final CommandFactory commandFactory;
     private final NovelBoardCreator novelBoardCreator;
+    private final CommandFactory commandFactory;
 
     @PostMapping("/create/novelBoard")
     public ResponseEntity<?> create(@Valid @RequestBody NovelCreateRequest request) throws URISyntaxException {
