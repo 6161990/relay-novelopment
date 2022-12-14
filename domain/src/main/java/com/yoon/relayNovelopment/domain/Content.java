@@ -1,8 +1,22 @@
 package com.yoon.relayNovelopment.domain;
 
-import lombok.Value;
+import java.util.Objects;
 
-@Value(staticConstructor = "of")
+import static org.valid4j.Validation.*;
+
 public class Content {
-    String value;
+    private final String value;
+
+    public static Content of(String value) {
+        return new Content(value);
+    }
+
+    private Content(String value) {
+        this.value = value;
+    }
+
+    public String getValue() {
+        validate(Objects.nonNull(value), new NovelBoardException("Content is Null."));
+        return value;
+    }
 }
