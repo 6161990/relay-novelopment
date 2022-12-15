@@ -14,10 +14,10 @@ public class NovelBoardCreator {
     private final NovelRepository repository;
     private final IdGenerator idGenerator;
 
-    public void create(NovelCreateCommand command) {
-        validate(command.writerId != null, new NovelBoardException("WriterId is Null"));
-        validate(command.title != null, new NovelBoardException("Title is Null"));
-        validate(command.content != null, new NovelBoardException("Content is Null"));
+    public void create(NovelCommand command) {
+        validate(command.getWriterId() != null, new NovelBoardException("WriterId is Null"));
+        validate(command.getTitle() != null, new NovelBoardException("Title is Null"));
+        validate(command.getContent() != null, new NovelBoardException("Content is Null"));
 
         NovelBoard novelBoard = new NovelBoard(NovelBoardId.of(idGenerator.getId()),
                 Opening.of(OpeningKey.of(idGenerator.getId()),
