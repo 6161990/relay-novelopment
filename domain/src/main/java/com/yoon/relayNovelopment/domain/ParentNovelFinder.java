@@ -4,7 +4,7 @@ public class ParentNovelFinder {
 
     public static NovelKey getParentBy(NovelBoard novelBoard) {
         if(novelBoard.getNovelSize() == 0) {
-            return novelBoard.getOpening().getKey();
+            return novelBoard.getOpening().getOpeningKey();
         } else {
             return novelBoard.getNovels().get(novelBoard.getNovelSize() - 1).getNovelKey();
         }
