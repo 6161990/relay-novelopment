@@ -38,7 +38,7 @@ class NovelBoardViewerControllerTest {
                         containsString("{\"novelBoardId\":{\"id\":\"1004\"}")
                 ))
                 .andExpect(content().string(
-                        containsString("\"opening\":{\"key\":{\"value\":\"openKey\"}")
+                        containsString("\"opening\":{\"openingKey\":{\"value\":\"openKey\"}")
                 ));
     }
 
