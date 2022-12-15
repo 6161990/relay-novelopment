@@ -15,7 +15,4 @@ public class Content {
         this.value = value;
     }
 
-    public String getValue() {
-        return value;
-    }
 }

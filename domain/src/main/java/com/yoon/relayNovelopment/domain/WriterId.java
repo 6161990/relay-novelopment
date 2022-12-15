@@ -15,7 +15,4 @@ public class WriterId {
         this.id = id;
     }
 
-    public String getValue() {
-        return id;
-    }
 }

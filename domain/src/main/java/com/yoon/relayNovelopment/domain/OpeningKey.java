@@ -11,11 +11,8 @@ public class OpeningKey implements NovelKey {
     String value;
 
     private OpeningKey(String value) {
+        validate(Objects.nonNull(value), new NovelBoardException("OpeningKey Value is Null."));
         this.value = value;
     }
 
-    public String getValue() {
-        validate(Objects.nonNull(value), new NovelBoardException("OpeningKey is Null."));
-        return value;
-    }
 }
