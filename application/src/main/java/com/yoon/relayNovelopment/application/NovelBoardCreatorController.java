@@ -21,7 +21,7 @@ public class NovelBoardCreatorController {
     @PostMapping("/create/novelBoard")
     public ResponseEntity<?> create(@Valid @RequestBody NovelCreateRequest request) throws URISyntaxException {
         NovelCommand command = commandFactory.createBy(request);
-        novelBoardCreator.create((NovelCreateCommand) command);
+        novelBoardCreator.create(command);
 
         URI location = new URI("/novelBoards/");
         return ResponseEntity.created(location).body("{}");
