@@ -1,13 +1,8 @@
 package com.yoon.relayNovelopment.application;
 
-import com.yoon.relayNovelopment.domain.Content;
 import com.yoon.relayNovelopment.domain.NovelBoardId;
-import com.yoon.relayNovelopment.domain.Title;
-import com.yoon.relayNovelopment.domain.WriterId;
 import com.yoon.relayNovelopment.service.NovelBoardEditor;
 import com.yoon.relayNovelopment.service.NovelCommand;
-import com.yoon.relayNovelopment.service.NovelCreateCommand;
-import com.yoon.relayNovelopment.service.NovelEditorCommand;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
