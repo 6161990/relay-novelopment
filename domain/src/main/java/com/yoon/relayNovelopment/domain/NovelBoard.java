@@ -1,21 +1,25 @@
 package com.yoon.relayNovelopment.domain;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 import static org.valid4j.Validation.validate;
 
+@Getter
+@AllArgsConstructor
 public class NovelBoard {
-    @Getter
     private final NovelBoardId novelBoardId;
-    @Getter
     private final Opening opening;
+
     private boolean isClosed;
-    @Getter
     private List<Novel> novels;
+    private LocalDateTime createdAt;
+    private Long version;
 
     public NovelBoard(NovelBoardId novelBoardId, Opening opening) {
         this.novelBoardId = novelBoardId;
