@@ -27,7 +27,7 @@ class NovelBoardEditorTest {
 
         sut.relay(command);
 
-        assertThat(novelRepository.findBy(NOVEL_BOARD_ID).get().getNovelSize()).isEqualTo(1);
+        assertThat(novelRepository.findBy(NOVEL_BOARD_ID).getNovelSize()).isEqualTo(1);
     }
 
     @Test
@@ -38,6 +38,6 @@ class NovelBoardEditorTest {
         NovelEditorCommand command2 = new NovelEditorCommand(NOVEL_BOARD_ID, WriterId.of("writerId2"), Title.of("Title2"), Content.of("value"));
         sut.fork(command2);
 
-        assertThat(novelRepository.findBy(NOVEL_BOARD_ID).get().getNovelSize()).isEqualTo(2);
+        assertThat(novelRepository.findBy(NOVEL_BOARD_ID).getNovelSize()).isEqualTo(2);
     }
 }
