@@ -1,4 +1,4 @@
-package com.yoon.relayNovelopment.infra;
+package com.yoon.relayNovelopment;
 
 import com.yoon.relayNovelopment.domain.NovelBoard;
 import com.yoon.relayNovelopment.domain.NovelBoardId;
@@ -7,8 +7,6 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
-
-// FIXME : 모듈 밖으로 빼내야하는 객체
 
 @Repository
 public class NovelRepositoryImpl implements NovelRepository {

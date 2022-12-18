@@ -10,7 +10,7 @@ import com.yoon.relayNovelopment.service.NovelEditorCommand;
 import org.springframework.stereotype.Component;
 
 @Component
-public class CommandFactory { // FIXME : commandFactory 는 interface 이며 create / editor 따로 팩토리를 빼야한다.
+public class CommandFactory {
 
     public NovelCommand createBy(NovelCreateRequest request) {
         return new NovelCreateCommand(WriterId.of(request.getWriterId()), Title.of(request.getTitle()), Content.of(request.getContent()));
