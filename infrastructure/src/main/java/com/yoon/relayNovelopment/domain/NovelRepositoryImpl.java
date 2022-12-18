@@ -1,4 +1,4 @@
-package com.yoon.relayNovelopment;
+package com.yoon.relayNovelopment.domain;
 
 import com.yoon.relayNovelopment.domain.NovelBoard;
 import com.yoon.relayNovelopment.domain.NovelBoardId;
