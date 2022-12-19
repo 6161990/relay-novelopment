@@ -1,4 +1,4 @@
-package com.yoon.relayNovelopment.config;
+package com.yoon.relayNovelopment.persist;
 
 import com.yoon.relayNovelopment.domain.NovelBoardId;
 import org.springframework.core.convert.converter.Converter;
