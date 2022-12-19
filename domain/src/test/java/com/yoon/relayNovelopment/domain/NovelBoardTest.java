@@ -35,7 +35,7 @@ class NovelBoardTest {
 
     @Test
     void when_already_closed_add_relay() {
-
+            // TODO
     }
 
     @Test
@@ -49,7 +49,7 @@ class NovelBoardTest {
         novelStage.fork(novel(relayId("id3"), openingId("id"), writerId("writer3"), title("bang4")));
 
         assertThat(novelStage.getNovelSize()).isEqualTo(2);
-        assertThat(novelStage.getSameParentSizeBy(openingId("id"))).isEqualTo(2);
+        assertThat(novelStage.getNovels().getSameParentSizeBy(openingId("id"))).isEqualTo(2);
     }
 
     @DisplayName("fork->relay")
