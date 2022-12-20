@@ -21,6 +21,7 @@ public class ConversionConfig extends AbstractJdbcConfiguration {
         return new JdbcCustomConversions(this.getCustomConverters());
     }
 
+
     private List<Converter<?, ?>> getCustomConverters() {
         List<Converter<?, ?>> converters = new ArrayList<>();
         converters.add(NovelBoardIdConverters.READING);
