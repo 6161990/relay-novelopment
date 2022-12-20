@@ -1,9 +1,6 @@
 package com.yoon.relayNovelopment.entity;
 
-import com.yoon.relayNovelopment.domain.Novel;
-import com.yoon.relayNovelopment.domain.NovelBoard;
-import com.yoon.relayNovelopment.domain.NovelBoardId;
-import com.yoon.relayNovelopment.domain.Opening;
+import com.yoon.relayNovelopment.domain.*;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
@@ -31,7 +28,7 @@ public class SpringJdbcNovelBoard {
     boolean isClosed;
 
     @With
-    List<Novel> novels;
+    Novels novels;
 
     @CreatedDate
     LocalDateTime createdAt;
