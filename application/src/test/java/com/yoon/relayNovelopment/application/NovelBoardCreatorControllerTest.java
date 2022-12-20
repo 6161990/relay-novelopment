@@ -21,7 +21,6 @@ class NovelBoardCreatorControllerTest {
 
     @Autowired
     MockMvc mvc;
-
     @MockBean
     private NovelBoardCreator novelBoardCreator;
 
