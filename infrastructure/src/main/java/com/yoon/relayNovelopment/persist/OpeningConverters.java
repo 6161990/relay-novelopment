@@ -21,7 +21,6 @@ public class OpeningConverters {
             return Serializer.getInstance().deserialize(source.getValue(), Opening.class);
         }
     }
-
     @WritingConverter
     private static class OpeningWritingConverter implements Converter<Opening, PGobject> {
 
