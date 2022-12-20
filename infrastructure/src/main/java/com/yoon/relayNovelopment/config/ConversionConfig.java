@@ -14,7 +14,7 @@ import java.util.List;
 
 @Configuration
 @EnableJdbcAuditing
-public class JdbcConfig extends AbstractJdbcConfiguration {
+public class ConversionConfig extends AbstractJdbcConfiguration {
 
     @Override
     public JdbcCustomConversions jdbcCustomConversions() {
