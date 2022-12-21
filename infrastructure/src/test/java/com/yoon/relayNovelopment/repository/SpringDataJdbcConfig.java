@@ -1,4 +1,4 @@
-package com.yoon.relayNovelopment.config;
+package com.yoon.relayNovelopment.repository;
 
 import com.zaxxer.hikari.HikariDataSource;
 import org.springframework.beans.factory.annotation.Value;
