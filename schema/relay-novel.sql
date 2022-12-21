@@ -2,7 +2,7 @@ CREATE TABLE IF NOT EXISTS relay_novel
 (
     id                   VARCHAR(255) PRIMARY KEY,
     opening           jsonb,
-    isClosed   boolean NOT NULL,
+    is_closed   boolean NOT NULL,
     novels          jsonb,
     created_at          TIMESTAMPTZ,
     version             BIGINT
