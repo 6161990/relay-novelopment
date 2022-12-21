@@ -7,28 +7,24 @@ import io.zonky.test.db.AutoConfigureEmbeddedDatabase;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 import static io.zonky.test.db.AutoConfigureEmbeddedDatabase.DatabaseType.POSTGRES;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.springframework.test.annotation.DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD;
 
 @Sql(scripts = "classpath:relay-novel.sql")
-@DirtiesContext(classMode = BEFORE_EACH_TEST_METHOD)
 @Transactional
 @SpringJUnitConfig(classes = {ConversionConfig.class, SpringDataJdbcConfig.class})
 @AutoConfigureEmbeddedDatabase(type = POSTGRES)
 class SpringJdbcNovelRepositoryTest {
 
-    private final NovelBoardId NOVEL_BOARD_ID = NovelBoardId.of("boardId");
+    private static final NovelBoardId NOVEL_BOARD_ID = NovelBoardId.of("boardId");
 
     @Autowired
     SpringJdbcNovelRepository sut;
@@ -36,7 +32,7 @@ class SpringJdbcNovelRepositoryTest {
     @BeforeEach
     void setUp() {
         SpringJdbcNovelBoard springJdbcNovelBoard = SpringJdbcNovelBoard.builder()
-                .id(NOVEL_BOARD_ID)
+                .novelBoardId(NOVEL_BOARD_ID)
                 .opening(Opening.of(OpeningKey.of("key"), WriterId.of("writer"), Title.of("title"), Content.of("content")))
                 .novels(getNovels())
                 .isClosed(false)
@@ -47,11 +43,23 @@ class SpringJdbcNovelRepositoryTest {
 
     @Test
     void findOne() {
-        Optional<SpringJdbcNovelBoard> find = sut.findBy(NOVEL_BOARD_ID);
+        Optional<SpringJdbcNovelBoard> actual = sut.findByNovelBoardId(NOVEL_BOARD_ID);
 
-        assertTrue(find.isPresent());
+        assertTrue(actual.isPresent());
     }
 
+    @Test
+    void when_not_exist_findOne() {
+        Optional<SpringJdbcNovelBoard> actual = sut.findByNovelBoardId(NovelBoardId.of("NOT_EXIST"));
+
+        assertThat(actual.isPresent()).isFalse();
+    }
+    @Test
+    void findAll() {
+        List<SpringJdbcNovelBoard> findAll = sut.findAll();
+
+        assertThat(findAll.size()).isEqualTo(1);
+    }
 
     private Novels getNovels() {
         List<Novel> novels = new ArrayList<>();
