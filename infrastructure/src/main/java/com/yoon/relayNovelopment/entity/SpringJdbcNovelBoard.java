@@ -4,6 +4,7 @@ import com.yoon.relayNovelopment.domain.*;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.annotation.Version;
 import org.springframework.data.relational.core.mapping.Table;
 
@@ -15,7 +16,7 @@ import java.util.Objects;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(value = "novelBoard")
+@Table(value = "relay_novel")
 public class SpringJdbcNovelBoard {
     @Id
     @With
@@ -32,6 +33,9 @@ public class SpringJdbcNovelBoard {
 
     @CreatedDate
     LocalDateTime createdAt;
+
+    @With
+    LocalDateTime deletedAt;
     @With
     @Version
     Long version;
@@ -60,6 +64,7 @@ public class SpringJdbcNovelBoard {
                 entity.isClosed(),
                 entity.getNovels(),
                 entity.getCreatedAt(),
+                entity.getDeletedAt(),
                 entity.getVersion());
     }
 }

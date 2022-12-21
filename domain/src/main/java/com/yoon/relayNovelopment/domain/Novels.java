@@ -1,9 +1,9 @@
 package com.yoon.relayNovelopment.domain;
 
 import lombok.RequiredArgsConstructor;
+import lombok.ToString;
 
 import java.util.List;
-
 @RequiredArgsConstructor
 public class Novels {
 

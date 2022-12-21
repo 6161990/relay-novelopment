@@ -18,6 +18,7 @@ public class NovelBoard {
     private boolean isClosed;
     private Novels novels;
     private LocalDateTime createdAt;
+    private LocalDateTime deleteAt;
     private Long version;
 
     public NovelBoard(NovelBoardId novelBoardId, Opening opening) {
