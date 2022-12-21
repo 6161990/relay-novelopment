@@ -27,16 +27,4 @@ public class SpringDataJdbcConfig {
         return new DataSourceTransactionManager(dataSource);
     }
 
-    @Bean
-    public DataSource settlementDataSource(@Value("jdbc:postgresql://localhost:9999/relay-novel") String url,
-                                           @Value("relay-novel") String username,
-                                           @Value("1234") String password) {
-        return DataSourceBuilder.create()
-                .type(HikariDataSource.class)
-                .url(url)
-                .username(username)
-                .password(password)
-                .build();
-    }
-
 }
