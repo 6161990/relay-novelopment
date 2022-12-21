@@ -30,7 +30,7 @@ class NovelRepositoryAdapterTest {
         Optional<SpringJdbcNovelBoard> springJdbcNovelBoard
                 = init("boardId", "key", "writer", "title", "content");
 
-        given(repository.findBy(NovelBoardId.of("boardId"))).willReturn(springJdbcNovelBoard);
+        given(repository.findByNovelBoardId(NovelBoardId.of("boardId"))).willReturn(springJdbcNovelBoard);
 
         NovelBoard novelBoard = sut.findBy(NovelBoardId.of("boardId"));
 
@@ -54,7 +54,7 @@ class NovelRepositoryAdapterTest {
 
     @Test
     void when_not_exist_findByNovelBoardId() {
-        given(repository.findBy(NovelBoardId.of("boardId"))).willReturn(Optional.empty());
+        given(repository.findByNovelBoardId(NovelBoardId.of("boardId"))).willReturn(Optional.empty());
 
         NovelBoard id = sut.findBy(NovelBoardId.of("boardId"));
 
@@ -62,11 +62,11 @@ class NovelRepositoryAdapterTest {
     }
 
     private Optional<SpringJdbcNovelBoard> init(String boardId) {
-        return Optional.ofNullable(SpringJdbcNovelBoard.builder().id(NovelBoardId.of(boardId)).build());
+        return Optional.ofNullable(SpringJdbcNovelBoard.builder().novelBoardId(NovelBoardId.of(boardId)).build());
     }
 
     private Optional<SpringJdbcNovelBoard> init(String boardId, String key, String writer, String title, String content) {
-        return Optional.ofNullable(SpringJdbcNovelBoard.builder().id(NovelBoardId.of(boardId))
+        return Optional.ofNullable(SpringJdbcNovelBoard.builder().novelBoardId(NovelBoardId.of(boardId))
                 .opening(Opening.of(OpeningKey.of(key), WriterId.of(writer), Title.of(title), Content.of(content))).build());
     }
 }

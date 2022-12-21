@@ -4,13 +4,10 @@ import com.yoon.relayNovelopment.domain.*;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.annotation.Version;
 import org.springframework.data.relational.core.mapping.Table;
 
 import java.time.LocalDateTime;
-import java.util.List;
-import java.util.Objects;
 
 @Getter
 @Builder
@@ -20,7 +17,7 @@ import java.util.Objects;
 public class SpringJdbcNovelBoard {
     @Id
     @With
-    NovelBoardId id;
+    NovelBoardId novelBoardId;
 
     @With
     Opening opening;
@@ -41,25 +38,19 @@ public class SpringJdbcNovelBoard {
     Long version;
 
     public static SpringJdbcNovelBoard convert(NovelBoard novelBoard) {
-
-        SpringJdbcNovelBoard entity = SpringJdbcNovelBoard.builder()
-                .id(novelBoard.getNovelBoardId())
+        return SpringJdbcNovelBoard.builder()
+                .novelBoardId(novelBoard.getNovelBoardId())
                 .opening(novelBoard.getOpening())
                 .isClosed(novelBoard.isClosed())
                 .novels(novelBoard.getNovels())
                 .version(novelBoard.getVersion())
                 .build();
-
-        if (Objects.isNull(novelBoard.getNovelBoardId())) {
-            return entity;
-        }
-        return entity.withId(novelBoard.getNovelBoardId());
     }
 
 
     public static NovelBoard convert(SpringJdbcNovelBoard entity) {
         return new NovelBoard(
-                entity.getId(),
+                entity.getNovelBoardId(),
                 entity.getOpening(),
                 entity.isClosed(),
                 entity.getNovels(),

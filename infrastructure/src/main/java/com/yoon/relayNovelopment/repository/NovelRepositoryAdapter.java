@@ -26,7 +26,7 @@ public class NovelRepositoryAdapter implements NovelRepository {
 
     @Override
     public NovelBoard findBy(NovelBoardId novelBoardId) {
-        Optional<SpringJdbcNovelBoard> optional = repository.findBy(novelBoardId);
+        Optional<SpringJdbcNovelBoard> optional = repository.findByNovelBoardId(novelBoardId);
 
         if (optional.isEmpty()) {
             return null;
