@@ -1,7 +1,6 @@
 package com.yoon.relayNovelopment.repository;
 
-import com.yoon.relayNovelopment.domain.NovelBoard;
-import com.yoon.relayNovelopment.domain.NovelBoardId;
+import com.yoon.relayNovelopment.domain.*;
 import com.yoon.relayNovelopment.entity.SpringJdbcNovelBoard;
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -28,19 +27,22 @@ class NovelRepositoryAdapterTest {
 
     @Test
     void findByNovelBoardId() {
-        Optional<SpringJdbcNovelBoard> springJdbcNovelBoard = init("boardId");
+        Optional<SpringJdbcNovelBoard> springJdbcNovelBoard
+                = init("boardId", "key", "writer", "title", "content");
 
         given(repository.findBy(NovelBoardId.of("boardId"))).willReturn(springJdbcNovelBoard);
 
-        NovelBoard id = sut.findBy(NovelBoardId.of("boardId"));
+        NovelBoard novelBoard = sut.findBy(NovelBoardId.of("boardId"));
 
-        assertThat(id).isEqualTo(id);
+        assertThat(novelBoard.getNovelBoardId()).isEqualTo(NovelBoardId.of("boardId"));
+        assertThat(novelBoard.getOpening().getOpeningKey()).isEqualTo(OpeningKey.of("key"));
     }
 
     @Test
     void findAll() {
         List<SpringJdbcNovelBoard> springJdbcNovelBoards
-                = Arrays.asList(init("boardId1").get(), init("boardId2").get());
+                = Arrays.asList(init("boardId1").get(),
+                                init("boardId2").get());
 
         given(repository.findAll()).willReturn(springJdbcNovelBoards);
 
@@ -61,5 +63,10 @@ class NovelRepositoryAdapterTest {
 
     private Optional<SpringJdbcNovelBoard> init(String boardId) {
         return Optional.ofNullable(SpringJdbcNovelBoard.builder().id(NovelBoardId.of(boardId)).build());
+    }
+
+    private Optional<SpringJdbcNovelBoard> init(String boardId, String key, String writer, String title, String content) {
+        return Optional.ofNullable(SpringJdbcNovelBoard.builder().id(NovelBoardId.of(boardId))
+                .opening(Opening.of(OpeningKey.of(key), WriterId.of(writer), Title.of(title), Content.of(content))).build());
     }
 }
