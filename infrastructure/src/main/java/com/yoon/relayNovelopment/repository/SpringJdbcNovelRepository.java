@@ -11,7 +11,6 @@ public interface SpringJdbcNovelRepository extends Repository<SpringJdbcNovelBoa
     void save(SpringJdbcNovelBoard novelBoard);
     Optional<SpringJdbcNovelBoard> findBy(NovelBoardId novelBoardId);
     List<SpringJdbcNovelBoard> findAll();
-    void remove(NovelBoardId novelBoardId);
 }
 
 

@@ -7,6 +7,7 @@ import com.yoon.relayNovelopment.entity.SpringJdbcNovelBoard;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -42,7 +43,10 @@ public class NovelRepositoryAdapter implements NovelRepository {
     }
 
     @Override
-    public void remove(NovelBoardId novelBoardId) {
-        repository.remove(novelBoardId);
+    public void delete(NovelBoardId novelBoardId) {
+        NovelBoard novelBoard = findBy(novelBoardId);
+        SpringJdbcNovelBoard springJdbcNovelBoard = SpringJdbcNovelBoard.convert(novelBoard);
+        springJdbcNovelBoard.withDeletedAt(LocalDateTime.now());
+        repository.save(springJdbcNovelBoard);
     }
 }
