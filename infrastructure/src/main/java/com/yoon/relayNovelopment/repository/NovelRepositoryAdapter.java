@@ -1,5 +1,8 @@
-package com.yoon.relayNovelopment.domain;
+package com.yoon.relayNovelopment.repository;
 
+import com.yoon.relayNovelopment.domain.NovelBoard;
+import com.yoon.relayNovelopment.domain.NovelBoardId;
+import com.yoon.relayNovelopment.domain.NovelRepository;
 import com.yoon.relayNovelopment.entity.SpringJdbcNovelBoard;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
