@@ -40,6 +40,6 @@ public class NovelBoardEditor {
     }
 
     public void remove(NovelBoardId id) {
-        repository.remove(id);
+        repository.delete(id);
     }
 }

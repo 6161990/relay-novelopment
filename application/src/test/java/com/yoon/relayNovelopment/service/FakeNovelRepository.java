@@ -31,7 +31,7 @@ public class FakeNovelRepository implements NovelRepository {
     }
 
     @Override
-    public void remove(NovelBoardId novelBoardId) {
+    public void delete(NovelBoardId novelBoardId) {
         validate(!novelBoards.isEmpty(), new NovelBoardException("NovelBoard is Null"));
 
         novelBoards.removeIf(i->i.getNovelBoardId().equals(novelBoardId));
