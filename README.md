@@ -1,9 +1,9 @@
 # relay-novelopment
 
 ### Diagram
-<img width="1087" alt="2022-12-03_14-33-51" src="https://user-images.githubusercontent.com/74708028/205426071-7fdb3a49-84c2-4340-8711-db9ea08789b7.png">
-<img width="1049" alt="2022-12-03_14-34-01" src="https://user-images.githubusercontent.com/74708028/205426067-fdc1a7d5-a6b8-496d-966a-8dd49d4e1e2c.png">
+![2022-12-28_15-12-14.png](..%2F..%2FDesktop%2F2022-12-28_15-12-14.png)
 
+![2022-12-28_13-57-16.png](..%2F..%2FDesktop%2F2022-12-28_13-57-16.png)
 
 
 ### MVP
