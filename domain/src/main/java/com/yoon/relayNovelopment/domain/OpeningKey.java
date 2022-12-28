@@ -8,11 +8,11 @@ import static org.valid4j.Validation.validate;
 
 @Value(staticConstructor = "of")
 public class OpeningKey implements NovelKey {
-    String value;
+    String key;
 
-    private OpeningKey(String value) {
-        validate(Objects.nonNull(value), new NovelBoardException("OpeningKey Value is Null."));
-        this.value = value;
+    private OpeningKey(String key) {
+        validate(Objects.nonNull(key), new NovelBoardException("OpeningKey Value is Null."));
+        this.key = key;
     }
 
 }

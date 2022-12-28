@@ -6,11 +6,11 @@ public class ParentNovelFinder {
         if(novelBoard.getNovelSize() == 0) {
             return novelBoard.getOpening().getOpeningKey();
         } else {
-            return novelBoard.getNovels().get(novelBoard.getNovelSize() - 1).getNovelKey();
+            return novelBoard.getNovels().get(novelBoard.getNovelSize() - 1).getRelayNovelKey();
         }
     }
 
     public static NovelKey getParentForForkBy(NovelBoard novelBoard) {
-        return novelBoard.getNovels().get(novelBoard.getNovelSize() - 1).getParentNovelKey();
+        return novelBoard.getNovels().get(novelBoard.getNovelSize() - 1).getNovelKey();
     }
 }
