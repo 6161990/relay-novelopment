@@ -2,7 +2,6 @@ package com.yoon.relayNovelopment.application;
 
 import com.yoon.relayNovelopment.service.NovelBoardCreator;
 import com.yoon.relayNovelopment.service.NovelCommand;
-import com.yoon.relayNovelopment.service.NovelCreateCommand;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,7 +12,7 @@ import java.net.URISyntaxException;
 
 @RestController
 @RequiredArgsConstructor
-public class NovelBoardCreatorController {
+public class NovelBoardCreateController {
 
     private final NovelBoardCreator novelBoardCreator;
     private final CommandFactory commandFactory;

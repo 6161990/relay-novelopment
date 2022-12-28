@@ -3,7 +3,7 @@ package com.yoon.relayNovelopment.service;
 import com.yoon.relayNovelopment.domain.NovelBoard;
 import com.yoon.relayNovelopment.domain.NovelBoardException;
 import com.yoon.relayNovelopment.domain.NovelBoardId;
-import com.yoon.relayNovelopment.domain.NovelRepository;
+import com.yoon.relayNovelopment.domain.NovelBoardRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +14,7 @@ import java.util.Objects;
 @RequiredArgsConstructor
 public class NovelBoardViewer {
 
-    private final NovelRepository repository;
+    private final NovelBoardRepository repository;
 
     public NovelBoard findBy(NovelBoardId id){
         NovelBoard novelBoard = repository.findBy(id);

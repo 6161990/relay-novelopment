@@ -16,8 +16,8 @@ import static org.mockito.Mockito.verify;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-@WebMvcTest(NovelBoardCreatorController.class)
-class NovelBoardCreatorControllerTest {
+@WebMvcTest(NovelBoardCreateController.class)
+class NovelBoardCreateControllerTest {
 
     @Autowired
     MockMvc mvc;

@@ -22,7 +22,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @Transactional
 @SpringJUnitConfig(classes = {ConversionConfig.class, SpringDataJdbcConfig.class})
 @AutoConfigureEmbeddedDatabase(type = POSTGRES)
-class SpringJdbcNovelRepositoryTest {
+class SpringJdbcNovelBoardRepositoryTest {
 
     private static final NovelBoardId NOVEL_BOARD_ID = NovelBoardId.of("boardId");
 

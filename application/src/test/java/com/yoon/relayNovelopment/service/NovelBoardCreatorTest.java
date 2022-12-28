@@ -14,12 +14,12 @@ class NovelBoardCreatorTest {
 
     NovelBoardCreator sut;
 
-    NovelRepository novelRepository;
+    NovelBoardRepository novelBoardRepository;
 
     @BeforeEach
     void setUp() {
-        novelRepository = new FakeNovelRepository();
-        sut = new NovelBoardCreator(novelRepository,
+        novelBoardRepository = new FakeNovelBoardRepository();
+        sut = new NovelBoardCreator(novelBoardRepository,
                                     new FakeIdGenerator(NOVEL_BOARD_ID.getId()));
     }
 
@@ -29,7 +29,7 @@ class NovelBoardCreatorTest {
 
         sut.create(command);
 
-        assertThat(novelRepository.findBy(NOVEL_BOARD_ID).getNovelSize()).isEqualTo(0);
+        assertThat(novelBoardRepository.findBy(NOVEL_BOARD_ID).getNovelSize()).isEqualTo(0);
     }
 
     @Nested

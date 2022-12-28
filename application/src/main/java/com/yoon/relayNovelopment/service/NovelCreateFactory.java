@@ -12,16 +12,16 @@ public class NovelCreateFactory {
     private final IdGenerator idGenerator;
 
     public Novel createForRelay(NovelBoard novelBoard, NovelCommand command) {
-        NovelKey parentId = ParentNovelFinder.getParentBy(novelBoard);
+        NovelKey parentKey = ParentNovelFinder.getParentBy(novelBoard);
 
-        return Novel.of(RelayNovelKey.of(idGenerator.getKey(novelBoard.getNovelBoardId(), command.getTitle())), parentId,
+        return Novel.of(RelayNovelKey.of(idGenerator.getKey(novelBoard.getNovelBoardId(), command.getTitle())), parentKey,
                         command.getWriterId(), command.getTitle(), command.getContent());
     }
 
     public Novel createForFork(NovelBoard novelBoard, NovelCommand command) {
-        NovelKey parentId = ParentNovelFinder.getParentForForkBy(novelBoard);
+        NovelKey parentKey = ParentNovelFinder.getParentForForkBy(novelBoard);
 
-        return Novel.of(RelayNovelKey.of(idGenerator.getKey(novelBoard.getNovelBoardId(), command.getTitle())), parentId,
+        return Novel.of(RelayNovelKey.of(idGenerator.getKey(novelBoard.getNovelBoardId(), command.getTitle())), parentKey,
                 command.getWriterId(), command.getTitle(), command.getContent());
     }
 }

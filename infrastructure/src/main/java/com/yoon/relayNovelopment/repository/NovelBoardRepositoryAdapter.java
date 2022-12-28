@@ -2,7 +2,7 @@ package com.yoon.relayNovelopment.repository;
 
 import com.yoon.relayNovelopment.domain.NovelBoard;
 import com.yoon.relayNovelopment.domain.NovelBoardId;
-import com.yoon.relayNovelopment.domain.NovelRepository;
+import com.yoon.relayNovelopment.domain.NovelBoardRepository;
 import com.yoon.relayNovelopment.entity.SpringJdbcNovelBoard;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 
 @Repository
 @RequiredArgsConstructor
-public class NovelRepositoryAdapter implements NovelRepository {
+public class NovelBoardRepositoryAdapter implements NovelBoardRepository {
 
     private final SpringJdbcNovelRepository repository;
 

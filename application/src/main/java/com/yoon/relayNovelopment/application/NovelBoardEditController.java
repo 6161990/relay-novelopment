@@ -3,7 +3,7 @@ package com.yoon.relayNovelopment.application;
 import com.yoon.relayNovelopment.domain.NovelBoardId;
 import com.yoon.relayNovelopment.service.NovelBoardEditor;
 import com.yoon.relayNovelopment.service.NovelCommand;
-import com.yoon.relayNovelopment.service.NovelEditorCommand;
+import com.yoon.relayNovelopment.service.NovelEditCommand;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,7 +14,7 @@ import java.net.URISyntaxException;
 
 @RestController
 @RequiredArgsConstructor
-public class NovelBoardEditorController {
+public class NovelBoardEditController {
 
     private final NovelBoardEditor novelBoardEditor;
     private final CommandFactory commandFactory;
@@ -24,7 +24,7 @@ public class NovelBoardEditorController {
                                    @Valid @RequestBody NovelCreateRequest novelCreateRequest) throws URISyntaxException {
 
         NovelCommand novelEditorCommand = commandFactory.createBy(id, novelCreateRequest);
-        novelBoardEditor.relay((NovelEditorCommand) novelEditorCommand);
+        novelBoardEditor.relay((NovelEditCommand) novelEditorCommand);
 
         URI location = new URI("/novelBoard/"+ id);
         return ResponseEntity.created(location).body("{}");
@@ -35,7 +35,7 @@ public class NovelBoardEditorController {
                                   @Valid @RequestBody NovelCreateRequest novelCreateRequest) throws URISyntaxException {
 
         NovelCommand novelEditorCommand = commandFactory.createBy(id, novelCreateRequest);
-        novelBoardEditor.fork((NovelEditorCommand) novelEditorCommand);
+        novelBoardEditor.fork((NovelEditCommand) novelEditorCommand);
 
         URI location = new URI("/novelBoard/"+ id);
         return ResponseEntity.created(location).body("{}");

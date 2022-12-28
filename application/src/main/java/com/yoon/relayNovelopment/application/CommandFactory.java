@@ -6,7 +6,7 @@ import com.yoon.relayNovelopment.domain.Title;
 import com.yoon.relayNovelopment.domain.WriterId;
 import com.yoon.relayNovelopment.service.NovelCommand;
 import com.yoon.relayNovelopment.service.NovelCreateCommand;
-import com.yoon.relayNovelopment.service.NovelEditorCommand;
+import com.yoon.relayNovelopment.service.NovelEditCommand;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -17,6 +17,6 @@ public class CommandFactory {
     }
 
     public NovelCommand createBy(NovelBoardId id, NovelCreateRequest request) {
-        return new NovelEditorCommand(id, WriterId.of(request.getWriterId()), Title.of(request.getTitle()), Content.of(request.getContent()));
+        return new NovelEditCommand(id, WriterId.of(request.getWriterId()), Title.of(request.getTitle()), Content.of(request.getContent()));
     }
 }

@@ -11,7 +11,7 @@ import static org.valid4j.Validation.validate;
 @RequiredArgsConstructor
 public class NovelBoardCreator {
 
-    private final NovelRepository repository;
+    private final NovelBoardRepository repository;
     private final IdGenerator idGenerator;
 
     public void create(NovelCommand command) {

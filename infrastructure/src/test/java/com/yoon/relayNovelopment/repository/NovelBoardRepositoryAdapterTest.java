@@ -15,14 +15,14 @@ import java.util.stream.Collectors;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
 
-class NovelRepositoryAdapterTest {
+class NovelBoardRepositoryAdapterTest {
 
-    NovelRepositoryAdapter sut;
+    NovelBoardRepositoryAdapter sut;
 
     SpringJdbcNovelRepository repository = mock(SpringJdbcNovelRepository.class);
     @BeforeEach
     void setUp() {
-        sut = new NovelRepositoryAdapter(repository);
+        sut = new NovelBoardRepositoryAdapter(repository);
     }
 
     @Test

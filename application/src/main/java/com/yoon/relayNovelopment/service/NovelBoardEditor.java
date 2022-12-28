@@ -10,10 +10,10 @@ import java.util.Objects;
 @RequiredArgsConstructor
 public class NovelBoardEditor {
 
-    private final NovelRepository repository;
+    private final NovelBoardRepository repository;
     private final NovelCreateFactory createFactory;
 
-    public void relay(NovelEditorCommand command) {
+    public void relay(NovelEditCommand command) {
         NovelBoard novelBoard = repository.findBy(command.getNovelBoardId());
 
         if (Objects.isNull(novelBoard)){
@@ -26,7 +26,7 @@ public class NovelBoardEditor {
         repository.save(novelBoard);
     }
 
-    public void fork(NovelEditorCommand command){
+    public void fork(NovelEditCommand command){
         NovelBoard novelBoard = repository.findBy(command.getNovelBoardId());
 
         if (Objects.isNull(novelBoard)){

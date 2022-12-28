@@ -12,32 +12,32 @@ class NovelBoardEditorTest {
 
     NovelBoardEditor sut;
 
-    NovelRepository novelRepository;
+    NovelBoardRepository novelBoardRepository;
 
     @BeforeEach
     void setUp() {
-        novelRepository = new FakeNovelRepository();
-        sut = new NovelBoardEditor(novelRepository,
+        novelBoardRepository = new FakeNovelBoardRepository();
+        sut = new NovelBoardEditor(novelBoardRepository,
                                     new NovelCreateFactory(new FakeIdGenerator("any")));
     }
 
     @Test
     void relay() {
-        NovelEditorCommand command = new NovelEditorCommand(NOVEL_BOARD_ID, WriterId.of("writerId"), Title.of("Title"), Content.of("value"));
+        NovelEditCommand command = new NovelEditCommand(NOVEL_BOARD_ID, WriterId.of("writerId"), Title.of("Title"), Content.of("value"));
 
         sut.relay(command);
 
-        assertThat(novelRepository.findBy(NOVEL_BOARD_ID).getNovelSize()).isEqualTo(1);
+        assertThat(novelBoardRepository.findBy(NOVEL_BOARD_ID).getNovelSize()).isEqualTo(1);
     }
 
     @Test
     void fork() {
-        NovelEditorCommand command = new NovelEditorCommand(NOVEL_BOARD_ID, WriterId.of("writerId"), Title.of("Title"), Content.of("value"));
+        NovelEditCommand command = new NovelEditCommand(NOVEL_BOARD_ID, WriterId.of("writerId"), Title.of("Title"), Content.of("value"));
         sut.relay(command);
 
-        NovelEditorCommand command2 = new NovelEditorCommand(NOVEL_BOARD_ID, WriterId.of("writerId2"), Title.of("Title2"), Content.of("value"));
+        NovelEditCommand command2 = new NovelEditCommand(NOVEL_BOARD_ID, WriterId.of("writerId2"), Title.of("Title2"), Content.of("value"));
         sut.fork(command2);
 
-        assertThat(novelRepository.findBy(NOVEL_BOARD_ID).getNovelSize()).isEqualTo(2);
+        assertThat(novelBoardRepository.findBy(NOVEL_BOARD_ID).getNovelSize()).isEqualTo(2);
     }
 }

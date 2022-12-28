@@ -4,11 +4,10 @@ import com.yoon.relayNovelopment.domain.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import static org.valid4j.Validation.validate;
 
-public class FakeNovelRepository implements NovelRepository {
+public class FakeNovelBoardRepository implements NovelBoardRepository {
 
     List<NovelBoard> novelBoards = new ArrayList<>();
 

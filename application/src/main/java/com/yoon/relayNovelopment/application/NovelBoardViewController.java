@@ -10,7 +10,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-public class NovelBoardViewerController {
+public class NovelBoardViewController {
 
     private final NovelBoardViewer novelBoardViewer;
 

@@ -18,8 +18,8 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@WebMvcTest(NovelBoardEditorController.class)
-class NovelBoardEditorControllerTest {
+@WebMvcTest(NovelBoardEditController.class)
+class NovelBoardEditControllerTest {
 
     @Autowired
     MockMvc mvc;
