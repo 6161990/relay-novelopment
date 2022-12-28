@@ -11,6 +11,6 @@ public class ParentNovelFinder {
     }
 
     public static NovelKey getParentForForkBy(NovelBoard novelBoard) {
-        return novelBoard.getNovels().get(novelBoard.getNovelSize() - 1).getNovelKey();
+        return novelBoard.getNovels().get(novelBoard.getNovelSize() - 1).getParentNovelKey();
     }
 }

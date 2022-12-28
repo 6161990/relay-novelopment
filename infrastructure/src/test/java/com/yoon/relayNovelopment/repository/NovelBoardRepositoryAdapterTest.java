@@ -2,8 +2,6 @@ package com.yoon.relayNovelopment.repository;
 
 import com.yoon.relayNovelopment.domain.*;
 import com.yoon.relayNovelopment.entity.SpringJdbcNovelBoard;
-import static org.assertj.core.api.Assertions.assertThat;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -12,6 +10,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
 

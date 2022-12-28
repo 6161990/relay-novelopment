@@ -1,6 +1,9 @@
 package com.yoon.relayNovelopment.entity;
 
-import com.yoon.relayNovelopment.domain.*;
+import com.yoon.relayNovelopment.domain.NovelBoard;
+import com.yoon.relayNovelopment.domain.NovelBoardId;
+import com.yoon.relayNovelopment.domain.Novels;
+import com.yoon.relayNovelopment.domain.Opening;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
