@@ -1,9 +1,9 @@
 # relay-novelopment
 
 ### Diagram
-![2022-12-28_15-12-14.jpeg](..%2F..%2FDesktop%2Fdevelop%2Frelay-novelopment%2F2022-12-28_15-12-14.jpeg)
+![2022-12-28_15-12-14.jpeg](/Users/6161990src/6161990/relay-novelopment/2022-12-28_15-12-14.jpeg)
 
-![2022-12-28_13-57-16.jpeg](..%2F..%2FDesktop%2Fdevelop%2Frelay-novelopment%2F2022-12-28_13-57-16.jpeg)
+![2022-12-28_13-57-16.jpeg](/Users/6161990src/6161990/relay-novelopment/2022-12-28_13-57-16.jpeg)
 
 ### MVP
 - User 는 회원가입을 할 수 있다.
