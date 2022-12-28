@@ -9,15 +9,15 @@ import static org.valid4j.Validation.validate;
 @Value(staticConstructor = "of")
 public class Novel {
     RelayNovelKey relayNovelKey;
-    NovelKey novelKey;
+    NovelKey parentNovelKey;
     WriterId writerId;
     Title title;
     Content content;
 
-    private Novel(RelayNovelKey relayNovelKey, NovelKey novelKey, WriterId writerId, Title title, Content content) {
-        preValid(relayNovelKey, novelKey, writerId, title, content);
+    private Novel(RelayNovelKey relayNovelKey, NovelKey parentNovelKey, WriterId writerId, Title title, Content content) {
+        preValid(relayNovelKey, parentNovelKey, writerId, title, content);
         this.relayNovelKey = relayNovelKey;
-        this.novelKey = novelKey;
+        this.parentNovelKey = parentNovelKey;
         this.writerId = writerId;
         this.title = title;
         this.content = content;

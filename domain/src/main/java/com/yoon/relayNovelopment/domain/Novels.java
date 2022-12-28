@@ -17,7 +17,7 @@ public class Novels {
     }
 
     public int getSameParentSizeBy(NovelKey id) {
-        return (int) novels.stream().filter(i -> i.getNovelKey().equals(id)).count();
+        return (int) novels.stream().filter(i -> i.getParentNovelKey().equals(id)).count();
     }
 
     public int size() {
@@ -25,7 +25,7 @@ public class Novels {
     }
 
     public boolean existSameParent(NovelKey parentNovelKey) {
-        return novels.stream().anyMatch(e->e.getNovelKey().equals(parentNovelKey));
+        return novels.stream().anyMatch(e->e.getParentNovelKey().equals(parentNovelKey));
     }
 
     public boolean isNotExist(WriterId writerId) {

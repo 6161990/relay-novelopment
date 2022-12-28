@@ -7,7 +7,7 @@ import java.util.Objects;
 import static org.valid4j.Validation.validate;
 
 @Value(staticConstructor = "of")
-public class RelayNovelKey implements NovelKey {
+public class RelayNovelKey extends NovelKey {
     String key;
 
     private RelayNovelKey(String key) {

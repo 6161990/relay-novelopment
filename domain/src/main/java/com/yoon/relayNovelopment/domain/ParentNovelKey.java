@@ -7,7 +7,7 @@ import java.util.Objects;
 import static org.valid4j.Validation.validate;
 
 @Value(staticConstructor = "of")
-public class ParentNovelKey implements NovelKey {
+public class ParentNovelKey extends NovelKey {
     String key;
 
     private ParentNovelKey(String key) {
