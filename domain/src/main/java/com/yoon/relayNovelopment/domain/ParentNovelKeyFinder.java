@@ -1,8 +1,8 @@
 package com.yoon.relayNovelopment.domain;
 
-public class ParentNovelFinder {
+public class ParentNovelKeyFinder {
 
-    public static NovelKey getParentBy(NovelBoard novelBoard) {
+    public NovelKey getParentBy(NovelBoard novelBoard) {
         if(novelBoard.getNovelSize() == 0) {
             return novelBoard.getOpening().getOpeningKey();
         } else {
@@ -10,7 +10,7 @@ public class ParentNovelFinder {
         }
     }
 
-    public static NovelKey getParentForForkBy(NovelBoard novelBoard) {
+    public NovelKey getParentForForkBy(NovelBoard novelBoard) {
         return novelBoard.getNovels().get(novelBoard.getNovelSize() - 1).getParentNovelKey();
     }
 }

@@ -10,16 +10,17 @@ import org.springframework.stereotype.Service;
 public class NovelCreateFactory {
 
     private final IdGenerator idGenerator;
+    private final ParentNovelKeyFinder parentNovelKeyFinder;
 
     public Novel createForRelay(NovelBoard novelBoard, NovelCommand command) {
-        NovelKey parentKey = ParentNovelFinder.getParentBy(novelBoard);
+        NovelKey parentKey = parentNovelKeyFinder.getParentBy(novelBoard);
 
         return Novel.of(RelayNovelKey.of(idGenerator.getKey(novelBoard.getNovelBoardId(), command.getTitle())), parentKey,
                         command.getWriterId(), command.getTitle(), command.getContent());
     }
 
     public Novel createForFork(NovelBoard novelBoard, NovelCommand command) {
-        NovelKey parentKey = ParentNovelFinder.getParentForForkBy(novelBoard);
+        NovelKey parentKey = parentNovelKeyFinder.getParentForForkBy(novelBoard);
 
         return Novel.of(RelayNovelKey.of(idGenerator.getKey(novelBoard.getNovelBoardId(), command.getTitle())), parentKey,
                 command.getWriterId(), command.getTitle(), command.getContent());

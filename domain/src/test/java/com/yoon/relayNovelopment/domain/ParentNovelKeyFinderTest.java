@@ -6,20 +6,20 @@ import org.junit.jupiter.api.Test;
 import static com.yoon.relayNovelopment.domain.NovelBoardBuilderForTest.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
-class ParentNovelFinderTest {
+class ParentNovelKeyFinderTest {
 
     private static final OpeningKey ANY_OPENING_KEY = OpeningKey.of("openKey");
     private static final RelayNovelKey FIRST_NOVEL_KEY = relayKey("novelKey");
     private static final RelayNovelKey SECOND_NOVEL_KEY2 = relayKey("novelKey2");
 
     private static NovelKey prevParentKey;
-    ParentNovelFinder sut;
+    ParentNovelKeyFinder sut;
 
     NovelBoardBuilderForTest novelBoardBuilderForTest;
 
     @BeforeEach
     void setUp() {
-        sut = new ParentNovelFinder();
+        sut = new ParentNovelKeyFinder();
         novelBoardBuilderForTest = NovelBoardBuilderForTest.builder();
     }
 

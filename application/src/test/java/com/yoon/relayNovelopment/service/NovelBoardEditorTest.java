@@ -18,7 +18,7 @@ class NovelBoardEditorTest {
     void setUp() {
         novelBoardRepository = new FakeNovelBoardRepository();
         sut = new NovelBoardEditor(novelBoardRepository,
-                                    new NovelCreateFactory(new FakeIdGenerator("any")));
+                                    new NovelCreateFactory(new FakeIdGenerator("any"), new ParentNovelKeyFinder()));
     }
 
     @Test
