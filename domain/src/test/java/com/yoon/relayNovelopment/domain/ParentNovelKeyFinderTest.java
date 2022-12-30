@@ -25,7 +25,8 @@ class ParentNovelKeyFinderTest {
 
     @Test
     void 최초_relay_될_때_parentNovelKey는_openingKey_다() {
-        NovelBoard board = novelBoardBuilderForTest.opening(ANY_OPENING_KEY).build();
+        NovelBoard board = novelBoardBuilderForTest
+                .opening(ANY_OPENING_KEY).build();
 
         NovelKey parentKey = sut.getParentBy(board);
         board.relay(novel(FIRST_NOVEL_KEY, parentKey));

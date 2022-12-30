@@ -47,11 +47,6 @@ class NovelBoardBuilderForTest {
         return this;
     }
 
-    public NovelBoardBuilderForTest fork(Novel novel) {
-        this.novel = novel;
-        return this;
-    }
-
     static Content content(String content) {
         return Content.of(content);
     }
