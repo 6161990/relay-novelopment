@@ -19,6 +19,6 @@ public class DefaultIdGenerator implements IdGenerator {
 
     @Override
     public String getKey(NovelBoardId novelBoardId, Title title) {
-        return novelBoardId.getId().concat(":").concat(title.getName()); // FIXME : 이게 맞음?
+        return novelBoardId.getId().concat(":").concat(title.getName());
     }
 }

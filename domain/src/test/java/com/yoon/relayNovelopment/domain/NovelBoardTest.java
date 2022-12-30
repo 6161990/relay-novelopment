@@ -35,7 +35,7 @@ class NovelBoardTest {
 
     @Test
     void when_already_closed_add_relay() {
-            // TODO
+            // TODO 소설이 완성되는 것은 언제인가.
     }
 
     @Test

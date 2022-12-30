@@ -30,7 +30,7 @@ public class NovelBoard {
             init();
         }
 
-        valid(novel); // TODO maxStageSize 가 일정값 이상이면 throw = 소설이 완성되는 것은 언제인가.
+        valid(novel); // TODO isClosed 이면 throw => 소설이 완성되는 것은 언제인가.
 
         this.novels.add(novel);
     }
