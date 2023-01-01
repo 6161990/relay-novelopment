@@ -93,7 +93,7 @@ class NovelBoardTest {
 
         assertThatThrownBy(()->novelBoard.fork(novel(relayKey("id3"), openingKey("id"), writerId("writer3"), title("bang4"))))
                 .isInstanceOf(NovelBoardException.class)
-                .hasMessage("Novels is Empty");
+                .hasMessage("Novels is Empty.");
     }
 
     @Test
@@ -119,7 +119,7 @@ class NovelBoardTest {
 
         assertThatThrownBy(()-> novelBoard.relay(novel(relayKey("id3"), parentKey("id2"), writerId("writer2"), title("bang2"))))
                 .isInstanceOf(NovelBoardException.class)
-                .hasMessageContaining("Already exist the writer");
+                .hasMessageContaining("Already exist the writer.");
 
     }
 
