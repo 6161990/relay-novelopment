@@ -3,7 +3,7 @@ package com.yoon.relayNovelopment.domain;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static com.yoon.relayNovelopment.domain.NovelBoardBuilderForTest.*;
+import static com.yoon.relayNovelopment.domain.NovelBoardBuilderForTest.relayKey;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class ParentNovelKeyFinderTest {
