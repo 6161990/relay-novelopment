@@ -54,6 +54,11 @@ class NovelBoardEditControllerTest {
                 .andExpect(status().isBadRequest());
     }
 
+    @Test // TODO
+    void close() {
+
+    }
+
     @Test
     void remove() throws Exception {
         mvc.perform(delete("/remove/1004"))

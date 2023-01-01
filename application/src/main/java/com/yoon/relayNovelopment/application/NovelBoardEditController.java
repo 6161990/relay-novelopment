@@ -41,6 +41,15 @@ public class NovelBoardEditController {
         return ResponseEntity.created(location).body("{}");
     }
 
+    @PatchMapping("/close/{id}")
+    public ResponseEntity<?> close(@PathVariable("id") NovelBoardId id) throws URISyntaxException {
+
+        novelBoardEditor.close(id);
+
+        URI location = new URI("/novelBoard/"+ id);
+        return ResponseEntity.created(location).body("{}");
+    }
+
     @DeleteMapping("/remove/{id}")
     public String remove(@PathVariable("id") NovelBoardId id){
         novelBoardEditor.remove(id);

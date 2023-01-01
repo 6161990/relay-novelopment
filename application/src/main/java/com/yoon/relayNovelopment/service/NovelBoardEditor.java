@@ -39,6 +39,11 @@ public class NovelBoardEditor {
         repository.save(novelBoard);
     }
 
+    public void close(NovelBoardId id) {
+        NovelBoard novelBoard = repository.findBy(id);
+
+        novelBoard.close();
+    }
     public void remove(NovelBoardId id) {
         repository.delete(id);
     }

@@ -8,10 +8,10 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 import static org.valid4j.Validation.validate;
-
 @Getter
 @AllArgsConstructor
 public class NovelBoard {
+
     private final NovelBoardId novelBoardId;
     private final Opening opening;
     private boolean isClosed;
@@ -41,6 +41,10 @@ public class NovelBoard {
         this.novels.add(novel);
     }
 
+    public void close() {
+        this.isClosed = true;
+    }
+
     public int getNovelSize(){
         return this.novels == null ? 0 : this.novels.size();
     }
@@ -60,5 +64,6 @@ public class NovelBoard {
         validate(novels.isNotExist(novel.getTitle()),  new NovelBoardException(String.format("Already exist the title. WriterId %s, NovelBoardId %s", novel.getWriterId(), novelBoardId)));
         validate(!isClosed, new NovelBoardException("Already closed."));
     }
+
 
 }

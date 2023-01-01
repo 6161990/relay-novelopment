@@ -7,7 +7,6 @@ import static com.yoon.relayNovelopment.domain.NovelBoardBuilderForTest.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-// FIXME 가독성을 높이자.
 class NovelBoardTest {
 
     @Test
