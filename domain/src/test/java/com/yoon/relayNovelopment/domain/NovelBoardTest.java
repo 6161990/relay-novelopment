@@ -35,7 +35,16 @@ class NovelBoardTest {
 
     @Test
     void when_already_closed_add_relay() {
-            // TODO 소설이 완성되는 것은 언제인가.
+        NovelBoard novelBoard = NovelBoardBuilderForTest.builder()
+                .id("id")
+                .opening(openingKey("id"), writerId("writer"), title("bang"), content("content"))
+                .relay(novel(relayKey("id2"), openingKey("id"), writerId("writer2"), title("bang2")))
+                .isClosed(true)
+                .buildForRelay();
+
+        assertThatThrownBy(()-> novelBoard.relay(novel(relayKey("id3"), parentKey("id2"), writerId("writer4"), title("bang3"))))
+                .isInstanceOf(NovelBoardException.class)
+                .hasMessageContaining("Already closed.");
     }
 
     @Test

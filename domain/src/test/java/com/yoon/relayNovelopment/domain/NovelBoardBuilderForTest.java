@@ -7,6 +7,8 @@ class NovelBoardBuilderForTest {
     private Opening opening;
     private Novel novel;
 
+    private boolean isClosed;
+
     static NovelBoardBuilderForTest builder() {
         return new NovelBoardBuilderForTest();
     }
@@ -18,6 +20,7 @@ class NovelBoardBuilderForTest {
     NovelBoard buildForRelay() {
         this.novelBoard = new NovelBoard(novelBoardId, opening);
         novelBoard.relay(novel);
+        if(isClosed){this.novelBoard.close();}
         return novelBoard;
     }
 
@@ -44,6 +47,11 @@ class NovelBoardBuilderForTest {
 
     public NovelBoardBuilderForTest relay(Novel novel) {
         this.novel = novel;
+        return this;
+    }
+
+    public NovelBoardBuilderForTest isClosed(boolean b) {
+        this.isClosed = b;
         return this;
     }
 

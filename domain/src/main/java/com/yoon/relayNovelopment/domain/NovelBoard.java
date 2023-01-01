@@ -30,7 +30,7 @@ public class NovelBoard {
             init();
         }
 
-        valid(novel); // TODO isClosed 이면 throw => 소설이 완성되는 것은 언제인가.
+        valid(novel);
 
         this.novels.add(novel);
     }
