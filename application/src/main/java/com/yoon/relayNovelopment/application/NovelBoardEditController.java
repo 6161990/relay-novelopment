@@ -47,7 +47,7 @@ public class NovelBoardEditController {
         novelBoardEditor.close(id);
 
         URI location = new URI("/novelBoard/"+ id);
-        return ResponseEntity.created(location).body("{}");
+        return ResponseEntity.ok(location);
     }
 
     @DeleteMapping("/remove/{id}")

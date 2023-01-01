@@ -54,9 +54,12 @@ class NovelBoardEditControllerTest {
                 .andExpect(status().isBadRequest());
     }
 
-    @Test // TODO
-    void close() {
+    @Test
+    void close() throws Exception {
+        mvc.perform(patch("/close/1004"))
+                .andExpect(status().isOk());
 
+        verify(novelBoardEditor).close(NovelBoardId.of("1004"));
     }
 
     @Test
