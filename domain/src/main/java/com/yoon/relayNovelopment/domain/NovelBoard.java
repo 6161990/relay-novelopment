@@ -50,9 +50,9 @@ public class NovelBoard {
     }
 
     private void validForFork(Novel novel){
-        valid(novel);
-        validate(!Objects.requireNonNull(novels).isEmpty(), new NovelBoardException("Novels is Empty"));
+        validate(Objects.nonNull(novels), new NovelBoardException("Novels is Empty"));
         validate(novels.existSameParent(novel.getParentNovelKey()), new NovelBoardException("Not Exist Same Parent Novel."));
+        valid(novel);
     }
 
     private void valid(Novel novel) {

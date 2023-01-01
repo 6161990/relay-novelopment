@@ -18,8 +18,7 @@ class NovelBoardTest {
                         title("bang"), content("content"))
                 .build();
 
-        String openingKeyValue = novelBoard.getOpening().getOpeningKey().getKey();
-        assertThat(openingKeyValue).isEqualTo("openKey");
+        assertThat(novelBoard.getOpening().getOpeningKey()).isEqualTo(OpeningKey.of("openKey"));
     }
 
     @Test
@@ -54,7 +53,7 @@ class NovelBoardTest {
         assertThat(novelBoard.getNovels().getSameParentSizeBy(openingKey("id"))).isEqualTo(2);
     }
 
-    @DisplayName("fork->relay")
+    @DisplayName("relay->fork->relay")
     @Test
     void relay_at_fork() {
         NovelBoard novelBoard = NovelBoardBuilderForTest.builder()
@@ -64,7 +63,6 @@ class NovelBoardTest {
                 .buildForRelay();
 
         novelBoard.fork(novel(relayKey("id3"), openingKey("id"), writerId("writer3"), title("bang4")));
-
         novelBoard.relay(novel(relayKey("id4"), parentKey("id3"), writerId("writer4"), title("bang5")));
 
         assertThat(novelBoard.getNovelSize()).isEqualTo(3);
@@ -84,6 +82,18 @@ class NovelBoardTest {
         novelBoard.fork(novel(relayKey("id5"), parentKey("id3"), writerId("writer5"), title("bang6")));
 
         assertThat(novelBoard.getNovelSize()).isEqualTo(4);
+    }
+
+    @Test
+    void when_not_exist_relay_before_fork() {
+        NovelBoard novelBoard = NovelBoardBuilderForTest.builder()
+                .id("id")
+                .opening(openingKey("id"), writerId("writer"), title("bang"), content("content"))
+                .build();
+
+        assertThatThrownBy(()->novelBoard.fork(novel(relayKey("id3"), openingKey("id"), writerId("writer3"), title("bang4"))))
+                .isInstanceOf(NovelBoardException.class)
+                .hasMessage("Novels is Empty");
     }
 
     @Test
