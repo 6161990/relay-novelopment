@@ -19,6 +19,7 @@ public class NovelBoardCreateController {
     private final NovelBoardCreator novelBoardCreator;
     private final CommandFactory commandFactory;
 
+   /** 소설 보드 생성 api */
     @PostMapping("/create/novelBoard")
     public ResponseEntity<?> create(@Valid @RequestBody NovelCreateRequest request) throws URISyntaxException {
         NovelCommand command = commandFactory.createBy(request);

@@ -14,8 +14,11 @@ repositories {
 
 dependencies {
     implementation project(':domain')
+    implementation project(':infrastructure')
     implementation 'org.valid4j:valid4j:0.5.0'
 
+    implementation 'org.springdoc:springdoc-openapi-ui:1.6.14'
+    implementation 'org.springdoc:springdoc-openapi-javadoc:1.6.14'
     implementation 'org.springframework.boot:spring-boot-starter-validation'
     implementation 'org.springframework.boot:spring-boot-starter-web'
 
@@ -26,6 +29,7 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
     annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor:2.7.2'
+    annotationProcessor 'com.github.therapi:therapi-runtime-javadoc-scribe:0.15.0'
 }
 
 test {
