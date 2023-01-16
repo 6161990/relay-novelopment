@@ -2,6 +2,7 @@ package com.yoon.relayNovelopment.service
 
 import com.yoon.relayNovelopment.domain.Issue
 import com.yoon.relayNovelopment.domain.IssueRepository
+import com.yoon.relayNovelopment.domain.enums.IssueStatus
 import com.yoon.relayNovelopment.model.IssueRequest
 import com.yoon.relayNovelopment.model.IssueResponse
 import org.springframework.stereotype.Service
@@ -26,4 +27,10 @@ class IssueService(
 
         return IssueResponse(issueRepository.save(issue))
     }
+
+    @Transactional(readOnly = true)
+    fun getAll(status: IssueStatus): List<IssueResponse>? =
+        issueRepository.findAllByStatusOrderByCreatedAtDesc(status)
+            ?.map { IssueResponse(it) }
+
 }
