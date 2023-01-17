@@ -5,6 +5,7 @@ import com.yoon.relayNovelopment.domain.enums.IssueStatus
 import com.yoon.relayNovelopment.model.IssueRequest
 import com.yoon.relayNovelopment.service.IssueService
 import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
@@ -29,5 +30,10 @@ class IssueController(
         @RequestParam(required = false, defaultValue = "TODO") status: IssueStatus
     ) = issueService.getAll(status)
 
+    @GetMapping("/{id}")
+    fun get(
+        authUser: AuthUser,
+        @PathVariable("id") id : Long
+    ) = issueService.get(id)
 
 }
