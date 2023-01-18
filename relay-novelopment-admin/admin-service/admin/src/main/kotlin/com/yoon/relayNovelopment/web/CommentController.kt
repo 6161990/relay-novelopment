@@ -4,6 +4,7 @@ import com.yoon.relayNovelopment.config.AuthUser
 import com.yoon.relayNovelopment.model.CommentRequest
 import com.yoon.relayNovelopment.model.CommentResponse
 import com.yoon.relayNovelopment.service.CommentService
+import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
 
 @RestController
@@ -28,4 +29,11 @@ class CommentController(
         @RequestBody request: CommentRequest,
     ) = commentService.edit(authUser.userId, id, request)
 
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    fun delete(
+        authUser: AuthUser,
+        @PathVariable issueId: Long,
+        @PathVariable id : Long,
+    ) = commentService.delete(issueId, id, authUser.userId)
 }
