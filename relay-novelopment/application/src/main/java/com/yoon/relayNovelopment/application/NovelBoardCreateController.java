@@ -16,6 +16,7 @@ import java.net.URISyntaxException;
 @RequiredArgsConstructor
 public class NovelBoardCreateController {
 
+
     private final NovelBoardCreator novelBoardCreator;
     private final CommandFactory commandFactory;
 
