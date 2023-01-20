@@ -13,7 +13,7 @@ import static org.valid4j.Validation.validate;
 public class NovelBoard {
 
     private final NovelBoardId novelBoardId;
-    private final Opening opening;
+    private Opening opening;
     private boolean isClosed;
     private Novels novels;
     private LocalDateTime createdAt;
@@ -41,6 +41,11 @@ public class NovelBoard {
         this.novels.add(novel);
     }
 
+    // TODO : test
+    public void editOpening(OpeningKey openingKey, WriterId writerId, Title title, Content content) {
+        this.opening = Opening.of(openingKey, writerId, title, content);
+    }
+
     public void close() {
         this.isClosed = true;
     }
@@ -64,6 +69,5 @@ public class NovelBoard {
         validate(novels.isNotExist(novel.getTitle()),  new NovelBoardException(String.format("Already exist the title. WriterId %s, NovelBoardId %s", novel.getWriterId(), novelBoardId)));
         validate(!isClosed, new NovelBoardException("Already closed."));
     }
-
 
 }

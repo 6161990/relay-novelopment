@@ -22,6 +22,7 @@ public class NovelBoardCreateController {
    /** 소설 보드 생성 api */
     @PostMapping("/create/novelBoard")
     public ResponseEntity<?> create(@Valid @RequestBody NovelCreateRequest request) throws URISyntaxException {
+        // TODO : admin 만 허용하도록 수정
         NovelCommand command = commandFactory.createBy(request);
         novelBoardCreator.create(command);
 

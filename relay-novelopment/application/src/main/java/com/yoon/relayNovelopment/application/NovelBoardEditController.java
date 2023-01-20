@@ -41,9 +41,21 @@ public class NovelBoardEditController {
         return ResponseEntity.created(location).body("{}");
     }
 
+    // TODO : test
+    @PatchMapping("/edit/{id}")
+    public ResponseEntity<?> edit(@PathVariable("id") NovelBoardId id,
+                                   @Valid @RequestBody NovelCreateRequest novelCreateRequest) throws URISyntaxException {
+        // TODO : admin 만 허용하도록 수정
+        NovelCommand novelEditorCommand = commandFactory.createBy(id, novelCreateRequest);
+        novelBoardEditor.edit((NovelEditCommand) novelEditorCommand);
+
+        URI location = new URI("/novelBoard/"+ id);
+        return ResponseEntity.created(location).body("{}");
+    }
+
     @PatchMapping("/close/{id}")
     public ResponseEntity<?> close(@PathVariable("id") NovelBoardId id) throws URISyntaxException {
-
+        // TODO : admin 만 허용하도록 수정
         novelBoardEditor.close(id);
 
         URI location = new URI("/novelBoard/"+ id);

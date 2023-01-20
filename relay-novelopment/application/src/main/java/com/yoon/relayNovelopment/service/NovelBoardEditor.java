@@ -6,6 +6,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.Objects;
 
+import static org.valid4j.Validation.validate;
+
 @Service
 @RequiredArgsConstructor
 public class NovelBoardEditor {
@@ -15,10 +17,7 @@ public class NovelBoardEditor {
 
     public void relay(NovelEditCommand command) {
         NovelBoard novelBoard = repository.findBy(command.getNovelBoardId());
-
-        if (Objects.isNull(novelBoard)){
-            throw new NovelBoardException(String.format("This NovelBoard Not Found. NovelBoardId is %s.", command.getNovelBoardId()));
-        }
+        validNonNull(command, novelBoard);
 
         Novel novel = createFactory.createForRelay(novelBoard, command); // create - relay
         novelBoard.relay(novel);
@@ -28,10 +27,7 @@ public class NovelBoardEditor {
 
     public void fork(NovelEditCommand command){
         NovelBoard novelBoard = repository.findBy(command.getNovelBoardId());
-
-        if (Objects.isNull(novelBoard)){
-            throw new NovelBoardException(String.format("This NovelBoard Not Found. NovelBoardId is %s.", command.getNovelBoardId()));
-        }
+        validNonNull(command, novelBoard);
 
         Novel novel = createFactory.createForFork(novelBoard, command); // createForFork - fork
         novelBoard.fork(novel);
@@ -44,7 +40,27 @@ public class NovelBoardEditor {
 
         novelBoard.close();
     }
+
+    // TODO : test
+    public void edit(NovelEditCommand command) {
+        NovelBoard novelBoard = repository.findBy(command.getNovelBoardId());
+        validNonNull(command, novelBoard);
+
+        Opening opening = novelBoard.getOpening();
+        // TODO : test validate
+        validate(command.getWriterId().equals(novelBoard.getOpening().getWriterId()), new NovelBoardException(String.format("WriterId Not Equals. WriterId is %s.", command.getWriterId())));
+
+        novelBoard.editOpening(opening.getOpeningKey(), opening.getWriterId(), command.getTitle(), command.getContent());
+
+        repository.save(novelBoard);
+    }
+
     public void remove(NovelBoardId id) {
         repository.delete(id);
     }
+
+    private void validNonNull(NovelEditCommand command, NovelBoard novelBoard) {
+        validate(Objects.nonNull(novelBoard), new NovelBoardException(String.format("This NovelBoard Not Found. NovelBoardId is %s.", command.getNovelBoardId())));
+    }
+
 }
