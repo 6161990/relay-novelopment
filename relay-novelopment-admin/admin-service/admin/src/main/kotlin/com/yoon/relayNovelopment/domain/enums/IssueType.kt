@@ -1,7 +1,7 @@
 package com.yoon.relayNovelopment.domain.enums
 
 enum class IssueType {
-    BUG, TASK, APPROVAL_RELAY;
+    BUG, TASK, APPLY_ARTICLE_RELAY, APPLY_ARTICLE_EDIT;
 
     companion object {
         // 이 방법도 있지만,
@@ -13,7 +13,6 @@ enum class IssueType {
 }
 
 fun main() {
-
     val bug1 = IssueType.of("bug")
     val bug = IssueType.BUG
     if(bug1 == bug){
