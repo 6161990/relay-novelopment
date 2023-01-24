@@ -13,6 +13,7 @@ import static org.valid4j.Validation.validate;
 public class NovelBoard {
 
     private final NovelBoardId novelBoardId;
+    private final Genre genre;
     private Opening opening;
     private boolean isClosed;
     private Articles articles;
@@ -20,9 +21,10 @@ public class NovelBoard {
     private LocalDateTime deleteAt;
     private Long version;
 
-    public NovelBoard(NovelBoardId novelBoardId, Opening opening) {
+    public NovelBoard(NovelBoardId novelBoardId, Opening opening, Genre genre) {
         this.novelBoardId = novelBoardId;
         this.opening = opening;
+        this.genre = genre;
     }
 
     public void relay(Article article) {

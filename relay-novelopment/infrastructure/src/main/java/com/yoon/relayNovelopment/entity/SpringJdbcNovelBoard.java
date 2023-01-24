@@ -1,9 +1,6 @@
 package com.yoon.relayNovelopment.entity;
 
-import com.yoon.relayNovelopment.domain.NovelBoard;
-import com.yoon.relayNovelopment.domain.NovelBoardId;
-import com.yoon.relayNovelopment.domain.Articles;
-import com.yoon.relayNovelopment.domain.Opening;
+import com.yoon.relayNovelopment.domain.*;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
@@ -26,6 +23,9 @@ public class SpringJdbcNovelBoard {
     Opening opening;
 
     @With
+    Genre genre;
+
+    @With
     boolean isClosed;
 
     @With
@@ -44,6 +44,7 @@ public class SpringJdbcNovelBoard {
         return SpringJdbcNovelBoard.builder()
                 .novelBoardId(novelBoard.getNovelBoardId())
                 .opening(novelBoard.getOpening())
+                .genre(novelBoard.getGenre())
                 .isClosed(novelBoard.isClosed())
                 .articles(novelBoard.getArticles())
                 .version(novelBoard.getVersion())
@@ -55,6 +56,7 @@ public class SpringJdbcNovelBoard {
         return new NovelBoard(
                 entity.getNovelBoardId(),
                 entity.getOpening(),
+                entity.getGenre(),
                 entity.isClosed(),
                 entity.getArticles(),
                 entity.getCreatedAt(),

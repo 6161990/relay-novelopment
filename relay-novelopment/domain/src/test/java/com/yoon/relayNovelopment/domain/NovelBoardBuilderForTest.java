@@ -14,18 +14,18 @@ class NovelBoardBuilderForTest {
     }
 
     NovelBoard build() {
-        this.novelBoard = new NovelBoard(novelBoardId, opening);
+        this.novelBoard = new NovelBoard(novelBoardId, opening, Genre.NOVEL);
         return novelBoard;
     }
     NovelBoard buildForRelay() {
-        this.novelBoard = new NovelBoard(novelBoardId, opening);
+        this.novelBoard = new NovelBoard(novelBoardId, opening, Genre.NOVEL);
         novelBoard.relay(article);
         if(isClosed){this.novelBoard.close();}
         return novelBoard;
     }
 
     NovelBoard buildForFork() {
-        this.novelBoard = new NovelBoard(novelBoardId, opening);
+        this.novelBoard = new NovelBoard(novelBoardId, opening, Genre.NOVEL);
         novelBoard.fork(article);
         return novelBoard;
     }
