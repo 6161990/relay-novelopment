@@ -7,11 +7,11 @@ import java.util.Objects;
 import static org.valid4j.Validation.validate;
 
 @Value(staticConstructor = "of")
-public class RelayNovelKey extends NovelKey {
+public class ParentArticleKey extends ArticleKey {
     String key;
 
-    private RelayNovelKey(String key) {
-        validate(Objects.nonNull(key), new NovelBoardException("RelayNovelKey Value is Null."));
+    private ParentArticleKey(String key) {
+        validate(Objects.nonNull(key), new NovelBoardException("ParentNovelKey Value is Null."));
         this.key = key;
     }
 

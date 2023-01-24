@@ -7,7 +7,7 @@ import java.util.Objects;
 import static org.valid4j.Validation.validate;
 
 @Value(staticConstructor = "of")
-public class OpeningKey extends NovelKey {
+public class OpeningKey extends ArticleKey {
     String key;
 
     private OpeningKey(String key) {

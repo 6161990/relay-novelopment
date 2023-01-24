@@ -6,13 +6,13 @@ import org.junit.jupiter.api.Test;
 import static com.yoon.relayNovelopment.domain.NovelBoardBuilderForTest.relayKey;
 import static org.assertj.core.api.Assertions.assertThat;
 
-class ParentNovelKeyFinderTest {
+class ParentArticleKeyFinderTest {
 
     private static final OpeningKey ANY_OPENING_KEY = OpeningKey.of("openKey");
-    private static final RelayNovelKey FIRST_NOVEL_KEY = relayKey("novelKey");
-    private static final RelayNovelKey SECOND_NOVEL_KEY2 = relayKey("novelKey2");
+    private static final RelayArticleKey FIRST_NOVEL_KEY = relayKey("novelKey");
+    private static final RelayArticleKey SECOND_NOVEL_KEY2 = relayKey("novelKey2");
 
-    private static NovelKey prevParentKey;
+    private static ArticleKey prevParentKey;
     ParentNovelKeyFinder sut;
 
     NovelBoardBuilderForTest novelBoardBuilderForTest;
@@ -28,7 +28,7 @@ class ParentNovelKeyFinderTest {
         NovelBoard board = novelBoardBuilderForTest
                 .opening(ANY_OPENING_KEY).build();
 
-        NovelKey parentKey = sut.getParentBy(board);
+        ArticleKey parentKey = sut.getParentBy(board);
         board.relay(novel(FIRST_NOVEL_KEY, parentKey));
 
         assertThat(parentKey).isEqualTo(ANY_OPENING_KEY);
@@ -61,11 +61,11 @@ class ParentNovelKeyFinderTest {
         assertThat(prevParentKey).isEqualTo(ANY_OPENING_KEY);
     }
 
-    private Novel novel(RelayNovelKey id, NovelKey parentId) {
-        return Novel.of(id, parentId, WriterId.of("any"), Title.of("any"), Content.of("value"));
+    private Article novel(RelayArticleKey id, ArticleKey parentId) {
+        return Article.of(id, parentId, WriterId.of("any"), Title.of("any"), Content.of("value"), Genre.NOVEL);
     }
 
-    private Novel novel2(RelayNovelKey id, NovelKey parentId) {
-        return Novel.of(id, parentId, WriterId.of("any2"), Title.of("any2"), Content.of("value2"));
+    private Article novel2(RelayArticleKey id, ArticleKey parentId) {
+        return Article.of(id, parentId, WriterId.of("any2"), Title.of("any2"), Content.of("value2"), Genre.NOVEL);
     }
 }

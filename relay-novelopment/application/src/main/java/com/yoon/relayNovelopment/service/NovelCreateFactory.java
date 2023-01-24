@@ -12,17 +12,17 @@ public class NovelCreateFactory {
     private final IdGenerator idGenerator;
     private final ParentNovelKeyFinder parentNovelKeyFinder;
 
-    public Novel createForRelay(NovelBoard novelBoard, NovelCommand command) {
-        NovelKey parentKey = parentNovelKeyFinder.getParentBy(novelBoard);
+    public Article createForRelay(NovelBoard novelBoard, NovelCommand command) {
+        ArticleKey parentKey = parentNovelKeyFinder.getParentBy(novelBoard);
 
-        return Novel.of(RelayNovelKey.of(idGenerator.getKey(novelBoard.getNovelBoardId(), command.getTitle())), parentKey,
-                        command.getWriterId(), command.getTitle(), command.getContent());
+        return Article.of(RelayArticleKey.of(idGenerator.getKey(novelBoard.getNovelBoardId(), command.getTitle())), parentKey,
+                        command.getWriterId(), command.getTitle(), command.getContent(), command.getGenre());
     }
 
-    public Novel createForFork(NovelBoard novelBoard, NovelCommand command) {
-        NovelKey parentKey = parentNovelKeyFinder.getParentForForkBy(novelBoard);
+    public Article createForFork(NovelBoard novelBoard, NovelCommand command) {
+        ArticleKey parentKey = parentNovelKeyFinder.getParentForForkBy(novelBoard);
 
-        return Novel.of(RelayNovelKey.of(idGenerator.getKey(novelBoard.getNovelBoardId(), command.getTitle())), parentKey,
-                command.getWriterId(), command.getTitle(), command.getContent());
+        return Article.of(RelayArticleKey.of(idGenerator.getKey(novelBoard.getNovelBoardId(), command.getTitle())), parentKey,
+                command.getWriterId(), command.getTitle(), command.getContent(),  command.getGenre());
     }
 }

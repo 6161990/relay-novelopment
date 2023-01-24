@@ -20,4 +20,7 @@ public class NovelCreateRequest {
 
     @NotNull
     String content;
+
+    @NotNull
+    String genre;
 }

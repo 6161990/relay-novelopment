@@ -19,8 +19,8 @@ public class NovelBoardEditor {
         NovelBoard novelBoard = repository.findBy(command.getNovelBoardId());
         validNonNull(command, novelBoard);
 
-        Novel novel = createFactory.createForRelay(novelBoard, command); // create - relay
-        novelBoard.relay(novel);
+        Article article = createFactory.createForRelay(novelBoard, command); // create - relay
+        novelBoard.relay(article);
 
         repository.save(novelBoard);
     }
@@ -29,8 +29,8 @@ public class NovelBoardEditor {
         NovelBoard novelBoard = repository.findBy(command.getNovelBoardId());
         validNonNull(command, novelBoard);
 
-        Novel novel = createFactory.createForFork(novelBoard, command); // createForFork - fork
-        novelBoard.fork(novel);
+        Article article = createFactory.createForFork(novelBoard, command); // createForFork - fork
+        novelBoard.fork(article);
 
         repository.save(novelBoard);
     }

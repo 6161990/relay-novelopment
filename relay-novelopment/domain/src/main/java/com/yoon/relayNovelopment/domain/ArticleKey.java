@@ -1,5 +1,5 @@
 package com.yoon.relayNovelopment.domain;
 
-public class NovelKey {
+public class ArticleKey {
 
 }

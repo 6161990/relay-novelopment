@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class NovelBoardEditorTest {
+class ArticleBoardEditorTest {
 
     private final NovelBoardId NOVEL_BOARD_ID = NovelBoardId.of("boardId");
 
@@ -23,7 +23,7 @@ class NovelBoardEditorTest {
 
     @Test
     void relay() {
-        NovelEditCommand command = new NovelEditCommand(NOVEL_BOARD_ID, WriterId.of("writerId"), Title.of("Title"), Content.of("value"));
+        NovelEditCommand command = new NovelEditCommand(NOVEL_BOARD_ID, WriterId.of("writerId"), Title.of("Title"), Content.of("value"), Genre.NOVEL);
 
         sut.relay(command);
 
@@ -32,10 +32,10 @@ class NovelBoardEditorTest {
 
     @Test
     void fork() {
-        NovelEditCommand command = new NovelEditCommand(NOVEL_BOARD_ID, WriterId.of("writerId"), Title.of("Title"), Content.of("value"));
+        NovelEditCommand command = new NovelEditCommand(NOVEL_BOARD_ID, WriterId.of("writerId"), Title.of("Title"), Content.of("value"), Genre.NOVEL);
         sut.relay(command);
 
-        NovelEditCommand command2 = new NovelEditCommand(NOVEL_BOARD_ID, WriterId.of("writerId2"), Title.of("Title2"), Content.of("value"));
+        NovelEditCommand command2 = new NovelEditCommand(NOVEL_BOARD_ID, WriterId.of("writerId2"), Title.of("Title2"), Content.of("value"), Genre.NOVEL);
         sut.fork(command2);
 
         assertThat(novelBoardRepository.findBy(NOVEL_BOARD_ID).getNovelSize()).isEqualTo(2);

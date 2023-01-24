@@ -1,6 +1,7 @@
 package com.yoon.relayNovelopment.service;
 
 import com.yoon.relayNovelopment.domain.Content;
+import com.yoon.relayNovelopment.domain.Genre;
 import com.yoon.relayNovelopment.domain.Title;
 import com.yoon.relayNovelopment.domain.WriterId;
 import lombok.AllArgsConstructor;
@@ -20,5 +21,8 @@ public class NovelCreateCommand implements NovelCommand {
 
     @Valid
     Content content;
+
+    @Valid
+    Genre genre;
 
 }

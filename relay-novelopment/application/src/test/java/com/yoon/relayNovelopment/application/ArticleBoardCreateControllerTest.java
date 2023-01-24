@@ -17,7 +17,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @WebMvcTest(NovelBoardCreateController.class)
-class NovelBoardCreateControllerTest {
+class ArticleBoardCreateControllerTest {
 
     @Autowired
     MockMvc mvc;
@@ -32,12 +32,12 @@ class NovelBoardCreateControllerTest {
 
     @Test
     public void createWithValidData() throws Exception {
-        given(commandFactory.createBy(new NovelCreateRequest("writer1", "나주에 대하여", "나주는 수언의 고향이었다.")))
+        given(commandFactory.createBy(new NovelCreateRequest("writer1", "나주에 대하여", "나주는 수언의 고향이었다.", "NOVEL")))
                 .willReturn(command);
 
         mvc.perform(post("/create/novelBoard")
                     .contentType(MediaType.APPLICATION_JSON)
-                    .content("{\"writerId\":\"writer1\",\"title\":\"나주에 대하여\", \"content\":\"나주는 수언의 고향이었다.\"}"))
+                    .content("{\"writerId\":\"writer1\",\"title\":\"나주에 대하여\", \"content\":\"나주는 수언의 고향이었다.\",  \"genre\":\"NOVEL\"}"))
                 .andExpect(status().isCreated())
                 .andExpect(header().string("location", "/novelBoards/"))
                 .andExpect(content().string("{}"));

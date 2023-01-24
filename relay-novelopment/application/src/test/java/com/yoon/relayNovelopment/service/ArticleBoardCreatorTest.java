@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-class NovelBoardCreatorTest {
+class ArticleBoardCreatorTest {
 
     private final NovelBoardId NOVEL_BOARD_ID = NovelBoardId.of("boardId");
 
@@ -25,7 +25,7 @@ class NovelBoardCreatorTest {
 
     @Test
     void create() {
-        NovelCreateCommand command = new NovelCreateCommand(WriterId.of("writerId"), Title.of("Title"), Content.of("value"));
+        NovelCreateCommand command = new NovelCreateCommand(WriterId.of("writerId"), Title.of("Title"), Content.of("value"), Genre.NOVEL);
 
         sut.create(command);
 
@@ -37,7 +37,7 @@ class NovelBoardCreatorTest {
 
         @Test
         void writerId_는_null_일_수_없다() {
-            NovelCreateCommand command = new NovelCreateCommand(null, Title.of("Title"), Content.of("value"));
+            NovelCreateCommand command = new NovelCreateCommand(null, Title.of("Title"), Content.of("value"), Genre.NOVEL);
 
             assertThatThrownBy(() -> sut.create(command))
                     .isInstanceOf(NovelBoardException.class);
@@ -45,7 +45,7 @@ class NovelBoardCreatorTest {
 
         @Test
         void title_는_null_일_수_없다() {
-            NovelCreateCommand command = new NovelCreateCommand(WriterId.of("writerId"), null, Content.of("value"));
+            NovelCreateCommand command = new NovelCreateCommand(WriterId.of("writerId"), null, Content.of("value"), Genre.NOVEL);
 
             assertThatThrownBy(() -> sut.create(command))
                     .isInstanceOf(NovelBoardException.class);
@@ -53,10 +53,14 @@ class NovelBoardCreatorTest {
 
         @Test
         void content_는_null_일_수_없다() {
-            NovelCreateCommand command = new NovelCreateCommand(WriterId.of("writerId"), Title.of("Title"), null);
+            NovelCreateCommand command = new NovelCreateCommand(WriterId.of("writerId"), Title.of("Title"), null, Genre.NOVEL);
 
             assertThatThrownBy(() -> sut.create(command))
                     .isInstanceOf(NovelBoardException.class);
+        }
+
+        @Test
+        void genre_는_null_일_수_없다() {
         }
     }
 

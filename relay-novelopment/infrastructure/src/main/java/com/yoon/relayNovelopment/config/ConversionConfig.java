@@ -1,7 +1,7 @@
 package com.yoon.relayNovelopment.config;
 
 import com.yoon.relayNovelopment.persist.NovelBoardIdConverters;
-import com.yoon.relayNovelopment.persist.NovelsConverters;
+import com.yoon.relayNovelopment.persist.ArticlesConverters;
 import com.yoon.relayNovelopment.persist.OpeningConverters;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.convert.converter.Converter;
@@ -27,8 +27,8 @@ public class ConversionConfig extends AbstractJdbcConfiguration {
         converters.add(NovelBoardIdConverters.READING);
         converters.add(NovelBoardIdConverters.WRITING);
 
-        converters.add(NovelsConverters.READING);
-        converters.add(NovelsConverters.WRITING);
+        converters.add(ArticlesConverters.READING);
+        converters.add(ArticlesConverters.WRITING);
 
         converters.add(OpeningConverters.READING);
         converters.add(OpeningConverters.WRITING);

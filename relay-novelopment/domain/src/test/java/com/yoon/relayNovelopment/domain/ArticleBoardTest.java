@@ -7,7 +7,7 @@ import static com.yoon.relayNovelopment.domain.NovelBoardBuilderForTest.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-class NovelBoardTest {
+class ArticleBoardTest {
 
     @Test
     void create_novelBoard() {
@@ -58,7 +58,7 @@ class NovelBoardTest {
         novelBoard.fork(novel(relayKey("id3"), openingKey("id"), writerId("writer3"), title("bang4")));
 
         assertThat(novelBoard.getNovelSize()).isEqualTo(2);
-        assertThat(novelBoard.getNovels().getSameParentSizeBy(openingKey("id"))).isEqualTo(2);
+        assertThat(novelBoard.getArticles().getSameParentSizeBy(openingKey("id"))).isEqualTo(2);
     }
 
     @DisplayName("relay->fork->relay")
@@ -144,8 +144,8 @@ class NovelBoardTest {
                 .hasMessageContaining("Already exist the title.");
     }
 
-    private Novel novel(RelayNovelKey id, NovelKey parentId, WriterId writerId, Title title) {
-        return Novel.of(id, parentId, writerId, title, Content.of("value"));
+    private Article novel(RelayArticleKey id, ArticleKey parentId, WriterId writerId, Title title) {
+        return Article.of(id, parentId, writerId, title, Content.of("value"), Genre.NOVEL);
     }
 
 }

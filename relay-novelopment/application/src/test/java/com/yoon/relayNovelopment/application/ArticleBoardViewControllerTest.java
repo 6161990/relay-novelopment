@@ -18,7 +18,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(NovelBoardViewController.class)
-class NovelBoardViewControllerTest {
+class ArticleBoardViewControllerTest {
 
     @Autowired
     MockMvc mvc;

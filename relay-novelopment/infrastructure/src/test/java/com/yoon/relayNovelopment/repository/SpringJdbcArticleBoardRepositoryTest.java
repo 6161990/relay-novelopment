@@ -23,7 +23,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @Transactional
 @SpringJUnitConfig(classes = {ConversionConfig.class, SpringDataJdbcConfig.class})
 @AutoConfigureEmbeddedDatabase(type = POSTGRES)
-class SpringJdbcNovelBoardRepositoryTest {
+class SpringJdbcArticleBoardRepositoryTest {
 
     private static final NovelBoardId NOVEL_BOARD_ID = NovelBoardId.of("boardId");
 
@@ -35,7 +35,7 @@ class SpringJdbcNovelBoardRepositoryTest {
         SpringJdbcNovelBoard springJdbcNovelBoard = SpringJdbcNovelBoard.builder()
                 .novelBoardId(NOVEL_BOARD_ID)
                 .opening(Opening.of(OpeningKey.of("key"), WriterId.of("writer"), Title.of("title"), Content.of("content")))
-                .novels(getNovels())
+                .articles(getNovels())
                 .isClosed(false)
                 .build();
 
@@ -62,11 +62,11 @@ class SpringJdbcNovelBoardRepositoryTest {
         assertThat(findAll.size()).isEqualTo(1);
     }
 
-    private Novels getNovels() {
-        List<Novel> novels = new ArrayList<>();
-        novels.add(Novel.of(RelayNovelKey.of("novelKey1"), ParentNovelKey.of("parentKey1"), WriterId.of("writer1"), Title.of("title1"), Content.of("content1")));
-        novels.add(Novel.of(RelayNovelKey.of("novelKey2"), ParentNovelKey.of("parentKey2"), WriterId.of("writer2"), Title.of("title2"), Content.of("content2")));
+    private Articles getNovels() {
+        List<Article> articles = new ArrayList<>();
+        articles.add(Article.of(RelayArticleKey.of("novelKey1"), ParentArticleKey.of("parentKey1"), WriterId.of("writer1"), Title.of("title1"), Content.of("content1"), Genre.NOVEL));
+        articles.add(Article.of(RelayArticleKey.of("novelKey2"), ParentArticleKey.of("parentKey2"), WriterId.of("writer2"), Title.of("title2"), Content.of("content2"), Genre.NOVEL));
 
-        return new Novels(novels);
+        return new Articles(articles);
     }
 }

@@ -15,7 +15,7 @@ public class NovelBoard {
     private final NovelBoardId novelBoardId;
     private Opening opening;
     private boolean isClosed;
-    private Novels novels;
+    private Articles articles;
     private LocalDateTime createdAt;
     private LocalDateTime deleteAt;
     private Long version;
@@ -25,20 +25,20 @@ public class NovelBoard {
         this.opening = opening;
     }
 
-    public void relay(Novel novel) {
-        if (novels == null || novels.isEmpty()){
+    public void relay(Article article) {
+        if (articles == null || articles.isEmpty()){
             init();
         }
 
-        valid(novel);
+        valid(article);
 
-        this.novels.add(novel);
+        this.articles.add(article);
     }
 
-    public void fork(Novel novel) {
-        validForFork(novel);
+    public void fork(Article article) {
+        validForFork(article);
 
-        this.novels.add(novel);
+        this.articles.add(article);
     }
 
     // TODO : test
@@ -51,22 +51,22 @@ public class NovelBoard {
     }
 
     public int getNovelSize(){
-        return this.novels == null ? 0 : this.novels.size();
+        return this.articles == null ? 0 : this.articles.size();
     }
 
     private void init() {
-        this.novels = new Novels(new ArrayList<>());
+        this.articles = new Articles(new ArrayList<>());
     }
 
-    private void validForFork(Novel novel){
-        validate(Objects.nonNull(novels), new NovelBoardException("Novels is Empty."));
-        validate(novels.existSameParent(novel.getParentNovelKey()), new NovelBoardException("Not Exist Same Parent Novel."));
-        valid(novel);
+    private void validForFork(Article article){
+        validate(Objects.nonNull(articles), new NovelBoardException("Novels is Empty."));
+        validate(articles.existSameParent(article.getParentArticleKey()), new NovelBoardException("Not Exist Same Parent Novel."));
+        valid(article);
     }
 
-    private void valid(Novel novel) {
-        validate(novels.isNotExist(novel.getWriterId()), new NovelBoardException(String.format("Already exist the writer. WriterId %s, NovelBoardId %s", novel.getWriterId(), novelBoardId)));
-        validate(novels.isNotExist(novel.getTitle()),  new NovelBoardException(String.format("Already exist the title. WriterId %s, NovelBoardId %s", novel.getWriterId(), novelBoardId)));
+    private void valid(Article article) {
+        validate(articles.isNotExist(article.getWriterId()), new NovelBoardException(String.format("Already exist the writer. WriterId %s, NovelBoardId %s", article.getWriterId(), novelBoardId)));
+        validate(articles.isNotExist(article.getTitle()),  new NovelBoardException(String.format("Already exist the title. WriterId %s, NovelBoardId %s", article.getWriterId(), novelBoardId)));
         validate(!isClosed, new NovelBoardException("Already closed."));
     }
 

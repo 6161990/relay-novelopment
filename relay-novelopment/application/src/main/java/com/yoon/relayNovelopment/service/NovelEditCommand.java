@@ -1,9 +1,6 @@
 package com.yoon.relayNovelopment.service;
 
-import com.yoon.relayNovelopment.domain.Content;
-import com.yoon.relayNovelopment.domain.NovelBoardId;
-import com.yoon.relayNovelopment.domain.Title;
-import com.yoon.relayNovelopment.domain.WriterId;
+import com.yoon.relayNovelopment.domain.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -27,4 +24,6 @@ public class NovelEditCommand implements NovelCommand {
     @Valid
     Content content;
 
+    @Valid
+    Genre genre;
 }

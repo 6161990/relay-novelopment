@@ -5,7 +5,7 @@ class NovelBoardBuilderForTest {
     private NovelBoard novelBoard;
     private NovelBoardId novelBoardId;
     private Opening opening;
-    private Novel novel;
+    private Article article;
 
     private boolean isClosed;
 
@@ -19,14 +19,14 @@ class NovelBoardBuilderForTest {
     }
     NovelBoard buildForRelay() {
         this.novelBoard = new NovelBoard(novelBoardId, opening);
-        novelBoard.relay(novel);
+        novelBoard.relay(article);
         if(isClosed){this.novelBoard.close();}
         return novelBoard;
     }
 
     NovelBoard buildForFork() {
         this.novelBoard = new NovelBoard(novelBoardId, opening);
-        novelBoard.fork(novel);
+        novelBoard.fork(article);
         return novelBoard;
     }
 
@@ -45,8 +45,8 @@ class NovelBoardBuilderForTest {
         return this;
     }
 
-    public NovelBoardBuilderForTest relay(Novel novel) {
-        this.novel = novel;
+    public NovelBoardBuilderForTest relay(Article article) {
+        this.article = article;
         return this;
     }
 
@@ -63,12 +63,12 @@ class NovelBoardBuilderForTest {
         return OpeningKey.of(key);
     }
 
-    static RelayNovelKey relayKey(String key) {
-        return RelayNovelKey.of(key);
+    static RelayArticleKey relayKey(String key) {
+        return RelayArticleKey.of(key);
     }
 
-    static RelayNovelKey parentKey(String key) {
-        return RelayNovelKey.of(key);
+    static RelayArticleKey parentKey(String key) {
+        return RelayArticleKey.of(key);
     }
 
     static WriterId writerId(String id) {
