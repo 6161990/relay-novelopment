@@ -23,7 +23,7 @@ public class NovelBoardCreator {
                 Opening.of(OpeningKey.of(idGenerator.getId()),
                         command.getWriterId(),
                         command.getTitle(),
-                        command.getContent()));
+                        command.getContent()), command.getGenre());
 
         repository.save(novelBoard);
     }
