@@ -55,8 +55,8 @@ public class SpringJdbcNovelBoard {
     public static NovelBoard convert(SpringJdbcNovelBoard entity) {
         return new NovelBoard(
                 entity.getNovelBoardId(),
-                entity.getOpening(),
                 entity.getGenre(),
+                entity.getOpening(),
                 entity.isClosed(),
                 entity.getArticles(),
                 entity.getCreatedAt(),
