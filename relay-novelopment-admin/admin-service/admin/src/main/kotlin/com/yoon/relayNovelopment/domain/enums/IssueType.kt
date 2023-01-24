@@ -1,7 +1,7 @@
 package com.yoon.relayNovelopment.domain.enums
 
 enum class IssueType {
-    BUG, TASK;
+    BUG, TASK, APPROVAL_RELAY;
 
     companion object {
         // 이 방법도 있지만,
