@@ -13,7 +13,7 @@ public class Article {
     WriterId writerId;
     Title title;
     Content content;
-    Genre genre;
+    Genre genre; // FIXME article 에 장르가 필요할까? 장르 간 구별은 어떻게 하나? 소설 <=> 로맨스
 
     private Article(RelayArticleKey relayNovelKey, ArticleKey parentArticleKey, WriterId writerId, Title title, Content content, Genre genre) {
         preValid(relayNovelKey, parentArticleKey, writerId, title, content);
