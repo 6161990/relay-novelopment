@@ -49,7 +49,7 @@ class ArticleBoardCreateControllerTest {
     void createWithInValidData() throws Exception {
         mvc.perform(post("/create/novelBoard")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content("{\"writerId\":,\"\":\"나주에 대하여\", \"content\":\"content\"}"))
+                        .content("{\"writerId\":\"\",\"title\":\"나주에 대하여\", \"content\":\"content\"}"))
                 .andExpect(status().isBadRequest());
     }
 }
