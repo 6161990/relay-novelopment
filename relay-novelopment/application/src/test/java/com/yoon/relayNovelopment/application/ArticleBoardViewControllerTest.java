@@ -29,7 +29,7 @@ class ArticleBoardViewControllerTest {
     @Test
     void detailFindOne() throws Exception {
         NovelBoard novelBoard
-                = new NovelBoard(NovelBoardId.of("1004"), Opening.of(OpeningKey.of("openKey"), WriterId.of("writer"), Title.of("title"), Content.of("content")));
+                = new NovelBoard(NovelBoardId.of("1004"), Opening.of(OpeningKey.of("openKey"), WriterId.of("writer"), Title.of("title"), Content.of("content")), Genre.NOVEL);
         given(novelBoardViewer.findBy(NovelBoardId.of("1004"))).willReturn(novelBoard);
 
         mvc.perform(get("/novelBoard/1004"))
@@ -45,9 +45,9 @@ class ArticleBoardViewControllerTest {
     @Test
     void detailFineAll() throws Exception {
         NovelBoard novelBoard
-                = new NovelBoard(NovelBoardId.of("1004"), Opening.of(OpeningKey.of("openKey"), WriterId.of("writer"), Title.of("title"), Content.of("content")));
+                = new NovelBoard(NovelBoardId.of("1004"), Opening.of(OpeningKey.of("openKey"), WriterId.of("writer"), Title.of("title"), Content.of("content")), Genre.NOVEL);
         NovelBoard novelBoard1
-                = new NovelBoard(NovelBoardId.of("1005"), Opening.of(OpeningKey.of("openKey1"), WriterId.of("writer1"), Title.of("title1"), Content.of("content1")));
+                = new NovelBoard(NovelBoardId.of("1005"), Opening.of(OpeningKey.of("openKey1"), WriterId.of("writer1"), Title.of("title1"), Content.of("content1")), Genre.NOVEL);
         given(novelBoardViewer.findAll()).willReturn(List.of(novelBoard, novelBoard1));
 
         mvc.perform(get("/novelBoards"))

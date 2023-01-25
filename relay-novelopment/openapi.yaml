@@ -553,10 +553,10 @@ components:
           $ref: '#/components/schemas/Articles'
         createdAt:
           type: string
-          format: date-time
+          format: local-date-time
         deleteAt:
           type: string
-          format: date-time
+          format: local-date-time
         version:
           type: integer
           format: int64
