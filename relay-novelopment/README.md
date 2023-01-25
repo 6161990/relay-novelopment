@@ -7,6 +7,10 @@
 <img width="700" alt="2023-01-25_15-26-53" src="https://user-images.githubusercontent.com/74708028/214502375-72e95b88-68fd-48e7-bf4d-3982ee397d42.png">
 
 
+### Model
+<img width="500" alt="2023-01-25_18-52-43" src="https://user-images.githubusercontent.com/74708028/214537365-f2ce7734-a8a6-4107-b3a3-553b60607701.png">
+
+<img width="500" alt="2023-01-25_19-00-24" src="https://user-images.githubusercontent.com/74708028/214537360-1d3fd541-70a4-40e3-a45e-c95e90a0627a.png">
 
 
 ### MVP
