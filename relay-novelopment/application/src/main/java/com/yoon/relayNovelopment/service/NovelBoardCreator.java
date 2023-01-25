@@ -14,7 +14,7 @@ public class NovelBoardCreator {
     private final NovelBoardRepository repository;
     private final IdGenerator idGenerator;
 
-    public void create(NovelCommand command) {
+    public void create(ArticleCommand command) {
         validate(command.getWriterId() != null, new NovelBoardException("WriterId is Null"));
         validate(command.getTitle() != null, new NovelBoardException("Title is Null"));
         validate(command.getContent() != null, new NovelBoardException("Content is Null"));

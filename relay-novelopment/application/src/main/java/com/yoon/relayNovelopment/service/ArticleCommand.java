@@ -5,12 +5,11 @@ import com.yoon.relayNovelopment.domain.Genre;
 import com.yoon.relayNovelopment.domain.Title;
 import com.yoon.relayNovelopment.domain.WriterId;
 
-public interface NovelCommand {
+public interface ArticleCommand {
 
     WriterId getWriterId();
     Title getTitle();
     Content getContent();
-
     Genre getGenre();
 
 }

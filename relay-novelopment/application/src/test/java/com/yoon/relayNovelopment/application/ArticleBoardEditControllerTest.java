@@ -2,7 +2,7 @@ package com.yoon.relayNovelopment.application;
 
 import com.yoon.relayNovelopment.domain.NovelBoardId;
 import com.yoon.relayNovelopment.service.NovelBoardEditor;
-import com.yoon.relayNovelopment.service.NovelCommand;
+import com.yoon.relayNovelopment.service.ArticleCommand;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +31,7 @@ class ArticleBoardEditControllerTest {
     private CommandFactory commandFactory;
 
     @Mock
-    private NovelCommand command;
+    private ArticleCommand command;
 
     @Test
     void relayValidData() throws Exception {

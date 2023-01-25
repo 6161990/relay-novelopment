@@ -2,8 +2,8 @@ package com.yoon.relayNovelopment.application;
 
 import com.yoon.relayNovelopment.domain.NovelBoardId;
 import com.yoon.relayNovelopment.service.NovelBoardEditor;
-import com.yoon.relayNovelopment.service.NovelCommand;
-import com.yoon.relayNovelopment.service.NovelEditCommand;
+import com.yoon.relayNovelopment.service.ArticleCommand;
+import com.yoon.relayNovelopment.service.NovelBoardEditCommand;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,8 +23,8 @@ public class NovelBoardEditController {
     public ResponseEntity<?> relay(@PathVariable("id") NovelBoardId id,
                                    @Valid @RequestBody NovelCreateRequest novelCreateRequest) throws URISyntaxException {
 
-        NovelCommand novelEditorCommand = commandFactory.createBy(id, novelCreateRequest);
-        novelBoardEditor.relay((NovelEditCommand) novelEditorCommand);
+        ArticleCommand novelEditorCommand = commandFactory.createBy(id, novelCreateRequest);
+        novelBoardEditor.relay((NovelBoardEditCommand) novelEditorCommand);
 
         URI location = new URI("/novelBoard/"+ id);
         return ResponseEntity.created(location).body("{}");
@@ -34,8 +34,8 @@ public class NovelBoardEditController {
     public ResponseEntity<?> fork(@PathVariable("id") NovelBoardId id,
                                   @Valid @RequestBody NovelCreateRequest novelCreateRequest) throws URISyntaxException {
 
-        NovelCommand novelEditorCommand = commandFactory.createBy(id, novelCreateRequest);
-        novelBoardEditor.fork((NovelEditCommand) novelEditorCommand);
+        ArticleCommand novelEditorCommand = commandFactory.createBy(id, novelCreateRequest);
+        novelBoardEditor.fork((NovelBoardEditCommand) novelEditorCommand);
 
         URI location = new URI("/novelBoard/"+ id);
         return ResponseEntity.created(location).body("{}");
@@ -46,8 +46,8 @@ public class NovelBoardEditController {
     public ResponseEntity<?> edit(@PathVariable("id") NovelBoardId id,
                                    @Valid @RequestBody NovelCreateRequest novelCreateRequest) throws URISyntaxException {
         // TODO : admin 만 허용하도록 수정
-        NovelCommand novelEditorCommand = commandFactory.createBy(id, novelCreateRequest);
-        novelBoardEditor.edit((NovelEditCommand) novelEditorCommand);
+        ArticleCommand novelEditorCommand = commandFactory.createBy(id, novelCreateRequest);
+        novelBoardEditor.edit((NovelBoardEditCommand) novelEditorCommand);
 
         URI location = new URI("/novelBoard/"+ id);
         return ResponseEntity.created(location).body("{}");

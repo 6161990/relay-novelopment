@@ -1,7 +1,7 @@
 package com.yoon.relayNovelopment.application;
 
 import com.yoon.relayNovelopment.service.NovelBoardCreator;
-import com.yoon.relayNovelopment.service.NovelCommand;
+import com.yoon.relayNovelopment.service.ArticleCommand;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,7 +23,7 @@ public class NovelBoardCreateController {
     @PostMapping("/create/novelBoard")
     public ResponseEntity<?> create(@Valid @RequestBody NovelCreateRequest request) throws URISyntaxException {
         // TODO : admin 만 허용하도록 수정
-        NovelCommand command = commandFactory.createBy(request);
+        ArticleCommand command = commandFactory.createBy(request);
         novelBoardCreator.create(command);
 
         URI location = new URI("/novelBoards/");

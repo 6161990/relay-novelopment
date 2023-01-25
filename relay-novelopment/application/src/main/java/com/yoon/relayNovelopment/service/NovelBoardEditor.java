@@ -13,9 +13,9 @@ import static org.valid4j.Validation.validate;
 public class NovelBoardEditor {
 
     private final NovelBoardRepository repository;
-    private final NovelCreateFactory createFactory;
+    private final ArticleCreateFactory createFactory;
 
-    public void relay(NovelEditCommand command) {
+    public void relay(NovelBoardEditCommand command) {
         NovelBoard novelBoard = repository.findBy(command.getNovelBoardId());
         validNonNull(command, novelBoard);
 
@@ -25,7 +25,7 @@ public class NovelBoardEditor {
         repository.save(novelBoard);
     }
 
-    public void fork(NovelEditCommand command){
+    public void fork(NovelBoardEditCommand command){
         NovelBoard novelBoard = repository.findBy(command.getNovelBoardId());
         validNonNull(command, novelBoard);
 
@@ -42,7 +42,7 @@ public class NovelBoardEditor {
     }
 
     // TODO : test
-    public void edit(NovelEditCommand command) {
+    public void edit(NovelBoardEditCommand command) {
         NovelBoard novelBoard = repository.findBy(command.getNovelBoardId());
         validNonNull(command, novelBoard);
 
@@ -59,7 +59,7 @@ public class NovelBoardEditor {
         repository.delete(id);
     }
 
-    private void validNonNull(NovelEditCommand command, NovelBoard novelBoard) {
+    private void validNonNull(NovelBoardEditCommand command, NovelBoard novelBoard) {
         validate(Objects.nonNull(novelBoard), new NovelBoardException(String.format("This NovelBoard Not Found. NovelBoardId is %s.", command.getNovelBoardId())));
     }
 

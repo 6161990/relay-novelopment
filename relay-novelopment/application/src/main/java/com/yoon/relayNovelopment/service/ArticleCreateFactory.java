@@ -7,19 +7,19 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class NovelCreateFactory {
+public class ArticleCreateFactory {
 
     private final IdGenerator idGenerator;
     private final ParentNovelKeyFinder parentNovelKeyFinder;
 
-    public Article createForRelay(NovelBoard novelBoard, NovelCommand command) {
+    public Article createForRelay(NovelBoard novelBoard, ArticleCommand command) {
         ArticleKey parentKey = parentNovelKeyFinder.getParentBy(novelBoard);
 
         return Article.of(RelayArticleKey.of(idGenerator.getKey(novelBoard.getNovelBoardId(), command.getTitle())), parentKey,
                         command.getWriterId(), command.getTitle(), command.getContent(), command.getGenre());
     }
 
-    public Article createForFork(NovelBoard novelBoard, NovelCommand command) {
+    public Article createForFork(NovelBoard novelBoard, ArticleCommand command) {
         ArticleKey parentKey = parentNovelKeyFinder.getParentForForkBy(novelBoard);
 
         return Article.of(RelayArticleKey.of(idGenerator.getKey(novelBoard.getNovelBoardId(), command.getTitle())), parentKey,

@@ -10,7 +10,7 @@ import javax.validation.Valid;
 @Builder
 @Data
 @AllArgsConstructor
-public class NovelEditCommand implements NovelCommand {
+public class NovelBoardEditCommand implements ArticleCommand {
 
     @Valid
     NovelBoardId novelBoardId;
