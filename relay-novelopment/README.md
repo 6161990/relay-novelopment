@@ -8,9 +8,10 @@
 
 
 ### Model
-<img width="500" alt="2023-01-25_18-52-43" src="https://user-images.githubusercontent.com/74708028/214537365-f2ce7734-a8a6-4107-b3a3-553b60607701.png">
+<img width="600" alt="2023-01-27_12-47-47" src="https://user-images.githubusercontent.com/74708028/215005697-944bee2b-5b66-4687-9011-59679a11ff49.png">
+<img width="500" alt="2023-01-27_12-35-56" src="https://user-images.githubusercontent.com/74708028/215004627-68f66670-6205-475e-8bde-653336ca9aad.png">
 
-<img width="500" alt="2023-01-25_19-00-24" src="https://user-images.githubusercontent.com/74708028/214537360-1d3fd541-70a4-40e3-a45e-c95e90a0627a.png">
+
 
 
 ### MVP
